@@ -30281,3 +30281,245 @@
 [ sql ] [ SQL ] SHOW COLUMNS FROM `s_admin` [ RunTime:0.013944s ]
 [ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `s_admin` `admin` INNER JOIN `s_auth_group_access` `g` ON `g`.`uid`=`admin`.`id` WHERE  (  group_id=14 or group_id=15 or group_id=16 or group_id=17 ) ORDER BY `id` DESC LIMIT 1 [ RunTime:0.005283s ]
 [ sql ] [ SQL ] SELECT `id`,`worker_code`,`nickname`,`mobile`,`supervisor_card`,`admin_code`,`is_law`,`username`,`g`.`group_id` FROM `s_admin` `admin` INNER JOIN `s_auth_group_access` `g` ON `g`.`uid`=`admin`.`id` WHERE  (  group_id=14 or group_id=15 or group_id=16 or group_id=17 ) ORDER BY `id` DESC [ RunTime:0.002534s ]
+---------------------------------------------------------------
+[ 2018-12-04T17:59:54+08:00 ] 127.0.0.1 GET 127.0.0.1/admin/ajax/lang?callback=define&controllername=quality.master&v=1543917325
+[运行时间：2.781845s] [吞吐率：0.36req/s] [内存消耗：3,918.02kb] [文件加载：68]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000118s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.150971s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'ajax',
+    2 => 'lang',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://127.0.0.1/admin/quality/master/index?addtabs=1',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,la;q=0.7,und;q=0.6',
+  'cookie' => 'PHPSESSID=eivmqla39egg85qqa4njskf783',
+)
+[ info ] [ PARAM ] array (
+  'callback' => 'define',
+  'controllername' => 'quality.master',
+  'v' => '1543917325',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/admin\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.067455s ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/admin/lang/zh-cn/ajax.php
+[ info ] [ RUN ] app\admin\controller\Ajax->lang[ D:\wamp64\www\Work\supervision_backend\application\admin\controller\Ajax.php ]
+[ info ] [ BEHAVIOR ] Run app\admin\behavior\AdminLog @app_end [ RunTime:0.039479s ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-12-04T18:00:13+08:00 ] 127.0.0.1 GET 127.0.0.1/admin/quality/master/index?sort=id&order=desc&filter=%7B%7D&op=%7B%7D&_=1543917371542
+[运行时间：0.962997s] [吞吐率：1.04req/s] [内存消耗：4,949.33kb] [文件加载：75]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000145s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.089201s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'quality.master',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'content-type' => 'application/json',
+  'referer' => 'http://127.0.0.1/admin/quality/master/index?addtabs=1',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,la;q=0.7,und;q=0.6',
+  'cookie' => 'PHPSESSID=eivmqla39egg85qqa4njskf783',
+)
+[ info ] [ PARAM ] array (
+  'sort' => 'id',
+  'order' => 'desc',
+  'filter' => '{}',
+  'op' => '{}',
+  '_' => '1543917371542',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/admin\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.010016s ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\admin\controller\quality\Master->index[ D:\wamp64\www\Work\supervision_backend\application\admin\controller\quality\Master.php ]
+[ info ] [ BEHAVIOR ] Run app\admin\behavior\AdminLog @app_end [ RunTime:0.002262s ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001585s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project` [ RunTime:0.015417s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `s_project` `project` INNER JOIN `s_quality_info` `i` ON `project`.`quality_info`=`i`.`id` LEFT JOIN `s_admin` `a` ON `project`.`quality_id`=`a`.`id` LEFT JOIN `s_admin` `z` ON `project`.`quality_assistant`=`z`.`id` ORDER BY `project`.`id` DESC LIMIT 1 [ RunTime:0.035690s ]
+[ sql ] [ SQL ] SELECT `project`.`id`,`project`.`build_dept`,`project`.`project_name`,`project`.`quality_code`,`project`.`address`,`quality_progress`,i.project_kind `i.project_kind`,i.status `i.status`,i.situation `i.situation`,a.nickname `a.nickname`,z.nickname `z.nickname` FROM `s_project` `project` INNER JOIN `s_quality_info` `i` ON `project`.`quality_info`=`i`.`id` LEFT JOIN `s_admin` `a` ON `project`.`quality_id`=`a`.`id` LEFT JOIN `s_admin` `z` ON `project`.`quality_assistant`=`z`.`id` ORDER BY `project`.`id` DESC [ RunTime:0.000914s ]
+---------------------------------------------------------------
+[ 2018-12-04T18:29:21+08:00 ] 127.0.0.1 GET 127.0.0.1/admin/dept/administration?addtabs=1
+[运行时间：3.276639s] [吞吐率：0.31req/s] [内存消耗：4,839.90kb] [文件加载：74]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000224s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.196560s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'dept.administration',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/admin/dept/administration?ref=addtabs',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,la;q=0.7,und;q=0.6',
+  'cookie' => 'PHPSESSID=eivmqla39egg85qqa4njskf783',
+)
+[ info ] [ PARAM ] array (
+  'addtabs' => '1',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/admin\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.055467s ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\admin\controller\dept\Administration->index[ D:\wamp64\www\Work\supervision_backend\application\admin\controller\dept\Administration.php ]
+[ info ] [ VIEW ] D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\dept\administration\index.html [ array (
+  0 => 'breadcrumb',
+  1 => 'site',
+  2 => 'config',
+  3 => 'auth',
+  4 => 'admin',
+) ]
+[ info ] [ BEHAVIOR ] Run app\admin\behavior\AdminLog @app_end [ RunTime:0.030574s ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-12-04T18:29:25+08:00 ] 127.0.0.1 GET 127.0.0.1/admin/ajax/lang?callback=define&controllername=dept.administration&v=1543919360
+[运行时间：0.822296s] [吞吐率：1.22req/s] [内存消耗：3,918.02kb] [文件加载：68]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.003376s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.048838s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'ajax',
+    2 => 'lang',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://127.0.0.1/admin/dept/administration?addtabs=1',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,la;q=0.7,und;q=0.6',
+  'cookie' => 'PHPSESSID=eivmqla39egg85qqa4njskf783',
+)
+[ info ] [ PARAM ] array (
+  'callback' => 'define',
+  'controllername' => 'dept.administration',
+  'v' => '1543919360',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/admin\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.033490s ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/admin/lang/zh-cn/ajax.php
+[ info ] [ RUN ] app\admin\controller\Ajax->lang[ D:\wamp64\www\Work\supervision_backend\application\admin\controller\Ajax.php ]
+[ info ] [ BEHAVIOR ] Run app\admin\behavior\AdminLog @app_end [ RunTime:0.003168s ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-12-04T18:29:29+08:00 ] 127.0.0.1 GET 127.0.0.1/admin/dept/administration/index?sort=id&order=desc&filter=%7B%7D&op=%7B%7D&_=1543919363047
+[运行时间：0.724820s] [吞吐率：1.38req/s] [内存消耗：4,923.30kb] [文件加载：75]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000121s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.017876s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'dept.administration',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'content-type' => 'application/json',
+  'referer' => 'http://127.0.0.1/admin/dept/administration?addtabs=1',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,la;q=0.7,und;q=0.6',
+  'cookie' => 'PHPSESSID=eivmqla39egg85qqa4njskf783',
+)
+[ info ] [ PARAM ] array (
+  'sort' => 'id',
+  'order' => 'desc',
+  'filter' => '{}',
+  'op' => '{}',
+  '_' => '1543919363047',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/admin\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.037370s ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\admin\controller\dept\Administration->index[ D:\wamp64\www\Work\supervision_backend\application\admin\controller\dept\Administration.php ]
+[ info ] [ BEHAVIOR ] Run app\admin\behavior\AdminLog @app_end [ RunTime:0.003090s ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002858s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_admin` [ RunTime:0.007499s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `s_admin` `admin` INNER JOIN `s_auth_group_access` `g` ON `g`.`uid`=admin.id and g.group_id=8 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.019596s ]
+[ sql ] [ SQL ] SELECT `admin`.`id`,`admin`.`worker_code`,`admin`.`nickname`,`admin`.`mobile`,`admin`.`username` FROM `s_admin` `admin` INNER JOIN `s_auth_group_access` `g` ON `g`.`uid`=admin.id and g.group_id=8 ORDER BY `id` DESC [ RunTime:0.001736s ]

@@ -7,12 +7,12 @@
  */
 
 namespace app\admin\controller\administration;
-
 use app\common\controller\Backend;
 use think\Db;
 use think\Exception;
 use think\Session;
 
+//行政管理
 class Project extends Backend{
     protected $noNeedRight = ['*'];
     protected $relationSearch = true;
@@ -22,6 +22,7 @@ class Project extends Backend{
         $this->model = model('project');
     }
 
+    //项目列表
     public function index(){
         if ($this->request->isAjax())
         {
@@ -47,6 +48,7 @@ class Project extends Backend{
         return $this->view->fetch();
     }
 
+    //新建项目档案
     public function add()
     {
         $adminId = Session::get('admin')['id'];
@@ -81,6 +83,7 @@ class Project extends Backend{
         return $this->view->fetch();
     }
 
+    //修改项目档案
     public function edit($ids = NULL)
     {
         $row = db('project')->field('build_dept,project_name,address,licence_id')->where(['id'=>$ids])->find();
