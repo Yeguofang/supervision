@@ -1,0 +1,165 @@
+<script src="__CDN__/assets/js/jquery-3.2.1.js"></script>
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label for="begin_time" class="control-label col-xs-12 col-sm-2">开工时间:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control" id="begin_time" data-date-format="YYYY-MM-DD" name="row[begin_time]" value="{$row.begin_time}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="finish_time" class="control-label col-xs-12 col-sm-2">竣工日期:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control" id="finish_time" data-date-format="YYYY-MM-DD" name="row[finish_time]" value="{$row.finish_time}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="push_time" class="control-label col-xs-12 col-sm-2">报建日期:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control" id="push_time" data-date-format="YYYY-MM-DD" name="row[push_time]" value="{$row.push_time}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="register_time" class="control-label col-xs-12 col-sm-2">监督注册表审批时间:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control" id="register_time" data-date-format="YYYY-MM-DD" name="row[register_time]" value="{$row.register_time}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="permit_time" class="control-label col-xs-12 col-sm-2">施工许可审批时间:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control" id="permit_time" data-date-format="YYYY-MM-DD" name="row[permit_time]" value="{$row.permit_time}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="check_company" class="control-label col-xs-12 col-sm-2">检测公司:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="check_company" name="info[check_company]" value="{$info.check_company}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="check_person" class="control-label col-xs-12 col-sm-2">检测负责人:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="check_person" name="info[check_person]" value="{$info.check_person}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="picture_company" class="control-label col-xs-12 col-sm-2">图审机构公司名:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="picture_company" name="info[picture_company]" value="{$info.picture_company}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="picture_person" class="control-label col-xs-12 col-sm-2">图审机构联系人:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="picture_person" name="info[picture_person]" value="{$info.picture_person}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="build_person" class="control-label col-xs-12 col-sm-2">建设负责人:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="build_person" name="info[build_person]" value="{$info.build_person}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="project_kind" class="control-label col-xs-12 col-sm-2">工程类别:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select  id="project_kind"  name="info[project_kind]" class="form-control">
+                <option value="0" {in name="info.project_kind" value="0"}selected{/in}>市政建设</option>
+                <option value="1"{in name="info.project_kind" value="1"}selected{/in}>房建</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="energy" class="control-label col-xs-12 col-sm-2">节能:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="energy" name="info[energy]" value="{$info.energy}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="extend" class="control-label col-xs-12 col-sm-2">道路工程延长米(米):</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="extend" name="info[extend]" value="{$info.extend}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="structure" class="control-label col-xs-12 col-sm-2">结构形式:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="structure" name="info[structure]" value="{$info.structure}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label  class="control-label col-xs-12 col-sm-2">层数（地上）:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control"  name="floor[]" value="{$info.floor_up}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label  class="control-label col-xs-12 col-sm-2">层数（地下）:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control"  name="floor[]" value="{$info.floor_down}"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div  style="text-align: center;color: red">工程进度 (分子代表进度，分母代表总数 如:1/22)</div>
+    </div>
+    <div class="form-group">
+        <label for="schedule" class="control-label col-xs-12 col-sm-2">工程进度:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="schedule" name="info[schedule]" value="{$info.schedule}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="situation" class="control-label col-xs-12 col-sm-2">工程概况:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select  id="situation" name="info[situation]" class="form-control">
+            {if $info.project_kind == 1 }
+            <option value="0" {in name="info.situation" value="0"}selected{/in}>基础阶段</option>
+            <option value="1"{in name="info.situation" value="1"}selected{/in}>主体阶段</option>
+            <option value="2" {in name="info.situation" value="2"}selected{/in}>装饰阶段</option>
+            <option value="3"{in name="info.situation" value="3"}selected{/in}>收尾</option>
+            <option value="4" {in name="info.situation" value="4"}selected{/in}>完工</option>
+            <option value="5"{in name="info.situation" value="5"}selected{/in}>竣工验收</option>
+            {else /}
+            <option value="0" {in name="info.situation" value="0"}selected{/in}>路基处理</option>
+            <option value="1"{in name="info.situation" value="1"}selected{/in}>路面工程</option>
+            <option value="2" {in name="info.situation" value="2"}selected{/in}>排水系统</option>
+            <option value="3"{in name="info.situation" value="3"}selected{/in}>绿化照明</option>
+            <option value="4" {in name="info.situation" value="4"}selected{/in}>标识标线</option>
+            <option value="5"{in name="info.situation" value="5"}selected{/in}>完成</option>
+            <option value="6"{in name="info.situation" value="6"}selected{/in}>竣工验收</option>
+            {/if}
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="status" class="control-label col-xs-12 col-sm-2">状态:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select  id="status" data-rule="required" name="info[status]" class="form-control">
+                <option value="0" {in name="info.status" value="0"}selected{/in}>未开工</option>
+                <option value="1"{in name="info.status" value="1"}selected{/in}>在建</option>
+                <option value="2" {in name="info.status" value="2"}selected{/in}>质量停工</option>
+                <option value="3"{in name="info.status" value="3"}selected{/in}>安全停工</option>
+                <option value="4" {in name="info.status" value="4"}selected{/in}>局停工</option>
+                <option value="5"{in name="info.status" value="5"}selected{/in}>自停工</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>
+<script>
+    $("#project_kind").change(function(){
+        if($("#project_kind").val()==1){
+            var str = '<option value="0" >基础阶段</option> <option value="1">主体阶段</option> <option value="2" >装饰阶段</option> <option value="3">收尾</option> <option value="4" >完工</option> <option value="5" >竣工验收</option>';
+        }else {
+            var str = ' <option value="0" >路基处理</option>  <option value="1">路面工程</option> <option value="2" >排水系统</option> <option value="3">绿化照明</option><option value="4" }>标识标线</option> <option value="5">完成</option> <option value="6">竣工验收</option>';
+        }
+        $("#situation").empty();
+        $("#situation").append(str);
+    });
+</script>

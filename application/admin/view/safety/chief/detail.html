@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>详情</title>
+</head>
+<body>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>标题</th>
+        <th style="width: 85%">内容</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>报监日期:</td>
+        <td>
+            {notempty name="row.supervise_time"}
+            {$row.supervise_time|date='Y-m-d',###}
+            {/notempty}
+        </td>
+    </tr>
+    <tr>
+        <td>监督告知书日期:</td>
+        <td>
+            {notempty name="row.supervisor_time"}
+            {$row.supervisor_time|date='Y-m-d',###}
+            {/notempty}
+        </td>
+    </tr>
+    <tr>
+        <td>开工交底日期:</td>
+        <td>
+            {notempty name="info.down_time"}
+            {$info.down_time |date='Y-m-d',###}
+            {/notempty}
+        </td>
+    </tr>
+    <tr>
+        <td>中止施工日期:</td>
+        <td>
+            {notempty name="info.stop_time"}
+            {$info.stop_time |date='Y-m-d',###}
+            {/notempty}
+        </td>
+    </tr>
+    <tr>
+        <td>评定办结日期:</td>
+        <td>
+            {notempty name="info.assess_time"}
+            {$info.assess_time |date='Y-m-d',###}
+            {/notempty}
+        </td>
+    </tr>
+    <tr>
+        <td>论证日期:</td>
+        <td>
+            {notempty name="info.argument_time"}
+            {$info.argument_time |date='Y-m-d',###}
+            {/notempty}
+        </td>
+    </tr>
+    <tr>
+        <td>验收日期:</td>
+        <td>
+            {notempty name="row.check_time"}
+            {$row.check_time|date='Y-m-d',###}
+            {/notempty}
+        </td>
+    </tr>
+    <tr>
+        <td>完工日期:</td>
+        <td>
+            {notempty name="info.end_time"}
+            {$info.end_time |date='Y-m-d',###}
+            {/notempty}
+        </td>
+    </tr>
+    <tr>
+        <td>检查日期:</td>
+        <td>
+            {notempty name="info.inspect_time"}
+            {$info.inspect_time |date='Y-m-d',###}
+            {/notempty}
+        </td>
+    </tr>
+    <tr>
+        <td>回复日期:</td>
+        <td>
+            {notempty name="info.reply_time"}
+            {$info.reply_time |date='Y-m-d',###}
+            {/notempty}
+        </td>
+    </tr>
+    <tr>
+        <td>安全监督编号:</td>
+        <td>
+            {$info.safety_code}
+        </td>
+    </tr>
+    <tr>
+        <td>建设单位:</td>
+        <td>
+            {$row.build_dept}
+        </td>
+    </tr>
+    <tr>
+        <td>监理单位:</td>
+        <td>
+            {$licence.supervision_company}
+        </td>
+    </tr>
+    <tr>
+        <td>施工单位:</td>
+        <td>
+            {$licence.construction_company}
+        </td>
+    </tr>
+    <tr>
+        <td>工程名称:</td>
+        <td>
+            {$row.project_name}
+        </td>
+    </tr>
+    <tr>
+        <td>地点:</td>
+        <td>
+            {$row.address}
+        </td>
+    </tr>
+    <tr>
+        <td>面积（平方米）:</td>
+        <td>
+            {$licence.area}
+        </td>
+    </tr>
+    <tr>
+        <td>道路工程延长米(米):</td>
+        <td>
+            {$quality.extend}
+        </td>
+    </tr>
+    <tr>
+        <td>造价（万元）:</td>
+        <td>
+            {$licence.cost}
+        </td>
+    </tr>
+    <tr>
+        <td>层数:</td>
+        <td>
+            地上：{$quality.floor_up}<br>
+            地下：{$quality.floor_down}
+        </td>
+    </tr>
+    <tr>
+        <td>施工许可证号:</td>
+        <td>
+            {$licence.licence_code}
+        </td>
+    </tr>
+    <tr>
+        <td>工程进度:</td>
+        <td>
+            {$quality.schedule}
+        </td>
+    </tr>
+    <tr>
+        <td>工程评定结论:</td>
+        <td>
+            {$info.assess}
+        </td>
+    </tr>
+    <tr>
+        <td>超过一定规模的危险性较大的分部分项工程范围:</td>
+        <td>
+            {$info.danger}
+        </td>
+    </tr>
+    <tr>
+        <td>整改措施:</td>
+        <td>
+            {if $info.measure == '0' }
+            抽查
+            {elseif $info.measure == 1 }
+            整改
+            {elseif $info.measure == 2 }
+            暂停
+            {elseif $info.measure == 3 }
+            约谈
+            {elseif $info.measure == 4 }
+            扣分
+            {/if}
+        </td>
+    </tr>
+    <tr>
+        <td>整改内容:</td>
+        <td>
+            {$info.content}
+        </td>
+    </tr>
+    <tr>
+        <td>整改期限:</td>
+        <td>
+            {$info.deadline}
+        </td>
+    </tr>
+    <tr>
+        <td>文书编号:</td>
+        <td>
+            {$info.document_code}
+        </td>
+    </tr>
+    <tr>
+        <td>备注:</td>
+        <td>
+            {$info.remark}
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>提交</title>
+    <script src="__CDN__/assets/js/jquery-3.2.1.js"></script>
+</head>
+<body>
+<form id="deal" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>标题</th>
+            <th>内容</th>
+        </tr>
+        </thead>
+        <tr>
+            <td>未提交:</td><td><input  type="radio" value="1" name="status"{in name="$id" value="1"}checked{/in} ></td>
+        </tr>
+        <tr>
+            <td>已提交:</td><td><input  type="radio"value="2"  name="status" {in name="$id" value="2"}checked{/in}></td>
+        </tr>
+    </table>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+</form>

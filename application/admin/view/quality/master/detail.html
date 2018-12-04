@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>详情</title>
+</head>
+<body>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>标题</th>
+        <th style="width: 85%">内容</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>开工时间:</td>
+        <td>
+            {notempty name="row.begin_time"}
+            {$row.begin_time|date='Y-m-d',###}
+            {/notempty}
+        </td>
+    </tr>
+    <tr>
+        <td>竣工日期:</td>
+        <td>
+            {notempty name="row.finish_time"}
+            {$row.finish_time|date='Y-m-d',###}
+            {/notempty}
+        </td>
+    </tr>
+    <tr>
+        <td>报建日期:</td>
+        <td>
+            {notempty name="row.push_time"}
+            {$row.push_time |date='Y-m-d',###}
+            {/notempty}
+        </td>
+    </tr>
+    <tr>
+        <td>监督注册表审批时间:</td>
+        <td>
+            {notempty name="row.register_time"}
+            {$row.register_time |date='Y-m-d',###}
+            {/notempty}
+        </td>
+    </tr>
+    <tr>
+        <td>施工许可审批时间:</td>
+        <td>
+            {notempty name="row.permit_time"}
+            {$row.permit_time |date='Y-m-d',###}
+            {/notempty}
+        </td>
+    </tr>
+    <tr>
+        <td>检测公司:</td>
+        <td>
+            {$info.check_company}
+        </td>
+    </tr>
+    <tr>
+        <td>检测负责人:</td>
+        <td>
+            {$info.check_person}
+        </td>
+    </tr>
+    <tr>
+        <td>施工负责人:</td>
+        <td>
+            {$licence.construction_person}
+        </td>
+    </tr>
+    <tr>
+        <td>监理负责人:</td>
+        <td>
+            {$licence.supervision_person}
+        </td>
+    </tr>
+    <tr>
+        <td>图审机构公司名:</td>
+        <td>
+            {$info.picture_company}
+        </td>
+    </tr>
+    <tr>
+        <td>图审机构联系人:</td>
+        <td>
+            {$info.picture_person}
+        </td>
+    </tr>
+    <tr>
+        <td>建设负责人:</td>
+        <td>
+            {$info.build_person}
+        </td>
+    </tr>
+    <tr>
+        <td>工程类别:</td>
+        <td>
+            {if $info.project_kind == '0' }
+            市政建设
+            {elseif $info.project_kind == 1 }
+            房建
+            {/if}
+        </td>
+    </tr>
+    <tr>
+        <td>节能:</td>
+        <td>
+            {$info.energy}
+        </td>
+    </tr>
+    <tr>
+        <td>道路工程延长米(米):</td>
+        <td>
+            {$info.extend}
+        </td>
+    </tr>
+    <tr>
+        <td>结构形式:</td>
+        <td>
+            {$info.structure}
+        </td>
+    </tr>
+    <tr>
+        <td>层数:</td>
+        <td>
+            地上：{$info.floor_up}<br>
+            地下：{$info.floor_down}
+        </td>
+    </tr>
+    <tr>
+        <td>工程进度:</td>
+        <td>
+            {$info.schedule}
+        </td>
+    </tr>
+    <tr>
+        <td>工程概况:</td>
+        <td>
+            {if $info.project_kind == 1 }
+             {if $info.situation == '0' }
+              基础阶段
+               {elseif $info.situation == 1 }
+              主体阶段。类型：{if $info.extra_type == 0 }框架 {elseif $info.extra_type == 1 }砌砖    层数：{$info.extra_floor} {/if}
+               {elseif $info.situation == 2 }
+              装饰阶段。类型：{if $info.status_extra == 0 }水电安装 {elseif $info.status_extra == 1 }普通装饰 {/if}
+               {elseif $info.situation == 3 }
+              收尾
+             {elseif $info.situation == 4 }
+              完工
+             {elseif $info.situation == 5 }
+              竣工验收
+              {/if}
+            {else /}
+            {if $info.situation == '0' }
+            路基处理
+            {elseif $info.situation == 1 }
+            路面工程
+            {elseif $info.situation == 2 }
+            排水系统
+            {elseif $info.situation == 3 }
+            绿化照明
+            {elseif $info.situation == 4 }
+            标识标线
+            {elseif $info.situation == 5 }
+            完成
+            {elseif $info.situation == 6 }
+            竣工验收
+            {/if}
+            {/if}
+        </td>
+    </tr>
+    <tr>
+        <td>状态:</td>
+        <td>
+            {if $info.status == '0' }
+            未开工
+            {elseif $info.status == 1 }
+            在建
+            {elseif $info.status == 2 }
+            质量停工
+            {elseif $info.status == 3 }
+            安全停工
+            {elseif $info.status == 4 }
+            局停工
+            {elseif $info.status == 5 }
+            自停工
+            {/if}
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+</body>
+</html>

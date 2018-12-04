@@ -1,0 +1,139 @@
+<script src="__CDN__/assets/js/jquery-3.2.1.js"></script>
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label for="down_time" class="control-label col-xs-12 col-sm-2">开工交底时间:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control" id="down_time" data-date-format="YYYY-MM-DD" name="info[down_time]" value="{$info.down_time}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="stop_time" class="control-label col-xs-12 col-sm-2">中止施工日期:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control" id="stop_time" data-date-format="YYYY-MM-DD" name="info[stop_time]" value="{$info.stop_time}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="assess_time" class="control-label col-xs-12 col-sm-2">评定办结日期:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control" id="assess_time" data-date-format="YYYY-MM-DD" name="info[assess_time]" value="{$info.assess_time}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="argument_time" class="control-label col-xs-12 col-sm-2">论证日期:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control" id="argument_time" data-date-format="YYYY-MM-DD" name="info[argument_time]" value="{$info.argument_time}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="supervise_time" class="control-label col-xs-12 col-sm-2">报监时间:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control" id="supervise_time" data-date-format="YYYY-MM-DD" name="row[supervise_time]" value="{$row.supervise_time}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="reply_time" class="control-label col-xs-12 col-sm-2">回复日期:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control" id="reply_time" data-date-format="YYYY-MM-DD" name="info[reply_time]" value="{$info.reply_time}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inspect_time" class="control-label col-xs-12 col-sm-2">检查日期:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control" id="inspect_time" data-date-format="YYYY-MM-DD" name="info[inspect_time]" value="{$info.inspect_time}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="check_time" class="control-label col-xs-12 col-sm-2">验收时间:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control" id="check_time" data-date-format="YYYY-MM-DD" name="row[check_time]" value="{$row.check_time}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="end_time" class="control-label col-xs-12 col-sm-2">完工日期:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control" id="end_time" data-date-format="YYYY-MM-DD" name="row[end_time]" value="{$row.end_time}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="safety_code" class="control-label col-xs-12 col-sm-2">安全监督编号:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="safety_code" name="info[safety_code]" value="{$info.safety_code}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="assess" class="control-label col-xs-12 col-sm-2">工程评定结论:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea rows="3" cols="20" class="form-control" id="assess" name="info[assess]">{$info.assess}</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="danger" class="control-label col-xs-12 col-sm-2">危险性较大的分部分项工程范围:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea rows="3" cols="20" class="form-control" id="danger" name="info[danger]">{$info.danger}</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="scale_danger" class="control-label col-xs-12 col-sm-2">超过一定规模的危险性较大的分部分项工程范围:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea rows="3" cols="20" class="form-control" id="scale_danger" name="info[scale_danger]">{$info.scale_danger}</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="measure" class="control-label col-xs-12 col-sm-2">整改措施:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select  id="measure"  name="info[measure]" class="form-control">
+                <option value="">无</option>
+                <option value="0" {in name="info.measure" value="0"}selected{/in}>抽查</option>
+                <option value="1"{in name="info.measure" value="1"}selected{/in}>整改</option>
+                <option value="2" {in name="info.measure" value="2"}selected{/in}>暂停</option>
+                <option value="3"{in name="info.measure" value="3"}selected{/in}>约谈</option>
+                <option value="4" {in name="info.measure" value="4"}selected{/in}>扣分</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="content" class="control-label col-xs-12 col-sm-2">整改内容:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea rows="3" cols="20" class="form-control" id="content" name="info[content]">{$info.content}</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <div  style="text-align: center;color: red">整改期限 例：2018/11/27 - 2018/12/1</div>
+    </div>
+    <div class="form-group">
+        <label for="deadline" class="control-label col-xs-12 col-sm-2">整改期限:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="deadline" name="info[deadline]" value="{$info.deadline}"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="document_code" class="control-label col-xs-12 col-sm-2">文书编号:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="document_code" name="info[document_code]" value="{$info.document_code}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="remark" class="control-label col-xs-12 col-sm-2">备注:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea rows="3" cols="20" class="form-control" id="remark" name="info[remark]">{$info.remark}</textarea>
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>
+<script>
+    $("#project_kind").change(function(){
+        if($("#project_kind").val()==1){
+            var str = '<option value="0" >基础阶段</option> <option value="1">主体阶段</option> <option value="2" >装饰阶段</option> <option value="3">收尾</option> <option value="4" >完工</option> <option value="5" >竣工验收</option>';
+        }else {
+            var str = ' <option value="0" >路基处理</option>  <option value="1">路面工程</option> <option value="2" >排水系统</option> <option value="3">绿化照明</option><option value="4" }>标识标线</option> <option value="5">完成</option> <option value="6">竣工验收</option>';
+        }
+        $("#situation").empty();
+        $("#situation").append(str);
+    });
+</script>

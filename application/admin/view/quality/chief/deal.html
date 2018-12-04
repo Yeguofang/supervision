@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>处理</title>
+    <script src="__CDN__/assets/js/jquery-3.2.1.js"></script>
+</head>
+<body>
+<form class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th style="width: 15%">标题</th>
+            <th>内容</th>
+        </tr>
+        </thead>
+        <tr id="code">
+            <td>告知书编号:</td>
+            <td>
+                <input type="text" name="code" data-rule="required">
+            </td>
+        <tr>
+            <td>下发告知书时间:</td>
+            <td>
+                <input type="text" data-rule="required" class="datetimepicker form-control" id="time"
+                       data-date-format="YYYY-MM-DD" name="time"/>
+            </td>
+        </tr>
+        <tr id="member">
+            <td>选人员:</td>
+            <td> {:build_select('quality[]', $quality, null, ['class'=>'form-control selectpicker', 'multiple'=>'',
+                'data-rule'=>'required'])}
+            </td>
+        </tr>
+    </table>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+</form>
+</body>
+</html>
