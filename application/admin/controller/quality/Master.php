@@ -73,6 +73,7 @@ class Master extends Backend{
            db('project')->where(['id'=>$ids])->update($data);
            $this->success();
         }
+        
         return $this->view->fetch();
     }
 
@@ -98,7 +99,15 @@ class Master extends Backend{
         return $this->view->fetch();
     }
 
-    //登记告知书
+    /**
+     * Undocumented function
+     *
+     * @param [type] $ids
+     * @return void
+     * @Description 
+     * @author YGF
+     * @DateTime {{datetime}}
+     */
     public function quality($ids){
         quality_inform($ids);
     }

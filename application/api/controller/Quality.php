@@ -31,8 +31,9 @@ class Quality extends Api
             $map['quality_id']=$user['admin_id'];
         }
         //差竣工联系人
-        $data=db('project p')->field('p.id,p.build_dept,p.project_name,p.address,p.push_time,
-        p.begin_time,p.finish_time,p.check_time,l.supervision_person,i.status')
+        $field = 'p.id,p.build_dept,p.project_name,p.address,p.push_time,p.begin_time,p.finish_time,p.check_time,l.supervision_person,i.status';
+        $data=db('project p')
+            ->field($field)
             ->join('quality_info i','p.quality_info=i.id')
             ->join('licence l','p.licence_id=l.id')
             ->where($map)->page($page,$num)->select();
@@ -68,8 +69,11 @@ class Quality extends Api
     public function detail(){
         $id= $this->request->param('id');
         $field='p.id,p.build_dept,p.project_name,p.address,l.area,l.cost,i.floor,p.push_time,p.supervise_time,p.begin_time bTime,l.begin_time,l.end_time,p.finish_time,p.check_time,l.construction_person,l.supervision_person,i.status';
-        $data=db('project p')->field($field)->join('quality_info i','p.quality_info=i.id')
-         ->join('licence l','p.licence_id=l.id')->where(['p.id'=>$id])
+        $data=db('project p')
+            ->field($field)
+            ->join('quality_info i','p.quality_info=i.id')
+            ->join('licence l','p.licence_id=l.id')
+            ->where(['p.id'=>$id])
             ->find();
         $floor = explode(',', $data['floor']);
         if(count($floor)==1){

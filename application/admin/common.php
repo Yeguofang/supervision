@@ -18,7 +18,7 @@ if (!function_exists('getJson')) {
 
 }
 
-//时间戳转换Y-m-d时间
+//时间转换  时间戳转Y-m-d
 if(!function_exists('DataTiem')){
     function DataTiem($time)
     {
@@ -29,7 +29,7 @@ if(!function_exists('DataTiem')){
     }
 }
 
-//时间Y-m-d转换时间戳
+//时间转换  Y-m-d转时间戳
 if(!function_exists('StrtoTime')){
     function StrtoTime($time){
         if($time == ''){
@@ -43,7 +43,7 @@ if(!function_exists('StrtoTime')){
 
 
 
-
+// /施工安全监督告知书
 if (!function_exists('safety_inform')) {
     function safety_inform($ids) {
 
@@ -97,7 +97,7 @@ if (!function_exists('safety_inform')) {
 
 }
 
-
+//建设工程质量监督登记告知书
 if (!function_exists('quality_inform')) {
     function quality_inform($ids) {
         $templateProcessor = new TemplateProcessor("./doc/quality.docx");
@@ -163,6 +163,7 @@ if (!function_exists('quality_inform')) {
 
 }
 
+//生成随机字符
 if (!function_exists('get_rand_number_char')) {
     function get_rand_number_char($len = 30,$type=1) {
         if($type==1){

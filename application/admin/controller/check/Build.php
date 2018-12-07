@@ -9,6 +9,7 @@ namespace app\admin\controller\check;
 
 use app\common\controller\Backend;
 
+//建管验收
 class Build extends Backend{
     protected $noNeedRight = ['*'];
     protected $relationSearch = true;
@@ -18,6 +19,7 @@ class Build extends Backend{
         $this->model = model('project');
     }
 
+    //项目列表
     public function index(){
         if ($this->request->isAjax())
         {
@@ -48,7 +50,11 @@ class Build extends Backend{
 
     //监督报告
     public function report($ids){
-        $id = db('project')->field('supervisory_report')->where(['id'=>$ids])->find()['supervisory_report'];
+        $id = db('project')
+            ->field('supervisory_report')
+            ->where(['id'=>$ids])
+            ->find()['supervisory_report'];
+            
         $this->assign('id',$id);
         if ($this->request->isAjax())
         {

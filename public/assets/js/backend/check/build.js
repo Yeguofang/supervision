@@ -10,25 +10,28 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             });
             var buttons = [
                 {
-                    name: 'report',
-                    text: '监督报告',
-                    icon: 'fa fa-list',
+                    name     : 'report',
+                    text     : '监督报告',
+                    icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
-                    url: 'check/build/report',
-                    visible: function (row) {
+                    url      : 'check/build/report',
+                    visible  : function (row) {
                         //返回true时按钮显示,返回false隐藏
                         return true;
                     }
                 },{
-                    name: 'deal',
-                    text: '同意',
-                    icon: 'fa fa-list',
+                    name     : 'deal',
+                    text     : '同意',
+                    icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
-                    url: 'build/project/deal',
-                    visible: function (row) {
+                    url      : 'check/build/deal',
+                    visible  : function (row) {
                         //返回true时按钮显示,返回false隐藏
-                        if(row.supervisor_progress==3&&row.quality_progress==3){
-
+                        if (row.supervisor_progress == 3 && row.quality_progress == 3) {
+                            
+                            if (row.build_check == 1) {
+                                return false;
+                            }
                             return true;
                         }
                         return false;
@@ -42,15 +45,15 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             });
             // 初始化表格
             table.bootstrapTable({
-                url: $.fn.bootstrapTable.defaults.extend.index_url,
-                escape: false,
-                sortName: 'id',
-                pagination: false,
-                showToggle: false,
+                url        : $.fn.bootstrapTable.defaults.extend.index_url,
+                escape     : false,
+                sortName   : 'id',
+                pagination : false,
+                showToggle : false,
                 showColumns: false,
-                showExport: false,
-                search:false,
-                columns: [
+                showExport : false,
+                search     : false,
+                columns    : [
                     [
                         //id,worker_code,nickname,mobile,supervisor_card,admin_code,is_law,username,admin_level
                         {checkbox: true},

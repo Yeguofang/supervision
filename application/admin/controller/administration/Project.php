@@ -86,16 +86,28 @@ class Project extends Backend{
     //修改项目档案
     public function edit($ids = NULL)
     {
-        $row = db('project')->field('build_dept,project_name,address,licence_id')->where(['id'=>$ids])->find();
-        $licence = db('licence')->field('qr_code,licence_code,area,cost,survey_company,design_company,construction_company,supervision_company,survey_person,design_person,construction_person,supervision_person,begin_time,end_time')->where(['id'=>$row['licence_id']])->find();
+       
+        $row = db('project')
+            ->field('build_dept,project_name,address,licence_id')
+            ->where(['id'=>$ids])->find();
+        $licence = db('licence')
+            ->field('qr_code,licence_code,area,cost,survey_company,design_company,construction_company,supervision_company,survey_person,design_person,construction_person,supervision_person,begin_time,end_time')
+            ->where(['id'=>$row['licence_id']])
+            ->find();
         if($licence['begin_time']!=null){
             $licence['begin_time']=date('Y-m-d', $licence['begin_time']);
         }
         if($licence['end_time']!=null){
             $licence['end_time']=date('Y-m-d', $licence['end_time']);
         }
+
+        //调用五大责任关联查询方法
+        $five =$this->Five();
+        // dump($five['build_dept'][0]['name']);exit;
         $this->assign('row',$row);
         $this->assign('licence',$licence);
+        $this->assign('five',$five);
+        
         if ($this->request->isAjax())
         {
            $project = $this->request->post('row/a');
@@ -112,9 +124,71 @@ class Project extends Backend{
             }
             db('project')->where(['id'=>$ids])->update($project);
             db('licence')->where(['id'=>$row['licence_id']])->update($licence);
-           $this->success();
+            
+            $licence['build_dept'] = $project['build_dept'];
+            $this->five_insert($licence);
+            
+            $this->success();
         }
         return $this->view->fetch();
+    }
+
+
+    //修改项目的时候，五大责任输入框的关联查询输出，
+    public function Five()
+    {
+        $build_dept = db('five_duty')->where('type',1)->select();
+        $design_company = db('five_duty')->where('type',2)->select();
+        $design_person = db('five_duty')->where('type',3)->select();
+        $survey_company = db('five_duty')->where('type',4)->select();
+        $survey_person = db('five_duty')->where('type',5)->select();
+        $construction_company = db('five_duty')->where('type',6)->select();
+        $construction_person = db('five_duty')->where('type',7)->select();
+        $supervision_company = db('five_duty')->where('type',8)->select();
+        $supervision_person = db('five_duty')->where('type',9)->select();
+
+        $five =array(
+            'build_dept' => $build_dept,
+            'design_company' => $design_company,
+            'design_person'  => $design_person,
+            'survey_company' => $survey_company,
+            'survey_person' => $survey_person,
+            'construction_company' => $construction_company,
+            'construction_person' => $construction_person,
+            'supervision_company' => $supervision_company,
+            'supervision_person' => $supervision_person,
+        );
+        return $five;
+    }
+    
+    // 行政管理修改过项目的五大责任体系后，把修改过的信息插入five_duty表，用于修改的时候关联查询
+    public function five_insert($licence){
+        $this->five_duty($licence['build_dept'],1);
+        $this->five_duty($licence['design_company'],2);
+        $this->five_duty($licence['design_person'],3);
+        $this->five_duty($licence['survey_company'],4);
+        $this->five_duty($licence['survey_person'],5);
+        $this->five_duty($licence['construction_company'],6);
+        $this->five_duty($licence['construction_person'],7);
+        $this->five_duty($licence['supervision_company'],8);
+        $this->five_duty($licence['supervision_person'],9);
+        return;
+    }
+
+    public function five_duty($name,$type)
+    {
+        if($name != null){
+            $result = db('five_duty')->where('name',$name)->where('type',$type)->find();
+            if($result == null){
+                $data = [
+                    'name' =>$name,
+                    'type' => $type
+                ];
+                db('five_duty')->insert($data);
+            }
+        }
+        return;
+
     }
 
 }

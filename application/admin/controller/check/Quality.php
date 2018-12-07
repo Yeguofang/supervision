@@ -10,7 +10,7 @@ namespace app\admin\controller\check;
 
 use app\common\controller\Backend;
 use think\Session;
-
+//质监站验收
 class Quality extends Backend
 {
     protected $noNeedRight = ['*'];
@@ -22,6 +22,7 @@ class Quality extends Backend
         $this->model = model('project');
     }
 
+    //项目列表
     public function index()
     {
         $adminId = Session::get('admin')['id'];
@@ -73,6 +74,7 @@ class Quality extends Backend
         $data = db('project p')->where(['p.id'=>$ids])
             ->join('s_licence l','l.id=p.licence_id')
             ->find();
+            
         $this->assign("data",$data);
         return $this->view->fetch();
     }

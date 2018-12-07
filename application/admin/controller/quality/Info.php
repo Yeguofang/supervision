@@ -54,6 +54,12 @@ class Info extends Backend{
    public function edit($ids = NULL)
    {
        $row=db('project')->where(['id'=>$ids])->find();
+       
+    //    //检查项目是否下发告知书
+    //    if($row['quality_code'] == "" ){
+    //        return "<h1>项目还未下发告知书，暂时无法编辑！</h1>";
+    //    }
+
        $infoId=$row['quality_info'];
        $info=db('quality_info')->where(['id'=>$infoId])->find();
        $info['floor_up']=explode(",",$info['floor'])[0];
@@ -87,8 +93,13 @@ class Info extends Backend{
        }
        return $this->view->fetch();
    }
+
+   //工程状况额外状态
    public function situation(){
-        $data = db('project p')->field('p.quality_info,situation,status_extra')->join('quality_info i','i.id=p.quality_info')->find();
+        $data = db('project p')
+            ->field('p.quality_info,situation,status_extra')
+            ->join('quality_info i','i.id=p.quality_info')
+            ->find();
         if($data['situation']==1){
             //主体阶段
             $extra = explode(",",$data['status_extra']);
@@ -96,7 +107,7 @@ class Info extends Backend{
                 $extra[0]='';
                 $extra[1]='';
             }
-           $info['type'] = $extra[0];
+            $info['type'] = $extra[0];
             $info['floor'] = $extra[1];
         }else{
             $info['type'] = $data['status_extra'];

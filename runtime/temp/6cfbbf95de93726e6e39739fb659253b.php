@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:104:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\administration\project\edit.html";i:1543541642;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:104:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\administration\project\edit.html";i:1544152755;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -50,11 +50,17 @@
                             <!-- END RIBBON -->
                             <?php endif; ?>
                             <div class="content">
-                                <form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+                                <script src="/assets/js/jquery-3.2.1.js"></script>
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
     <div class="form-group">
         <label for="build_dept" class="control-label col-xs-12 col-sm-2">建设单位:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="build_dept" name="row[build_dept]" value="<?php echo $row['build_dept']; ?>" data-rule="required" />
+            <input type="text"  list="depts" class="form-control" id="build_dept" name="row[build_dept]" value="<?php echo $row['build_dept']; ?>" data-rule="required" />
+            <datalist id="depts">
+                <?php if(!(empty($five['build_dept']) || (($five['build_dept'] instanceof \think\Collection || $five['build_dept'] instanceof \think\Paginator ) && $five['build_dept']->isEmpty()))): if(is_array($five['build_dept']) || $five['build_dept'] instanceof \think\Collection || $five['build_dept'] instanceof \think\Paginator): if( count($five['build_dept'])==0 ) : echo "" ;else: foreach($five['build_dept'] as $key=>$vo): ?>
+                    <option ><?php echo $vo['name']; ?></option>
+                    <?php endforeach; endif; else: echo "" ;endif; endif; ?>
+            </datalist>
         </div>
     </div>
     <div class="form-group">
@@ -81,12 +87,14 @@
             </div>
             <ul class="row list-inline plupload-preview" id="p-avatar"></ul>
         </div>
+        <i style="color:red;font-size: 24px;">*</i>
     </div>
     <div class="form-group">
         <label for="licence_code" class="control-label col-xs-12 col-sm-2">编号:</label>
         <div class="col-xs-12 col-sm-8">
             <input type="text" class="form-control" id="licence_code" name="licence[licence_code]" value="<?php echo $licence['licence_code']; ?>"  />
         </div>
+        <i style="color:red;font-size: 24px;">*</i>
     </div>
     <div class="form-group">
         <label for="area" class="control-label col-xs-12 col-sm-2">建设规模:</label>
@@ -105,63 +113,100 @@
     <div class="form-group">
         <label for="survey_company" class="control-label col-xs-12 col-sm-2">勘察单位:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="survey_company" name="licence[survey_company]" value="<?php echo $licence['survey_company']; ?>" />
+            <input type="text" list="survey_companys" class="form-control" id="survey_company" name="licence[survey_company]" value="<?php echo $licence['survey_company']; ?>" />
+            <datalist id="survey_companys">
+                <?php if(!(empty($five['survey_company']) || (($five['survey_company'] instanceof \think\Collection || $five['survey_company'] instanceof \think\Paginator ) && $five['survey_company']->isEmpty()))): if(is_array($five['survey_company']) || $five['survey_company'] instanceof \think\Collection || $five['survey_company'] instanceof \think\Paginator): if( count($five['survey_company'])==0 ) : echo "" ;else: foreach($five['survey_company'] as $key=>$vo): ?>
+                        <option><?php echo $vo['name']; ?></option>
+                    <?php endforeach; endif; else: echo "" ;endif; endif; ?>
+            </datalist>
         </div>
     </div>
     <div class="form-group">
         <label for="design_company" class="control-label col-xs-12 col-sm-2">设计单位:</label>
         <div class="col-xs-12 col-sm-8">
-            <input  type="text" class="form-control" id="design_company" name="licence[design_company]" value="<?php echo $licence['design_company']; ?>" />
+            <input  type="text" lsit="design_companys" class="form-control" id="design_company" name="licence[design_company]" value="<?php echo $licence['design_company']; ?>" />
+            <datalist id="design_companys">
+                    <?php if(!(empty($five['design_company']) || (($five['design_company'] instanceof \think\Collection || $five['design_company'] instanceof \think\Paginator ) && $five['design_company']->isEmpty()))): if(is_array($five['design_company']) || $five['design_company'] instanceof \think\Collection || $five['design_company'] instanceof \think\Paginator): if( count($five['design_company'])==0 ) : echo "" ;else: foreach($five['design_company'] as $key=>$vo): ?>
+                            <option><?php echo $vo['name']; ?></option>
+                        <?php endforeach; endif; else: echo "" ;endif; endif; ?>
+             </datalist>
         </div>
     </div>
     <div class="form-group">
         <label for="construction_company" class="control-label col-xs-12 col-sm-2">施工单位:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text"  class="form-control" id="construction_company" name="licence[construction_company]" value="<?php echo $licence['construction_company']; ?>"  />
+            <input type="text" list="construction_companys"  class="form-control" id="construction_company" name="licence[construction_company]" value="<?php echo $licence['construction_company']; ?>"  />
+            <datalist id="construction_companys">
+                    <?php if(!(empty($five['construction_company']) || (($five['construction_company'] instanceof \think\Collection || $five['construction_company'] instanceof \think\Paginator ) && $five['construction_company']->isEmpty()))): if(is_array($five['construction_company']) || $five['construction_company'] instanceof \think\Collection || $five['construction_company'] instanceof \think\Paginator): if( count($five['construction_company'])==0 ) : echo "" ;else: foreach($five['construction_company'] as $key=>$vo): ?>
+                            <option><?php echo $vo['name']; ?></option>
+                        <?php endforeach; endif; else: echo "" ;endif; endif; ?>
+             </datalist>
         </div>
     </div>
     <div class="form-group">
         <label for="supervision_company" class="control-label col-xs-12 col-sm-2">监理单位:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text"  class="form-control" id="supervision_company" name="licence[supervision_company]" value="<?php echo $licence['supervision_company']; ?>"  />
+            <input type="text" list="supervision_companys"  class="form-control" id="supervision_company" name="licence[supervision_company]" value="<?php echo $licence['supervision_company']; ?>"  />
+            <datalist id="supervision_companys">
+                    <?php if(!(empty($five['supervision_company']) || (($five['supervision_company'] instanceof \think\Collection || $five['supervision_company'] instanceof \think\Paginator ) && $five['supervision_company']->isEmpty()))): if(is_array($five['supervision_company']) || $five['supervision_company'] instanceof \think\Collection || $five['supervision_company'] instanceof \think\Paginator): if( count($five['supervision_company'])==0 ) : echo "" ;else: foreach($five['supervision_company'] as $key=>$vo): ?>
+                            <option><?php echo $vo['name']; ?></option>
+                        <?php endforeach; endif; else: echo "" ;endif; endif; ?>
+             </datalist>
         </div>
     </div>
     <div class="form-group">
         <label for="survey_person" class="control-label col-xs-12 col-sm-2">勘察项目负责人:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="survey_person" name="licence[survey_person]" value="<?php echo $licence['survey_person']; ?>"/>
+            <input type="text" list="survey_persons" class="form-control" id="survey_person" name="licence[survey_person]" value="<?php echo $licence['survey_person']; ?>"/>
+            <datalist id="survey_persons">
+                    <?php if(!(empty($five['survey_person']) || (($five['survey_person'] instanceof \think\Collection || $five['survey_person'] instanceof \think\Paginator ) && $five['survey_person']->isEmpty()))): if(is_array($five['survey_person']) || $five['survey_person'] instanceof \think\Collection || $five['survey_person'] instanceof \think\Paginator): if( count($five['survey_person'])==0 ) : echo "" ;else: foreach($five['survey_person'] as $key=>$vo): ?>
+                            <option><?php echo $vo['name']; ?></option>
+                        <?php endforeach; endif; else: echo "" ;endif; endif; ?>
+             </datalist>
         </div>
     </div>
     <div class="form-group">
         <label for="design_person" class="control-label col-xs-12 col-sm-2">设计项目负责人:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="design_person" name="licence[design_person]" value="<?php echo $licence['design_person']; ?>"  />
+            <input type="text" list="design_persons" class="form-control" id="design_person" name="licence[design_person]" value="<?php echo $licence['design_person']; ?>"  />
+            <datalist id="design_persons">
+                    <?php if(!(empty($five['design_person']) || (($five['design_person'] instanceof \think\Collection || $five['design_person'] instanceof \think\Paginator ) && $five['design_person']->isEmpty()))): if(is_array($five['design_person']) || $five['design_person'] instanceof \think\Collection || $five['design_person'] instanceof \think\Paginator): if( count($five['design_person'])==0 ) : echo "" ;else: foreach($five['design_person'] as $key=>$vo): ?>
+                            <option><?php echo $vo['name']; ?></option>
+                        <?php endforeach; endif; else: echo "" ;endif; endif; ?>
+             </datalist>
         </div>
     </div>
     <div class="form-group">
         <label for="construction_person" class="control-label col-xs-12 col-sm-2">施工项目负责人:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="construction_person" name="licence[construction_person]" value="<?php echo $licence['construction_person']; ?>"  />
+            <input type="text" list="construction_persons" class="form-control" id="construction_person" name="licence[construction_person]" value="<?php echo $licence['construction_person']; ?>"  />
+            <datalist id="construction_persons">
+                    <?php if(!(empty($five['construction_person']) || (($five['construction_person'] instanceof \think\Collection || $five['construction_person'] instanceof \think\Paginator ) && $five['construction_person']->isEmpty()))): if(is_array($five['construction_person']) || $five['construction_person'] instanceof \think\Collection || $five['construction_person'] instanceof \think\Paginator): if( count($five['construction_person'])==0 ) : echo "" ;else: foreach($five['construction_person'] as $key=>$vo): ?>
+                            <option><?php echo $vo['name']; ?></option>
+                        <?php endforeach; endif; else: echo "" ;endif; endif; ?>
+             </datalist>
         </div>
     </div>
     <div class="form-group">
         <label for="supervision_person" class="control-label col-xs-12 col-sm-2">总监理工程师:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control man" id="supervision_person" name="licence[supervision_person]" value="<?php echo $licence['supervision_person']; ?>"  />
+            <input type="text" list="supervision_persons" class="form-control man" id="supervision_person" name="licence[supervision_person]" value="<?php echo $licence['supervision_person']; ?>"  />
+            <datalist id="supervision_persons">
+                    <?php if(!(empty($five['supervision_person']) || (($five['supervision_person'] instanceof \think\Collection || $five['supervision_person'] instanceof \think\Paginator ) && $five['supervision_person']->isEmpty()))): if(is_array($five['supervision_person']) || $five['supervision_person'] instanceof \think\Collection || $five['supervision_person'] instanceof \think\Paginator): if( count($five['supervision_person'])==0 ) : echo "" ;else: foreach($five['supervision_person'] as $key=>$vo): ?>
+                            <option><?php echo $vo['name']; ?></option>
+                        <?php endforeach; endif; else: echo "" ;endif; endif; ?>
+             </datalist>
         </div>
     </div>
     <div class="form-group">
-        <label for="begin_time" class="control-label col-xs-12 col-sm-2">合同开始时间:</label>
+        <label for="begin_time" class="control-label col-xs-12 col-sm-2">合同工期:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="datetimepicker form-control" id="begin_time" data-date-format="YYYY-MM-DD" name="licence[begin_time]" value="<?php echo $licence['begin_time']; ?>"  />
+            <input type="text" class="datetimepicker form" id="begin_time" data-date-format="YYYY-MM-DD" name="licence[begin_time]" value="<?php echo $licence['begin_time']; ?>"  />
+            ——
+            <input type="text" class="datetimepicker form" id="end_time" data-date-format="YYYY-MM-DD" name="licence[end_time]" value="<?php echo $licence['end_time']; ?>"  />
         </div>
     </div>
-    <div class="form-group">
-        <label for="end_time" class="control-label col-xs-12 col-sm-2">合同结束时间:</label>
-        <div class="col-xs-12 col-sm-8">
-            <input type="text" class="datetimepicker form-control" id="end_time" data-date-format="YYYY-MM-DD" name="licence[end_time]" value="<?php echo $licence['end_time']; ?>"  />
-        </div>
-    </div>
+    
     <div class="form-group layer-footer">
         <label class="control-label col-xs-12 col-sm-2"></label>
         <div class="col-xs-12 col-sm-8">
@@ -170,6 +215,7 @@
         </div>
     </div>
 </form>
+
                             </div>
                         </div>
                     </div>

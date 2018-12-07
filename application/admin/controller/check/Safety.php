@@ -9,7 +9,7 @@ namespace app\admin\controller\check;
 
 use app\common\controller\Backend;
 use think\Session;
-
+//安监站验收
 class Safety extends Backend{
     protected $noNeedRight = ['*'];
     public function _initialize()
@@ -18,6 +18,8 @@ class Safety extends Backend{
 
         $this->model=model('project');
     }
+
+    //项目列表
     public function index()
     {
 
@@ -66,7 +68,8 @@ class Safety extends Backend{
 
     //五大责任主体
     public function detail($ids){
-        $data = db('project p')->where(['p.id'=>$ids])
+        $data = db('project p')
+            ->where(['p.id'=>$ids])
             ->join('s_licence l','l.id=p.licence_id')
             ->find();
         $this->assign("data",$data);

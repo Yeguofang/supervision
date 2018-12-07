@@ -70,5 +70,6 @@ class Administration extends Backend{
         }
         return $this->view->fetch();
     }
+    
 
 }

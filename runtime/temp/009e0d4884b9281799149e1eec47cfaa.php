@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:88:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\index\login.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:88:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\index\login.html";i:1544086803;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,20 +64,31 @@
         .profile-name-card {
             text-align: center;
         }
+        .title-name {
+            font-size: 32px;
+            padding-top: 5%;
+            padding-left: 25%;
+            margin: auto;
+        }
 
         #login-form {
             margin-top:20px;
         }
         #login-form .input-group {
             margin-bottom:15px;
+
         }
+        
 
     </style>
 </head>
 <body>
 <div class="container">
     <div class="login-wrapper">
+            <div class="title-name"><a href="#">高要区建设工程质量安全监督管理系统</a></div>
         <div class="login-screen">
+                
+
             <div class="well">
                 <div class="login-form">
                     <img id="profile-img" class="profile-img-card" src="/assets/img/avatar.png" />
@@ -117,7 +128,7 @@
                 </div>
             </div>
             <!-- FastAdmin是开源程序，建议在您的网站底部保留一个FastAdmin的链接 -->
-            <p class="copyright"><a href="#">高要区建设工程质量安全监督管理系统</a></p>
+           
         </div>
     </div>
 </div>
