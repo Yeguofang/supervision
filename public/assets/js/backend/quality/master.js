@@ -14,27 +14,27 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             });
             var buttons = [
                 {
-                    name: 'select',
-                    text: '选择副站长',
-                    icon: 'fa fa-list',
+                    name     : 'select',
+                    text     : '选择副站长',
+                    icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
-                    url: 'quality/master/select',
+                    url      : 'quality/master/select',
                 },
                 {
-                    name: 'detail',
-                    text: '详细信息',
-                    icon: 'fa fa-list',
+                    name     : 'detail',
+                    text     : '详细信息',
+                    icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
-                    url: 'quality/master/detail',
+                    url      : 'quality/master/detail',
                 },
                 {
-                    name: 'quality',
-                    text: '登记告知书',
-                    icon: 'fa fa-list',
+                    name     : 'quality',
+                    text     : '登记告知书',
+                    icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail  download',
-                    url: 'quality/master/quality',
-                    extend:'target="_blank"',
-                    visible: function (row) {
+                    url      : 'quality/master/quality',
+                    extend   : 'target="_blank"',
+                    visible  : function (row) {
                         //下发了告知书才显示
                         if(row.quality_code!=null){
                             return true;
@@ -46,15 +46,15 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             var table = $("#table");
             // 初始化表格
             table.bootstrapTable({
-                url: $.fn.bootstrapTable.defaults.extend.index_url,
-                escape: false,
-                sortName: 'id',
-                pagination: false,
-                showToggle: false,
+                url        : $.fn.bootstrapTable.defaults.extend.index_url,
+                escape     : false,
+                sortName   : 'id',
+                pagination : false,
+                showToggle : false,
                 showColumns: false,
-                showExport: false,
-                search:false,
-                columns: [
+                showExport : false,
+                search     : false,
+                columns    : [
                     [
                         //id,worker_code,nickname,mobile,supervisor_card,admin_code,is_law,username,admin_level
                         {checkbox: true},
@@ -114,16 +114,15 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     if(value == '0'){
                         return "<label class='label bg-orange'>未处理</label>"
                     }else if(value == '1'){
-                        return "<label class='label bg-green'>已申请竣工并已通知副站</label>"
+                        return "<label class='label bg-green'>已申请竣工<br/>并已通知副站</label>"
                     }else if(value == '2'){
                         return "<label class='label bg-red'>已通知站长</label>"
                     }else if(value == '3'){
-                        return "<label class='label bg-red'>同意</label>"
+                        return "<label class='label bg-red'>同意竣工</label>"
                     }
                 },situation:function(value,row,index){
                     if(row['i.project_kind'] == '0'){
                         if(value == '0'){
-                            console.log(value)
                             return "<label class='label bg-orange'>路基处理</label>"
                         }else if(value == '1'){
                             return "<label class='label bg-green'>路面工程</label>"
@@ -139,7 +138,6 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                             return "<label class='label bg-red'>竣工验收</label>"
                         }
                     }else if(row['i.project_kind'] == '1'){
-                        console.log(value)
                         if(value == '0'){
                             return "<label class='label bg-orange'>基础阶段</label>"
                         }else if(value == '1'){

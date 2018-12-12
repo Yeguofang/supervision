@@ -105,7 +105,7 @@ class Safety extends Backend{
                     }
                     $data['uid']=$this->model->getLastInsID();
                     db('AuthGroupAccess')->insert($data);
-                    //安监前段登录账号
+                    //安监手机端登录账号
                     $user['username']=$params['username'];
                     $user['password']=md5(md5(123456) . $params['salt']);
                     $user['nickname']=$params['nickname'];

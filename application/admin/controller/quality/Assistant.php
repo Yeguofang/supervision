@@ -59,9 +59,16 @@ class Assistant extends Backend{
     //选择主责
     public function select($ids){
         //查出质检员 12
-        $assistant['assistant'] = db('admin admin')->field('admin.id,admin.nickname name,admin.mobile')->join('auth_group_access a','a.uid=admin.id and a.group_id=12')->select();
+        $assistant['assistant'] = db('admin admin')
+                                ->field('admin.id,admin.nickname name,admin.mobile')
+                                ->join('auth_group_access a','a.uid=admin.id and a.group_id=12')
+                                ->select();
         //查出当前质检员
-        $assistant['now'] = db('project')->field('quality_id')->where(['id'=>$ids])->find()['quality_id'];
+        $assistant['now'] = db('project')
+                        ->field('quality_id')
+                        ->where(['id'=>$ids])
+                        ->find()['quality_id'];
+                        
         $this->assign('assistant',$assistant);
         if ($this->request->isAjax())
         {

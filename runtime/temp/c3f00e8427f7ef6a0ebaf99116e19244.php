@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:6:{s:88:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\index\index.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\header.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\menu.html";i:1543541642;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\control.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:6:{s:88:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\index\index.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\header.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\menu.html";i:1544432318;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\control.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
 <head>
@@ -146,6 +146,7 @@
 
         <!-- 菜单可以在 后台管理->权限管理->菜单规则 中进行增删改排序 -->
         <?php echo $menulist; ?>
+        <li data-rel="external"><a href=" <?php echo url('api/safety/listing'); ?>" target="_blank"><i class="fa fa-list text-red"></i> <span>API数据测试</span></a></li>
     </ul>
 </section>
     </aside>

@@ -62,10 +62,17 @@ class Quality extends Backend
                 ->limit($offset, $limit)
                 ->select();
 
+                for ($i = 0; $i < count($list); $i++) {
+                    $list[$i]['begin_time'] = DataTiem($list[$i]['begin_time']);
+                    $list[$i]['finish_time'] = DataTiem($list[$i]['finish_time']);
+                    $list[$i]['check_time'] = DataTiem($list[$i]['check_time']);
+                }
+         
+
 
             $result = array("total" => $total, "rows" => $list);
             return json($result);
-        }
+         }
         return $this->view->fetch();
     }
 

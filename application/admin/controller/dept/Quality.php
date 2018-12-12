@@ -104,7 +104,7 @@ class Quality extends Backend
                     }
                     $data['uid'] = $this->model->getLastInsID();
                     db('AuthGroupAccess')->insert($data);
-                    //质监前段登录账号
+                    //质监手机端登录账号
                     $user['username'] = $params['username'];
                     $user['password'] = md5(md5(123456) . $params['salt']);
                     $user['nickname'] = $params['nickname'];

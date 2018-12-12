@@ -14,11 +14,11 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             });
             var buttons = [
                 {
-                    name: 'detail',
-                    text: '五大责任主体详情',
-                    icon: 'fa fa-list',
+                    name     : 'detail',
+                    text     : '五大责任主体详情',
+                    icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
-                    url: 'check/quality/detail',
+                    url      : 'check/quality/detail',
                 }
             ];
             $(document).ready(function () {
@@ -26,17 +26,17 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 $("#ret").remove();
                 var str = "同意竣工";
                 if(identy==0){
-                    str="申请竣工";
+                    str = "申请竣工";
                 }else if(identy==2){
-                    str=str+"并通知主站";
+                    str = str+"并通知主站";
                 }
                 buttons.push({
-                    name: 'notice',
-                    text: str,
-                    icon: 'fa fa-list',
+                    name     : 'notice',
+                    text     : str,
+                    icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog small',
-                    url: 'check/quality/notice?ret='+identy,
-                    visible: function (row) {
+                    url      : 'check/quality/notice?ret='+identy,
+                    visible  : function (row) {
                         //返回true时按钮显示,返回false隐藏
                         if(identy==0){
                             //质检员
@@ -62,15 +62,15 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             });
             // 初始化表格
             table.bootstrapTable({
-                url: $.fn.bootstrapTable.defaults.extend.index_url,
-                escape: false,
-                sortName: 'id',
-                pagination: false,
-                showToggle: false,
+                url        : $.fn.bootstrapTable.defaults.extend.index_url,
+                escape     : false,
+                sortName   : 'id',
+                pagination : false,
+                showToggle : false,
                 showColumns: false,
-                showExport: false,
-                search:false,
-                columns: [
+                showExport : false,
+                search     : false,
+                columns    : [
                     [
                         //id,worker_code,nickname,mobile,supervisor_card,admin_code,is_law,username,admin_level
                         {checkbox: true},
@@ -79,9 +79,9 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'project_name', title: '工程名称', operate: "LIKE"},
                         {field: 'address', title: '建设地址', operate:false},
                         {field: 'quality_progress', title: '质监进度', formatter:Controller.api.formatter.progress,searchList: {'0':'未处理','1': '已通知副站','2': '已通知主站','3': '主站同意'}},
-                        {field: 'begin_time', title: "开工日期",operate:"like",formatter: Table.api.formatter.datetime,type: 'datetime', addclass: 'datetimepicker', data: 'data-date-format="YYYY-MM-DD"'},
-                        {field: 'finish_time', title: "竣工日期",operate:"like",formatter: Table.api.formatter.datetime,type: 'datetime', addclass: 'datetimepicker', data: 'data-date-format="YYYY-MM-DD"'},
-                        {field: 'check_time', title: "验收日期",operate:"like",formatter: Table.api.formatter.datetime,type: 'datetime', addclass: 'datetimepicker', data: 'data-date-format="YYYY-MM-DD"'},
+                        {field: 'begin_time', title: "开工日期",operate:"like"},
+                        {field: 'finish_time', title: "竣工日期",operate:"like"},
+                        {field: 'check_time', title: "验收日期",operate:"like"},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate,buttons:buttons}
                     ]
                 ]
