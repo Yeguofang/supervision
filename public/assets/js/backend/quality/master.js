@@ -14,6 +14,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             });
             var buttons = [
                 {
+                    name     : 'detail',
+                    text     : '项目图片',
+                    icon     : 'fa fa-image',
+                    classname: 'btn btn-info btn-xs btn-detail btn-dialog',
+                    url      : 'quality/vouchermaster/index',
+                 },
+                {
                     name     : 'select',
                     text     : '选择副站长',
                     icon     : 'fa fa-list',
@@ -114,7 +121,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     if(value == '0'){
                         return "<label class='label bg-orange'>未处理</label>"
                     }else if(value == '1'){
-                        return "<label class='label bg-green'>已申请竣工<br/>并已通知副站</label>"
+                        return "<label class='label bg-green'>已申请竣工并已通知副站</label>"
                     }else if(value == '2'){
                         return "<label class='label bg-red'>已通知站长</label>"
                     }else if(value == '3'){

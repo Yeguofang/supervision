@@ -64,9 +64,11 @@ class Project extends Backend{
                 db('licence')->insert($fresh);
                 db('quality_info')->insert($fresh);
                 db('safety_info')->insert($fresh);
+                
                 $row['licence_id']=db('licence')->getLastInsID();
                 $row['quality_info']=db('quality_info')->getLastInsID();
                 $row['safety_info']=db('safety_info')->getLastInsID();
+
                 $row['admin_id']=$adminId;
                 db('project')->insert($row);
 

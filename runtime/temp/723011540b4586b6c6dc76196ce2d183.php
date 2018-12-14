@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:101:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\quality\assistant\select.html";i:1544152863;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:103:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\quality\voucher\status_del.html";i:1544691065;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -50,26 +50,24 @@
                             <!-- END RIBBON -->
                             <?php endif; ?>
                             <div class="content">
-                                <form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
-    <div class="form-group">
-        <label for="assistant" class="control-label col-xs-12 col-sm-2">选择主责:</label>
-        <div class="col-xs-12 col-sm-8">
-            <select  id="assistant"  name="quality_id" class="form-control">
-                <option value="" >无</option>
-            <?php if(is_array($assistant['assistant']) || $assistant['assistant'] instanceof \think\Collection || $assistant['assistant'] instanceof \think\Paginator): if( count($assistant['assistant'])==0 ) : echo "" ;else: foreach($assistant['assistant'] as $key=>$vo): ?>
-            <option value="<?php echo $vo['id']; ?>" <?php if(in_array(($assistant['now']), is_array($vo['id'])?$vo['id']:explode(',',$vo['id']))): ?>selected<?php endif; ?>>姓名：<?php echo $vo['name']; ?> 手机号：<?php echo $vo['mobile']; ?></option>
-            <?php endforeach; endif; else: echo "" ;endif; ?>
-            </select>
-        </div>
-    </div>
+                                <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="deal" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
     <div class="form-group layer-footer">
         <label class="control-label col-xs-12 col-sm-2"></label>
         <div class="col-xs-12 col-sm-8">
             <button type="submit" class="btn btn-success btn-embossed disabled"><?php echo __('OK'); ?></button>
-            <button type="reset" class="btn btn-default btn-embossed"><?php echo __('Reset'); ?></button>
         </div>
     </div>
 </form>
+</body>
+</html>
                             </div>
                         </div>
                     </div>

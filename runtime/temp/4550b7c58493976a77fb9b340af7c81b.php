@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:101:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\quality\assistant\select.html";i:1544152863;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:98:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\quality\voucher\index.html";i:1544683144;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -50,26 +50,37 @@
                             <!-- END RIBBON -->
                             <?php endif; ?>
                             <div class="content">
-                                <form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
-    <div class="form-group">
-        <label for="assistant" class="control-label col-xs-12 col-sm-2">选择主责:</label>
-        <div class="col-xs-12 col-sm-8">
-            <select  id="assistant"  name="quality_id" class="form-control">
-                <option value="" >无</option>
-            <?php if(is_array($assistant['assistant']) || $assistant['assistant'] instanceof \think\Collection || $assistant['assistant'] instanceof \think\Paginator): if( count($assistant['assistant'])==0 ) : echo "" ;else: foreach($assistant['assistant'] as $key=>$vo): ?>
-            <option value="<?php echo $vo['id']; ?>" <?php if(in_array(($assistant['now']), is_array($vo['id'])?$vo['id']:explode(',',$vo['id']))): ?>selected<?php endif; ?>>姓名：<?php echo $vo['name']; ?> 手机号：<?php echo $vo['mobile']; ?></option>
-            <?php endforeach; endif; else: echo "" ;endif; ?>
-            </select>
+                                <div class="panel panel-default panel-intro">
+    <?php echo build_heading(); ?>
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <div id="toolbar" class="toolbar">
+                        <a href="javascript:;" class="btn btn-primary btn-refresh" title="<?php echo __('Refresh'); ?>" ><i class="fa fa-refresh"></i> </a>
+                        <a href="javascript:;" class="btn btn-success btn-add " title="<?php echo __('Add'); ?>" ><i class="fa fa-plus"></i>上传图片</a>
+                       
+                        <div class="dropdown btn-group <?php echo $auth->check('project/multi')?'':'hide'; ?>">
+                            <a class="btn btn-primary btn-more dropdown-toggle btn-disabled disabled" data-toggle="dropdown"><i class="fa fa-cog"></i> <?php echo __('More'); ?></a>
+                            <ul class="dropdown-menu text-left" role="menu">
+                                <li><a class="btn btn-link btn-multi btn-disabled disabled" href="javascript:;" data-params="status=normal"><i class="fa fa-eye"></i> <?php echo __('Set to normal'); ?></a></li>
+                                <li><a class="btn btn-link btn-multi btn-disabled disabled" href="javascript:;" data-params="status=hidden"><i class="fa fa-eye-slash"></i> <?php echo __('Set to hidden'); ?></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <table id="table" class="table table-striped table-bordered table-hover table-nowrap"
+                           data-operate-edit="<?php echo $auth->check('project/edit'); ?>" 
+                           data-operate-del="<?php echo $auth->check('project/del'); ?>" 
+                           width="100%">
+                    </table>
+                </div>
+            </div>
+
         </div>
     </div>
-    <div class="form-group layer-footer">
-        <label class="control-label col-xs-12 col-sm-2"></label>
-        <div class="col-xs-12 col-sm-8">
-            <button type="submit" class="btn btn-success btn-embossed disabled"><?php echo __('OK'); ?></button>
-            <button type="reset" class="btn btn-default btn-embossed"><?php echo __('Reset'); ?></button>
-        </div>
-    </div>
-</form>
+</div>
+
                             </div>
                         </div>
                     </div>

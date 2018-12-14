@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:101:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\quality\assistant\select.html";i:1544152863;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:96:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\quality\voucher\add.html";i:1544684663;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -51,17 +51,39 @@
                             <?php endif; ?>
                             <div class="content">
                                 <form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
-    <div class="form-group">
-        <label for="assistant" class="control-label col-xs-12 col-sm-2">选择主责:</label>
+<div class="form-group">
+        <label for="assistant" class="control-label col-xs-12 col-sm-2">选择项目:</label>
         <div class="col-xs-12 col-sm-8">
-            <select  id="assistant"  name="quality_id" class="form-control">
-                <option value="" >无</option>
-            <?php if(is_array($assistant['assistant']) || $assistant['assistant'] instanceof \think\Collection || $assistant['assistant'] instanceof \think\Paginator): if( count($assistant['assistant'])==0 ) : echo "" ;else: foreach($assistant['assistant'] as $key=>$vo): ?>
-            <option value="<?php echo $vo['id']; ?>" <?php if(in_array(($assistant['now']), is_array($vo['id'])?$vo['id']:explode(',',$vo['id']))): ?>selected<?php endif; ?>>姓名：<?php echo $vo['name']; ?> 手机号：<?php echo $vo['mobile']; ?></option>
+            <select  id="assistant"  name="row[project_id]" class="form-control">
+            <?php if(is_array($project) || $project instanceof \think\Collection || $project instanceof \think\Paginator): if( count($project)==0 ) : echo "" ;else: foreach($project as $key=>$vo): ?>
+            <option value="<?php echo $vo['id']; ?>"><?php echo $vo['project_name']; ?></option>
             <?php endforeach; endif; else: echo "" ;endif; ?>
             </select>
         </div>
     </div>
+  
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">图片:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-project_images" class="form-control" size="50" name="row[project_images]" type="text">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-project_images" class="btn btn-danger plupload" data-input-id="c-project_images" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true" data-preview-id="p-project_images"><i class="fa fa-upload"></i> <?php echo __('Upload'); ?></button></span>
+                    <span><button type="button" id="fachoose-project_images" class="btn btn-primary fachoose" data-input-id="c-project_images" data-mimetype="image/*" data-multiple="true"><i class="fa fa-list"></i> <?php echo __('Choose'); ?></button></span>
+                </div>
+                <span class="msg-box n-right" for="c-project_images"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-project_images"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">说明:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-project_desc" class="form-control" name="row[project_desc]" type="text"></textarea>
+           
+        </div>
+    </div>
+   
     <div class="form-group layer-footer">
         <label class="control-label col-xs-12 col-sm-2"></label>
         <div class="col-xs-12 col-sm-8">
@@ -70,6 +92,7 @@
         </div>
     </div>
 </form>
+
                             </div>
                         </div>
                     </div>

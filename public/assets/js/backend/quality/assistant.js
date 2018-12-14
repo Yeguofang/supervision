@@ -14,27 +14,34 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             });
             var buttons = [
                 {
-                    name: 'select',
-                    text: '选择主责',
-                    icon: 'fa fa-list',
+                    name     : 'detail',
+                    text     : '项目图片',
+                    icon     : 'fa fa-image',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
-                    url: 'quality/assistant/select',
+                    url      : 'quality/voucherapply/index',
+                 },
+                {
+                    name     : 'select',
+                    text     : '选择主责',
+                    icon     : 'fa fa-list',
+                    classname: 'btn btn-info btn-xs btn-detail btn-dialog',
+                    url      : 'quality/assistant/select',
                 },
                 {
-                    name: 'detail',
-                    text: '详细信息',
-                    icon: 'fa fa-list',
+                    name     : 'detail',
+                    text     : '详细信息',
+                    icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
-                    url: 'quality/assistant/detail',
+                    url      : 'quality/assistant/detail',
                 },
                 {
-                    name: 'quality',
-                    text: '登记告知书',
-                    icon: 'fa fa-list',
+                    name     : 'quality',
+                    text     : '登记告知书',
+                    icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail  download',
-                    url: 'quality/assistant/quality',
-                    extend:'target="_blank"',
-                    visible: function (row) {
+                    url      : 'quality/assistant/quality',
+                    extend   : 'target="_blank"',
+                    visible  : function (row) {
                         //下发了告知书才显示
                         if(row.quality_code!=null){
                             return true;
@@ -47,15 +54,15 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             var table = $("#table");
             // 初始化表格
             table.bootstrapTable({
-                url: $.fn.bootstrapTable.defaults.extend.index_url,
-                escape: false,
-                sortName: 'id',
-                pagination: false,
-                showToggle: false,
+                url        : $.fn.bootstrapTable.defaults.extend.index_url,
+                escape     : false,
+                sortName   : 'id',
+                pagination : false,
+                showToggle : false,
                 showColumns: false,
-                showExport: false,
-                search:false,
-                columns: [
+                showExport : false,
+                search     : false,
+                columns    : [
                     [
                         //id,worker_code,nickname,mobile,supervisor_card,admin_code,is_law,username,admin_level
                         {checkbox: true},

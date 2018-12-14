@@ -14,6 +14,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             });
             var buttons = [
                 {
+                    name     : 'detail',
+                    text     : '项目图片',
+                    icon     : 'fa fa-image',
+                    classname: 'btn btn-info btn-xs btn-detail btn-dialog',
+                    url      : 'safety/vouchermaster/index',
+                 },
+                {
                     name     : 'select',
                     text     : '选择副站长',
                     icon     : 'fa fa-list',

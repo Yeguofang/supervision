@@ -1,0 +1,42 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+<div class="form-group">
+        <label for="assistant" class="control-label col-xs-12 col-sm-2">选择项目:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select  id="assistant"  name="row[project_id]" class="form-control">
+            {foreach name="project" item="vo"}
+            <option value="{$vo.id}">{$vo.project_name}</option>
+            {/foreach}
+            </select>
+        </div>
+    </div>
+  
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">图片:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-project_images" class="form-control" size="50" name="row[project_images]" type="text">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-project_images" class="btn btn-danger plupload" data-input-id="c-project_images" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true" data-preview-id="p-project_images"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-project_images" class="btn btn-primary fachoose" data-input-id="c-project_images" data-mimetype="image/*" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-project_images"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-project_images"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">说明:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-project_desc" class="form-control" name="row[project_desc]" type="text"></textarea>
+           
+        </div>
+    </div>
+   
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

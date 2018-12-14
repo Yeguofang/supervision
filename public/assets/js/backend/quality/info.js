@@ -6,17 +6,17 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             Table.api.init({
                 extend: {
                     index_url: 'quality/info/index',
-                    edit_url: 'quality/info/edit',
+                    edit_url : 'quality/info/edit',
                 }
             });
             var buttons = [
                 {
-                    name: 'situation',
-                    text: '工程概况额外状态',
-                    icon: 'fa fa-list',
+                    name     : 'situation',
+                    text     : '工程概况额外状态',
+                    icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
-                    url: 'quality/info/situation',
-                    visible: function (row) {
+                    url      : 'quality/info/situation',
+                    visible  : function (row) {
                         if(row['i.project_kind']==1&&(row['i.situation']==1||row['i.situation']==2)){
                             return true;
                         }
@@ -28,15 +28,15 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             var table = $("#table");
             // 初始化表格
             table.bootstrapTable({
-                url: $.fn.bootstrapTable.defaults.extend.index_url,
-                escape: false,
-                sortName: 'id',
-                pagination: false,
-                showToggle: false,
+                url        : $.fn.bootstrapTable.defaults.extend.index_url,
+                escape     : false,
+                sortName   : 'id',
+                pagination : false,
+                showToggle : false,
                 showColumns: false,
-                showExport: false,
-                search:false,
-                columns: [
+                showExport : false,
+                search     : false,
+                columns    : [
                     [
                         //id,worker_code,nickname,mobile,supervisor_card,admin_code,is_law,username,admin_level
                         {checkbox: true},
@@ -74,7 +74,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     }else if(value == '1'){
                         return "<label class='label bg-green'>房建</label>"
                     }
-                },status:function (value,row,index) {
+                },
+                status: function (value, row, index) {
                     if(value == '0'){
                         return "<label class='label bg-orange'>未开工</label>"
                     }else if(value == '1'){
