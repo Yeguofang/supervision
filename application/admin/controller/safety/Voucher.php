@@ -1,14 +1,16 @@
 <?php
 
+/**
+ * Created by Visual Studio code.
+ * User:  Yeguofang
+ * Date: 2018/12/15
+ * Time: 12:35
+ */
 namespace app\admin\controller\safety;
 
 use app\common\controller\Backend;
 use think\Session;
-/**
- * 
- *
- * @icon fa fa-circle-o
- */
+
 //安监主责上传项目图片功能
 class Voucher extends Backend
 {
