@@ -6,24 +6,24 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             Table.api.init({
                 extend: {
                     index_url: 'dept/safety/index',
-                    add_url: 'dept/safety/add',
-                    edit_url: 'dept/safety/edit',
-                    del_url: 'dept/safety/del',
+                    add_url  : 'dept/safety/add',
+                    edit_url : 'dept/safety/edit',
+                    del_url  : 'dept/safety/del',
                     // multi_url: 'user/user/multi',
                 }
             });
             var table = $("#table");
             // 初始化表格
             table.bootstrapTable({
-                url: $.fn.bootstrapTable.defaults.extend.index_url,
-                escape: false,
-                sortName: 'id',
-                pagination: false,
-                showToggle: false,
+                url        : $.fn.bootstrapTable.defaults.extend.index_url,
+                escape     : false,
+                sortName   : 'id',
+                pagination : false,
+                showToggle : false,
                 showColumns: false,
-                showExport: false,
-                search:false,
-                columns: [
+                showExport : false,
+                search     : false,
+                columns    : [
                     [
                         //id,worker_code,nickname,mobile,supervisor_card,admin_code,is_law,username,admin_level
                         {checkbox: true},
@@ -64,7 +64,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 },
                 level:function (value,row,index) {
                     if(value == '14'){
-                        return "<label class='label bg-green'>安监副站长</label>"
+                        return "<label class='label bg-green'>安监站长</label>"
                     }else if(value == '15'){
                         return "<label class='label bg-green'>安监副站长</label>"
                     }else if(value == '16'){

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:98:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\quality\voucher\index.html";i:1544683144;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:98:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\quality\voucher\index.html";i:1544928762;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -69,10 +69,7 @@
                             </ul>
                         </div>
                     </div>
-                    <table id="table" class="table table-striped table-bordered table-hover table-nowrap"
-                           data-operate-edit="<?php echo $auth->check('project/edit'); ?>" 
-                           data-operate-del="<?php echo $auth->check('project/del'); ?>" 
-                           width="100%">
+                    <table id="table" class="table table-striped table-bordered table-hover table-nowrap"width="100%">
                     </table>
                 </div>
             </div>

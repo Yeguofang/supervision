@@ -6,6 +6,7 @@ use app\common\controller\Api;
 use app\common\library\Ems;
 use app\common\library\Sms;
 use fast\Random;
+use think\Session;
 use think\Validate;
 
 /**
@@ -49,6 +50,7 @@ class User extends Api
         if ($ret)
         {
             $data = ['userinfo' => $this->auth->getUserinfo()];
+            // Session::set('user',$data);
             $this->success(__('Logged in successful'), $data);
         }
         else

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:88:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\index\login.html";i:1544086803;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:88:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\index\login.html";i:1544925131;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +21,6 @@
         config:  <?php echo json_encode($config); ?>
     };
 </script>
-
     <style type="text/css">
         body {
             color:#999;
@@ -36,7 +35,6 @@
             max-width:400px;
             padding:0;
             margin:100px auto 0 auto;
-
         }
         .login-screen .well {
             border-radius: 3px;
@@ -67,28 +65,23 @@
         .title-name {
             font-size: 32px;
             padding-top: 5%;
-            padding-left: 25%;
             margin: auto;
+            text-align: center;
         }
-
         #login-form {
             margin-top:20px;
         }
         #login-form .input-group {
             margin-bottom:15px;
-
         }
         
-
     </style>
 </head>
 <body>
 <div class="container">
     <div class="login-wrapper">
-            <div class="title-name"><a href="#">高要区建设工程质量安全监督管理系统</a></div>
+        <div class="title-name"><a href="#">高要区建设工程质量安全监督管理系统</a></div>
         <div class="login-screen">
-                
-
             <div class="well">
                 <div class="login-form">
                     <img id="profile-img" class="profile-img-card" src="/assets/img/avatar.png" />

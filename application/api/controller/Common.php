@@ -54,6 +54,7 @@ class Common extends Api
     public function upload()
     {
         $file = $this->request->file('file');
+        
         if (empty($file)) {
             $this->error(__('No file upload or server upload limit exceeded'));
         }
@@ -136,6 +137,10 @@ class Common extends Api
             // 上传失败获取错误信息
             $this->error($file->getError());
         }
+    }
+
+    public function test(){
+        return 123;
     }
 
 }

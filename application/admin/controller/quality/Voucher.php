@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by Visual Studio code.
  * User:  Yeguofang
@@ -72,21 +73,26 @@ class Voucher extends Backend
     {
         //查出自己负责的项目，上传时选中项目
         $quality_id = Session::get('admin')['id'];
-        $project = db('project')->where('quality_id', $quality_id)->select();
+        $project = db('project')->where('quality_id', $quality_id)->where('finish_time','not null')->select();
         $this->assign('project', $project);
 
         if ($this->request->isAjax()) {
             $data = $this->request->post('row/a');
-            //查出选中项目的副站长
-            $assistant = db('project')->where('id', $data['project_id'])->find();
-
-            $data['push_time'] = date('Y-m-d H:i:s', time());
-            $data['quality_id'] = $quality_id;
-            $data['quality_assistant'] = $assistant['quality_assistant'];
-            $res = db('project_voucher')->insert($data);
-            if ($res) {
-                return $this->success();
+            
+            $images = explode(",", $data['project_images']);
+            //判断图片上传数量是否为3~9张
+            if (count($images) > 2 && count($images) < 10) {
+                //查出选中项目的副站长
+                $assistant = db('project')->where('id', $data['project_id'])->find();
+                $data['push_time'] = date('Y-m-d H:i:s', time());
+                $data['quality_id'] = $quality_id;
+                $data['quality_assistant'] = $assistant['quality_assistant'];
+                $res = db('project_voucher')->insert($data);
+                if ($res) {
+                    return $this->success();
+                }
             }
+            return $this->error('图片数量必须为3~9张');
 
         }
         return $this->fetch();
@@ -100,13 +106,18 @@ class Voucher extends Backend
 
         if ($this->request->isAjax()) {
             $data = $this->request->post('row/a');
-            $data['push_time'] = date('Y-m-d H:i:s', time());
-            $data['edit_status'] = 0;
-            $res = db('project_voucher')->where(['id' => $ids])->update($data);
-            if ($res) {
-                return $this->success();
-            }
 
+            $images = explode(",", $data['project_images']);
+            //判断图片上传数量是否为3~9张
+            if (count($images) > 2 && count($images) < 10) {
+                $data['push_time'] = date('Y-m-d H:i:s', time());
+                $data['edit_status'] = 0;
+                $res = db('project_voucher')->where(['id' => $ids])->update($data);
+                if ($res) {
+                    return $this->success();
+                }
+            }
+            return $this->error('图片数量必须为3~9张');
         }
         return $this->fetch();
 
