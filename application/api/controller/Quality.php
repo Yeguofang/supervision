@@ -1,25 +1,24 @@
 <?php
-
 /**
- * Created by PhpStorm.
- * User: xiong
- * Date: 2018/11/28
- * Time: 23:54
+ * Created by Visual Studio code.
+ * User:  Yeguofang
+ * Date: 2018/12/17
+ * Time: 3:45
  */
-
+ 
 namespace app\api\controller;
 
 use app\common\controller\Api;
+use app\common\model\Area;
+use app\common\model\Version;
+use fast\Random;
+use think\Config;
 
+// 项目图片处理
 class Quality extends Api
 {
     // protected $noNeedLogin = ['*'];
     protected $noNeedRight = ['*'];
-    /**
-     *项目图片处理
-     *
-     */
-   
   
     //项目详情
     public function detail()
@@ -32,6 +31,9 @@ class Quality extends Api
             ->join('licence l', 'p.licence_id=l.id')
             ->where(['p.id' => $id])
             ->find();
+        if ($data == null) {
+            return $this->success('无数据', $data);
+        }
         $floor = explode(',', $data['floor']);
         if (count($floor) == 1) {
             $data['floor'] = '暂无';
@@ -59,13 +61,13 @@ class Quality extends Api
     {
         $id = $this->request->param('id');
         $num = $this->request->param('num', 2);
-
         if ($id == null) {
             return $this->error('项目id不能为空', 3);
         }
 
         $data = db('project_voucher')
             ->where('project_id', $id)
+            ->order("push_time desc")
             ->paginate($num)->each(function ($item, $index) {
                 $item['project_images'] = explode(",", $item['project_images']);
                 $item['push_time'] = substr($item['push_time'], 0, 16);
@@ -78,8 +80,6 @@ class Quality extends Api
     public function imageInfo()
     {
         $id = $this->request->param('id');
-        $num = $this->request->param('num', 2);
-
         if ($id == null) {
             return $this->error('图片id不能为空', 3);
         }
@@ -87,12 +87,20 @@ class Quality extends Api
         $data = db('project_voucher')
             ->where('id', $id)
             ->find();
+        if ($data == null) {
+            return $this->error('无数据', 0);
+        }
         $data['project_images'] = explode(",", $data['project_images']);
 
         $this->success('', $data);
     }
 
-    //上传图片
+    /**
+     * @return void
+     * @Description 保存已上传图片的url跟图片说明
+     * @author YGF
+     * @DateTime {{datetime}}
+     */
     public function addImage()
     {
 
@@ -111,10 +119,10 @@ class Quality extends Api
         }
 
          //查出选中项目的副站长
-
         $assistant = db('project')->where('id', $data['project_id'])->find();
         $data['push_time'] = date('Y-m-d H:i:s', time());
-
+        
+        //获取用户信息
         $user = $this->auth->getUser();
         if ($user['identity'] == 0) {
             //质监部门
@@ -127,14 +135,20 @@ class Quality extends Api
         }
 
         $res = db('project_voucher')->insert($data);
-
         if ($res) {
             return $this->success('上传成功', 0);
         }
         return $this->error('', $data);
     }
 
-    //修改图片
+    /**
+     * @return void
+     * @Description  修改图片
+     * @author YGF
+     * @DateTime {{datetime}}
+     * @since 1.0.0
+     * @
+     */
     public function editImage()
     {
         $id = $this->request->param('id');
@@ -148,22 +162,22 @@ class Quality extends Api
             return $this->error('说明不能空', 2);
         }
         if ($id == null) {
-            return $this->error('项目id不能为空', 3);
+            return $this->error('图片id不能为空', 3);
         }
 
         $data['push_time'] = date('Y-m-d H:i:s', time());
         $data['edit_status'] = 0;
         $res = db('project_voucher')->where(['id' => $id])->update($data);
         if ($res) {
-            return $this->success('上传成功', 0);
+            return $this->success('修改成功', 0);
         } else {
-            return $this->error('上传失败', 4);
+            return $this->error('修改失败', 4);
         }
 
     }
 
     //申请修改
-    public function appalyEdit()
+    public function applyEdit()
     {
         $id = $this->request->param('id');
         if ($id == null) {
@@ -179,7 +193,7 @@ class Quality extends Api
     }
 
      //申请删除项目图片
-    public function appalyDel($ids)
+    public function applyDel()
     {
         $id = $this->request->param('id');
         if ($id == null) {
@@ -194,6 +208,21 @@ class Quality extends Api
         return $this->error('申请失败', 2);
     }
 
+    //删除图片记录
+    public function imageDel()
+    {
+        $id = $this->request->param('id');
+        if ($id == null) {
+            return $this->error('项目id不能为空', 1);
+        }
+        $res = db('project_voucher')->where(['id' => $id])->delete();
+        if ($res) {
+            return $this->success('删除成功', 0);
+        }
+        return $this->error('删除失败', 2);
+    }
+
+
      //修改项目工程状态
     public function statusEdit()
     {
@@ -207,7 +236,7 @@ class Quality extends Api
             return $this->error('项目状态不能为空', 1);
         }
 
-        $res = db('safety_info')->where(['id' => $id])->update($data);
+        $res = db('quality_info')->where(['id' => $id])->update($data);
         if ($res) {
             return $this->success('修改成功', 0);
         }

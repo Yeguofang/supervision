@@ -50,7 +50,7 @@ class User extends Api
         if ($ret)
         {
             $data = ['userinfo' => $this->auth->getUserinfo()];
-            // Session::set('user',$data);
+            
             $this->success(__('Logged in successful'), $data);
         }
         else

@@ -1,10 +1,9 @@
 <?php
-
 /**
- * Created by PhpStorm.
- * User: xiong
- * Date: 2018/11/28
- * Time: 23:54
+ * Created by Visual Studio code.
+ * User:  Yeguofang
+ * Date: 2018/12/17
+ * Time: 1:35
  */
 namespace app\api\controller;
 
@@ -31,9 +30,9 @@ class Project extends Api
             //质监部门
             if ($user['identity_type'] == 1) {
                 //副站长只能看到quality_assistant是自己
-                $data =$this->quality();
+                $data = $this->quality();
                 return $this->success('', $data);
-            } elseif ($user['identity_type'] == 2) {
+            } else if ($user['identity_type'] == 2) {
                 //副站长只能看到quality_id是自己
                 $data = $this->quality();
                 return $this->success('', $data);
@@ -43,9 +42,9 @@ class Project extends Api
             //安部门
             if ($user['identity_type'] == 1) {
                 //副站长只能看到quality_assistant是自己
-                $data =$this->safetiy();
+                $data = $this->safetiy();
                 return $this->success('', $data);
-            } elseif ($user['identity_type'] == 2) {
+            } else if ($user['identity_type'] == 2) {
                 //副站长只能看到quality_id是自己
                 $data = $this->safetiy();
                 return $this->success('', $data);
@@ -87,9 +86,7 @@ class Project extends Api
             $data[$i]['finish_time'] = convertTime($data[$i]['finish_time']);
             $data[$i]['check_time'] = convertTime($data[$i]['check_time']);
         }
-        // if($data == null){
-        //     return 0;
-        // }
+
         return $data;
     }
 

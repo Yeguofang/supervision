@@ -34508,3 +34508,1614 @@ Stack trace:
   ),
 )
 [ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-12-17T22:20:47+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/imageInfo?id=23
+[运行时间：3.009333s] [吞吐率：0.33req/s] [内存消耗：3,925.11kb] [文件加载：66]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001359s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.290543s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'imageInfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '0a0d3c8d-0a46-486a-acc3-289971d94814',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '23',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.132731s ]
+[ info ] [ TOKEN ] INIT Mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.073900s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_user_token` [ RunTime:0.054872s ]
+[ sql ] [ SQL ] SELECT * FROM `s_user_token` WHERE  `token` = 'd8aa945b8448d8a41ab99c04b04f9e522294b47c' LIMIT 1 [ RunTime:0.006380s ]
+---------------------------------------------------------------
+[ 2018-12-17T22:23:29+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/addImage
+[运行时间：2.781740s] [吞吐率：0.36req/s] [内存消耗：3,220.42kb] [文件加载：59]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001580s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.351876s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'addImage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '2d03bf58-6c9d-4f49-a62e-5f035fb9cc59',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.159474s ]
+[ info ] [ RUN ] app\api\controller\Quality->addImage[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-12-17T22:24:10+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/addImage?image=123&desc=123123&id=12321
+[运行时间：2.476866s] [吞吐率：0.40req/s] [内存消耗：4,245.43kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.004192s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.171345s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'addImage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => 'bb816dbe-6171-49bb-b15b-11b18622faf5',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'image' => '123',
+  'desc' => '123123',
+  'id' => '12321',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.028014s ]
+[ info ] [ RUN ] app\api\controller\Quality->addImage[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.043526s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project` [ RunTime:0.049618s ]
+[ sql ] [ SQL ] SELECT * FROM `s_project` WHERE  `id` = 12321 LIMIT 1 [ RunTime:0.007353s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project_voucher` [ RunTime:0.006022s ]
+[ sql ] [ SQL ] INSERT INTO `s_project_voucher` (`project_images` , `project_desc` , `project_id` , `push_time` , `quality_id` , `quality_assistant`) VALUES ('123' , '123123' , 12321 , '2018-12-17 22:24:09' , NULL , NULL) [ RunTime:0.006040s ]
+---------------------------------------------------------------
+[ 2018-12-17T22:26:35+08:00 ] 127.0.0.1 POST canonicalizer.ucsuri.tcs/680074007400700073003a002f002f00700069006e0067002e002e0063006800650063006b0061007000700065007800650063002e006d006900630072006f0073006f00660074002e0063006f006d002f00770069006e0064006f00770073002f007300680065006c006c002f0061006300740069006f006e007300
+[运行时间：1.880750s] [吞吐率：0.53req/s] [内存消耗：2,355.05kb] [文件加载：51]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000145s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.017530s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '680074007400700073003a002f002f00700069006e0067002e002e0063006800650063006b0061007000700065007800650063002e006d006900630072006f0073006f00660074002e0063006f006d002f00770069006e0064006f00770073002f007300680065006c006c002f0061006300740069006f006e007300',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-encoding' => 'gzip, deflate',
+  'x-oi-thumbprint' => '154cda3ef3299e031f660850b40db1d30b53aec9',
+  'user-agent' => 'SmartScreen/2814750890000521',
+  'authorization' => 'SmartScreenHash eyJhdXRoSWQiOiJhZGZmZjVhZC1lZjllLTQzYTYtYjFhMy0yYWQ0MjY3YWVlZDUiLCJoYXNoIjoiUWZ6WGphRGFZNFU9Iiwia2V5IjoiL1JPWVh3VTI4RnJHb2hzZmxsbmJzdz09In0=',
+  'content-length' => '1346',
+  'content-type' => 'application/json; charset=utf-8',
+  'host' => 'canonicalizer.ucsuri.tcs',
+  'connection' => 'Keep-Alive',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+  'config' => 
+  array (
+    'device' => 
+    array (
+      'appControl' => 
+      array (
+        'level' => 'anywhere',
+      ),
+      'appReputation' => 
+      array (
+        'enforcedByPolicy' => false,
+        'level' => 'warn',
+      ),
+    ),
+    'user' => 
+    array (
+      'uriReputation' => 
+      array (
+        'enforcedByPolicy' => false,
+        'level' => 'warn',
+      ),
+    ),
+  ),
+  'identity' => 
+  array (
+    'caller' => 
+    array (
+      'locales' => 
+      array (
+        0 => 'zh-CN',
+        1 => 'en-US',
+      ),
+      'process' => 
+      array (
+        'application' => 
+        array (
+          '$type' => 'win32',
+          'path' => 'C:\\Windows\\System32\\smartscreen.exe',
+        ),
+        'creationTime' => '131895303932374216',
+        'id' => 283796,
+        'owner' => 'S-1-5-21-3939401410-946904823-186139244-1001',
+      ),
+    ),
+    'client' => 
+    array (
+      'data' => 
+      array (
+        'offlineExperience_zh-CN' => '237492725073661304980338013937214574612',
+        'script' => '181761522518955686154049133461455241483.rel.v2',
+      ),
+      'version' => '2814750890000521',
+    ),
+    'device' => 
+    array (
+      'architecture' => 9,
+      'browser' => 
+      array (
+        'edge' => 'Microsoft.MicrosoftEdge_42.17134.1.0_neutral__8wekyb3d8bbwe',
+        'internetExplorer' => '9.11.17134.0',
+      ),
+      'cloudSku' => false,
+      'enterprise' => NULL,
+      'family' => 3,
+      'id' => 'eVyBsOrUkvv9DHqJ0V/QzUxZ+6w5d4DpxwlwwHwXjcU=:0',
+      'locale' => 'zh-CN',
+      'netJoinStatus' => 2,
+      'onlineIdTicket' => 't=GwAWAd9tBAAUbd7jjTETE61kse6bFnP4+gMN5XcOZgAAEI42F9wBngZ+ZQYdPdEGGx7gABWAcvOLqHpLD5k/lpUyLkMTCOrfNz0qyprtPwypncdqfi/mRtJxvEfIg63IIaLygIEtjqpXZhXKFvlGV66/ydlpLarJJl8pmcDy/Ec5gu09E0gv3R7icwyk3bUWGsSeA73kxdCVnwyoWlPO/XzqRSTqm+IUw40/unrru5+ZOGPvsLxYX48kpwhznBkC6YfqERoDkNuSVTuvRneNG2RkhLfgYJFhj5QdLN4mpcllhcdk5JQoWmCTtcRo3SbPzs8HaDYew9zUUW4VWOHNd4dWO200S+Mox+oFj629P97qd/s5GwE=&p=',
+      'osVersion' => '10.0.17134.471.rs4_release',
+    ),
+    'user' => 
+    array (
+      'locale' => 'zh-CN',
+    ),
+  ),
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-12-17T22:39:40+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/detail?id=22
+[运行时间：4.179948s] [吞吐率：0.24req/s] [内存消耗：4,281.55kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.002300s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.460422s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => 'a7ba673d-c871-43bf-88c9-66e17e7b7f18',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '22',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.068155s ]
+[ info ] [ RUN ] app\api\controller\Quality->detail[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.082096s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project` [ RunTime:0.059512s ]
+[ sql ] [ SQL ] SELECT `p`.`id`,`p`.`build_dept`,`p`.`project_name`,`p`.`address`,`l`.`area`,`l`.`cost`,`i`.`floor`,`p`.`push_time`,`p`.`supervise_time`,p.begin_time bTime,`l`.`begin_time`,`l`.`end_time`,`p`.`finish_time`,`p`.`check_time`,`l`.`construction_person`,`l`.`supervision_person`,`i`.`status` FROM s_project p INNER JOIN `s_quality_info` `i` ON `p`.`quality_info`=`i`.`id` INNER JOIN `s_licence` `l` ON `p`.`licence_id`=`l`.`id` WHERE  `p`.`id` = '22' LIMIT 1 [ RunTime:0.042918s ]
+---------------------------------------------------------------
+[ 2018-12-17T22:43:39+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/detail
+[运行时间：2.312856s] [吞吐率：0.43req/s] [内存消耗：4,281.54kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.002800s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.136538s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '0a64f056-8d06-4f52-bbb6-d89411275646',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.060359s ]
+[ info ] [ RUN ] app\api\controller\Quality->detail[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.057500s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project` [ RunTime:0.064759s ]
+[ sql ] [ SQL ] SELECT `p`.`id`,`p`.`build_dept`,`p`.`project_name`,`p`.`address`,`l`.`area`,`l`.`cost`,`i`.`floor`,`p`.`push_time`,`p`.`supervise_time`,p.begin_time bTime,`l`.`begin_time`,`l`.`end_time`,`p`.`finish_time`,`p`.`check_time`,`l`.`construction_person`,`l`.`supervision_person`,`i`.`status` FROM s_project p INNER JOIN `s_quality_info` `i` ON `p`.`quality_info`=`i`.`id` INNER JOIN `s_licence` `l` ON `p`.`licence_id`=`l`.`id` WHERE  `p`.`id` IS NULL LIMIT 1 [ RunTime:0.009731s ]
+---------------------------------------------------------------
+[ 2018-12-17T22:43:55+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/addImage
+[运行时间：1.363634s] [吞吐率：0.73req/s] [内存消耗：3,251.13kb] [文件加载：59]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000143s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.054391s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'addImage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '33173edd-03fc-4382-993b-dbd7b6607643',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.051313s ]
+[ info ] [ RUN ] app\api\controller\Quality->addImage[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-12-17T22:44:44+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/addImage
+[运行时间：1.206636s] [吞吐率：0.83req/s] [内存消耗：3,220.90kb] [文件加载：59]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000104s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.057717s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'addImage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '73db3ad0-5ba7-4601-92b0-f04d12518d7c',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.026877s ]
+[ info ] [ RUN ] app\api\controller\Quality->addImage[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-12-17T22:53:25+08:00 ] 127.0.0.1 GET 127.0.0.1/api/user/login?account=1111122&password=123456&identity=0
+[运行时间：2.066698s] [吞吐率：0.48req/s] [内存消耗：4,442.34kb] [文件加载：72]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001259s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.116208s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'user',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '34325f14-bd9e-4607-8b91-1d4632451a2b',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'account' => '1111122',
+  'password' => '123456',
+  'identity' => '0',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.043738s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api/lang/zh-cn/user.php
+[ info ] [ RUN ] app\api\controller\User->login[ D:\wamp64\www\Work\supervision_backend\application\api\controller\User.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ TOKEN ] INIT Mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.049275s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_user` [ RunTime:0.054671s ]
+[ sql ] [ SQL ] SELECT * FROM `s_user` WHERE  `username` = '1111122'  AND `identity` = '0' LIMIT 1 [ RunTime:0.012147s ]
+[ sql ] [ SQL ] SELECT * FROM `s_user` WHERE  `id` = 13 LIMIT 1 [ RunTime:0.001551s ]
+[ sql ] [ SQL ] UPDATE `s_user`  SET `prevtime`=1545047310,`logintime`=1545058404,`loginip`='127.0.0.1',`updatetime`=1545058404  WHERE  `id` = 13 [ RunTime:0.020691s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_user_token` [ RunTime:0.004020s ]
+[ sql ] [ SQL ] INSERT INTO `s_user_token` (`token` , `user_id` , `createtime` , `expiretime`) VALUES ('20ca78bcee3b4c3777afc159772d8600cbd197e5' , 13 , 1545058404 , 1547650404) [ RunTime:0.004851s ]
+[ sql ] [ SQL ] SELECT * FROM `s_user_token` WHERE  `token` = '20ca78bcee3b4c3777afc159772d8600cbd197e5' LIMIT 1 [ RunTime:0.000703s ]
+---------------------------------------------------------------
+[ 2018-12-17T22:56:49+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/addImage?image=123&desc=123123&id=12321
+[运行时间：1.691715s] [吞吐率：0.59req/s] [内存消耗：3,925.68kb] [文件加载：66]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.002683s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.050243s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'addImage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '61c08613-2653-479e-a231-73f698ebea5e',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'image' => '123',
+  'desc' => '123123',
+  'id' => '12321',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.055022s ]
+[ info ] [ TOKEN ] INIT Mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.036496s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_user_token` [ RunTime:0.042284s ]
+[ sql ] [ SQL ] SELECT * FROM `s_user_token` WHERE  `token` = 'd8aa945b8448d8a41ab99c04b04f9e522294b47c' LIMIT 1 [ RunTime:0.006487s ]
+---------------------------------------------------------------
+[ 2018-12-17T22:56:56+08:00 ] 127.0.0.1 GET 127.0.0.1/api/user/login?account=1111122&password=123456&identity=0
+[运行时间：1.611961s] [吞吐率：0.62req/s] [内存消耗：4,442.27kb] [文件加载：72]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000145s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.045562s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'user',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '901b4249-e2c4-4d65-b53a-88a85b29d8fb',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'account' => '1111122',
+  'password' => '123456',
+  'identity' => '0',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.052948s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api/lang/zh-cn/user.php
+[ info ] [ RUN ] app\api\controller\User->login[ D:\wamp64\www\Work\supervision_backend\application\api\controller\User.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ TOKEN ] INIT Mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.005343s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_user` [ RunTime:0.023439s ]
+[ sql ] [ SQL ] SELECT * FROM `s_user` WHERE  `username` = '1111122'  AND `identity` = '0' LIMIT 1 [ RunTime:0.009620s ]
+[ sql ] [ SQL ] SELECT * FROM `s_user` WHERE  `id` = 13 LIMIT 1 [ RunTime:0.001135s ]
+[ sql ] [ SQL ] UPDATE `s_user`  SET `prevtime`=1545058404,`logintime`=1545058616,`updatetime`=1545058616  WHERE  `id` = 13 [ RunTime:0.019715s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_user_token` [ RunTime:0.003804s ]
+[ sql ] [ SQL ] INSERT INTO `s_user_token` (`token` , `user_id` , `createtime` , `expiretime`) VALUES ('3ef811d8293b0be6544d86b12a08fd84d3d477fd' , 13 , 1545058616 , 1547650616) [ RunTime:0.005427s ]
+[ sql ] [ SQL ] SELECT * FROM `s_user_token` WHERE  `token` = '3ef811d8293b0be6544d86b12a08fd84d3d477fd' LIMIT 1 [ RunTime:0.000722s ]
+---------------------------------------------------------------
+[ 2018-12-17T22:57:03+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/addImage?image=123&desc=123123&id=12321
+[运行时间：1.500873s] [吞吐率：0.67req/s] [内存消耗：3,925.68kb] [文件加载：66]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000141s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.045883s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'addImage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '8a0a2700-5bdf-4446-9c52-762c4e32300d',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'image' => '123',
+  'desc' => '123123',
+  'id' => '12321',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.028155s ]
+[ info ] [ TOKEN ] INIT Mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004423s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_user_token` [ RunTime:0.004781s ]
+[ sql ] [ SQL ] SELECT * FROM `s_user_token` WHERE  `token` = 'd8aa945b8448d8a41ab99c04b04f9e522294b47c' LIMIT 1 [ RunTime:0.001709s ]
+---------------------------------------------------------------
+[ 2018-12-17T22:58:44+08:00 ] 127.0.0.1 GET 127.0.0.1/api/user/login?account=1111122&password=123456&identity=0
+[运行时间：2.841447s] [吞吐率：0.35req/s] [内存消耗：4,442.27kb] [文件加载：72]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001138s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.133092s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'user',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '9761d1e8-547d-4722-bf84-5d712a9fcee3',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'account' => '1111122',
+  'password' => '123456',
+  'identity' => '0',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.072184s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api/lang/zh-cn/user.php
+[ info ] [ RUN ] app\api\controller\User->login[ D:\wamp64\www\Work\supervision_backend\application\api\controller\User.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ TOKEN ] INIT Mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.254000s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_user` [ RunTime:0.139249s ]
+[ sql ] [ SQL ] SELECT * FROM `s_user` WHERE  `username` = '1111122'  AND `identity` = '0' LIMIT 1 [ RunTime:0.048726s ]
+[ sql ] [ SQL ] SELECT * FROM `s_user` WHERE  `id` = 13 LIMIT 1 [ RunTime:0.003065s ]
+[ sql ] [ SQL ] UPDATE `s_user`  SET `prevtime`=1545058616,`logintime`=1545058724,`updatetime`=1545058724  WHERE  `id` = 13 [ RunTime:0.033630s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_user_token` [ RunTime:0.004245s ]
+[ sql ] [ SQL ] INSERT INTO `s_user_token` (`token` , `user_id` , `createtime` , `expiretime`) VALUES ('e5bd8066b08fa9e171662e16ee5c801bffafb8c4' , 13 , 1545058724 , 1547650724) [ RunTime:0.005342s ]
+[ sql ] [ SQL ] SELECT * FROM `s_user_token` WHERE  `token` = 'e5bd8066b08fa9e171662e16ee5c801bffafb8c4' LIMIT 1 [ RunTime:0.001045s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:02:25+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/addImage?image=123&desc=123123&id=12321
+[运行时间：1.470067s] [吞吐率：0.68req/s] [内存消耗：3,925.68kb] [文件加载：66]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000972s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.049377s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'addImage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => 'c2884c47-e445-44df-8c7e-dc3564b4e67a',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'image' => '123',
+  'desc' => '123123',
+  'id' => '12321',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.037769s ]
+[ info ] [ TOKEN ] INIT Mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.040290s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_user_token` [ RunTime:0.029247s ]
+[ sql ] [ SQL ] SELECT * FROM `s_user_token` WHERE  `token` = 'd8aa945b8448d8a41ab99c04b04f9e522294b47c' LIMIT 1 [ RunTime:0.008313s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:13:04+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/upload
+[运行时间：1.898211s] [吞吐率：0.53req/s] [内存消耗：3,925.18kb] [文件加载：66]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001264s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.106971s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '0882f7ae-865b-437b-ac53-ddbb2c9a1424',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.065772s ]
+[ info ] [ TOKEN ] INIT Mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.044450s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_user_token` [ RunTime:0.047234s ]
+[ sql ] [ SQL ] SELECT * FROM `s_user_token` WHERE  `token` = 'd8aa945b8448d8a41ab99c04b04f9e522294b47c' LIMIT 1 [ RunTime:0.005737s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:13:27+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/upload
+[运行时间：1.503156s] [吞吐率：0.67req/s] [内存消耗：3,220.79kb] [文件加载：59]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000219s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.052377s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '401d962d-0fc5-4df6-9068-60901137377e',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.039457s ]
+[ info ] [ RUN ] app\api\controller\Quality->upload[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-12-17T23:13:47+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/upload
+[运行时间：1.988408s] [吞吐率：0.50req/s] [内存消耗：3,229.57kb] [文件加载：59]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000154s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.062882s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => 'd3261424-2cd9-4b2d-9c11-877519da1db0',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'multipart/form-data; boundary=--------------------------315296098292659872255504',
+  'content-length' => '4005',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.063722s ]
+[ info ] [ RUN ] app\api\controller\Quality->upload[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-12-17T23:13:57+08:00 ] 127.0.0.1 POST 127.0.0.1/api/quality/upload
+[运行时间：0.865998s] [吞吐率：1.15req/s] [内存消耗：3,363.11kb] [文件加载：64]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000153s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.008570s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '5ddbbe4c-1d5f-4f7e-8766-b21e2c1e2557',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'multipart/form-data; boundary=--------------------------752280798673978160381898',
+  'content-length' => '4005',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.009180s ]
+[ info ] [ RUN ] app\api\controller\Quality->upload[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ LOG ] INIT File
+[ error ] [0]致命错误: Class 'app\api\controller\Config' not found[D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php:228]
+---------------------------------------------------------------
+[ 2018-12-17T23:14:33+08:00 ] 127.0.0.1 POST 127.0.0.1/api/quality/upload
+[运行时间：2.151350s] [吞吐率：0.46req/s] [内存消耗：4,353.41kb] [文件加载：68]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001126s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.074331s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '54ecdbf5-46b3-4c0b-9d91-a6ba215e0264',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'multipart/form-data; boundary=--------------------------214785099058334086587331',
+  'content-length' => '4005',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.052734s ]
+[ info ] [ RUN ] app\api\controller\Quality->upload[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.041266s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_attachment` [ RunTime:0.050936s ]
+[ sql ] [ SQL ] INSERT INTO `s_attachment` (`filesize` , `imagewidth` , `imageheight` , `imagetype` , `mimetype` , `url` , `uploadtime` , `storage` , `sha1` , `createtime` , `updatetime`) VALUES (3802 , '50' , '50' , 'jpg' , 'image/jpeg' , '/uploads/20181217/384e29b9838ef0e4e1d85691f8108c41.jpg' , 1545059672 , 'local' , '8b8053f51939f6311a255306f9d079b4f3ed4018' , 1545059672 , 1545059672) [ RunTime:0.013622s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:15:42+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/imageList?id=5
+[运行时间：1.643507s] [吞吐率：0.61req/s] [内存消耗：4,401.09kb] [文件加载：69]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001763s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.102762s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'imageList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '123c7994-b844-47fa-8cb5-448c6db0d868',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '5',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.048888s ]
+[ info ] [ RUN ] app\api\controller\Quality->imageList[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.023936s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project_voucher` [ RunTime:0.027351s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `s_project_voucher` WHERE  `project_id` = 5 LIMIT 1 [ RunTime:0.010379s ]
+[ sql ] [ SQL ] SELECT * FROM `s_project_voucher` WHERE  `project_id` = 5 LIMIT 0,2 [ RunTime:0.001098s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:16:24+08:00 ] 127.0.0.1 GET 127.0.0.1/api/project
+[运行时间：1.413674s] [吞吐率：0.71req/s] [内存消耗：3,871.57kb] [文件加载：66]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.003674s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.040278s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'project',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => 'fbe351b2-ead0-45b1-993a-d5819ad4302b',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.029295s ]
+[ info ] [ TOKEN ] INIT Mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.039649s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_user_token` [ RunTime:0.039889s ]
+[ sql ] [ SQL ] SELECT * FROM `s_user_token` WHERE  `token` = 'd8aa945b8448d8a41ab99c04b04f9e522294b47c' LIMIT 1 [ RunTime:0.006679s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:16:40+08:00 ] 127.0.0.1 GET 127.0.0.1/api/project/index
+[运行时间：1.818523s] [吞吐率：0.55req/s] [内存消耗：3,871.60kb] [文件加载：66]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000108s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.042233s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'project',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '13f83a7e-246f-4777-af80-48ff7c4d7e76',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.033085s ]
+[ info ] [ TOKEN ] INIT Mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004151s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_user_token` [ RunTime:0.007010s ]
+[ sql ] [ SQL ] SELECT * FROM `s_user_token` WHERE  `token` = 'd8aa945b8448d8a41ab99c04b04f9e522294b47c' LIMIT 1 [ RunTime:0.001080s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:17:02+08:00 ] 127.0.0.1 GET 127.0.0.1/api/project/index
+[运行时间：1.656329s] [吞吐率：0.60req/s] [内存消耗：3,197.56kb] [文件加载：59]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000771s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.141149s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'project',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => 'b87cb063-2842-4a74-997c-ee9946c272c8',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.099090s ]
+[ info ] [ RUN ] app\api\controller\Project->index[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Project.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-12-17T23:17:18+08:00 ] 127.0.0.1 GET 127.0.0.1/api/project/index
+[运行时间：1.057127s] [吞吐率：0.95req/s] [内存消耗：3,197.56kb] [文件加载：59]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000109s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.041515s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'project',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => 'b0f3d56c-2dae-4e7b-b0d6-c85ea29df705',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.032594s ]
+[ info ] [ RUN ] app\api\controller\Project->index[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Project.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-12-17T23:18:26+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/detail?id=5
+[运行时间：2.274895s] [吞吐率：0.44req/s] [内存消耗：4,281.82kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.002105s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.058046s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '0c75b708-16c3-4483-9523-a964ceff2051',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '5',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.073280s ]
+[ info ] [ RUN ] app\api\controller\Quality->detail[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.043999s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project` [ RunTime:0.066433s ]
+[ sql ] [ SQL ] SELECT `p`.`id`,`p`.`build_dept`,`p`.`project_name`,`p`.`address`,`l`.`area`,`l`.`cost`,`i`.`floor`,`p`.`push_time`,`p`.`supervise_time`,p.begin_time bTime,`l`.`begin_time`,`l`.`end_time`,`p`.`finish_time`,`p`.`check_time`,`l`.`construction_person`,`l`.`supervision_person`,`i`.`status` FROM s_project p INNER JOIN `s_quality_info` `i` ON `p`.`quality_info`=`i`.`id` INNER JOIN `s_licence` `l` ON `p`.`licence_id`=`l`.`id` WHERE  `p`.`id` = '5' LIMIT 1 [ RunTime:0.025074s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:19:23+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/detail?id=17
+[运行时间：2.338170s] [吞吐率：0.43req/s] [内存消耗：4,281.82kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000420s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.112282s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => 'e26ea5ba-e00b-426f-baa0-e921ddfcccde',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '17',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.050650s ]
+[ info ] [ RUN ] app\api\controller\Quality->detail[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.018930s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project` [ RunTime:0.009357s ]
+[ sql ] [ SQL ] SELECT `p`.`id`,`p`.`build_dept`,`p`.`project_name`,`p`.`address`,`l`.`area`,`l`.`cost`,`i`.`floor`,`p`.`push_time`,`p`.`supervise_time`,p.begin_time bTime,`l`.`begin_time`,`l`.`end_time`,`p`.`finish_time`,`p`.`check_time`,`l`.`construction_person`,`l`.`supervision_person`,`i`.`status` FROM s_project p INNER JOIN `s_quality_info` `i` ON `p`.`quality_info`=`i`.`id` INNER JOIN `s_licence` `l` ON `p`.`licence_id`=`l`.`id` WHERE  `p`.`id` = '17' LIMIT 1 [ RunTime:0.026080s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:19:43+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/detail?id=15
+[运行时间：2.184993s] [吞吐率：0.46req/s] [内存消耗：4,282.49kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000152s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.245763s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '22610d61-07a7-4990-935b-0ce268063442',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '15',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.077683s ]
+[ info ] [ RUN ] app\api\controller\Quality->detail[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004217s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project` [ RunTime:0.011378s ]
+[ sql ] [ SQL ] SELECT `p`.`id`,`p`.`build_dept`,`p`.`project_name`,`p`.`address`,`l`.`area`,`l`.`cost`,`i`.`floor`,`p`.`push_time`,`p`.`supervise_time`,p.begin_time bTime,`l`.`begin_time`,`l`.`end_time`,`p`.`finish_time`,`p`.`check_time`,`l`.`construction_person`,`l`.`supervision_person`,`i`.`status` FROM s_project p INNER JOIN `s_quality_info` `i` ON `p`.`quality_info`=`i`.`id` INNER JOIN `s_licence` `l` ON `p`.`licence_id`=`l`.`id` WHERE  `p`.`id` = '15' LIMIT 1 [ RunTime:0.009545s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:21:35+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/editImage?image=22222&desc=33333?id=25
+[运行时间：1.159432s] [吞吐率：0.86req/s] [内存消耗：3,221.18kb] [文件加载：59]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.002225s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.064010s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'editImage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '31c5be6d-6e59-4d87-807a-6afada00e130',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'image' => '22222',
+  'desc' => '33333?id=25',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.028325s ]
+[ info ] [ RUN ] app\api\controller\Quality->editImage[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-12-17T23:21:50+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/editImage?image=22222&desc=33333&id=25
+[运行时间：0.530176s] [吞吐率：1.89req/s] [内存消耗：4,236.14kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000140s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.010604s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'editImage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => 'eee7903c-8671-43fb-bb1a-b06d44b4874e',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'image' => '22222',
+  'desc' => '33333',
+  'id' => '25',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.009737s ]
+[ info ] [ RUN ] app\api\controller\Quality->editImage[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.039575s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project_voucher` [ RunTime:0.048710s ]
+[ sql ] [ SQL ] UPDATE `s_project_voucher`  SET `project_images`='22222',`project_desc`='33333',`push_time`='2018-12-17 23:21:50',`edit_status`=0  WHERE  `id` = 25 [ RunTime:0.015910s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:23:24+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/appalyEdit?id=25
+[运行时间：1.942899s] [吞吐率：0.51req/s] [内存消耗：4,233.27kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.002450s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.081159s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'appalyEdit',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '22128ae0-c74a-4bd3-b4cd-0b327105c3d6',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '25',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.059492s ]
+[ info ] [ RUN ] app\api\controller\Quality->appalyEdit[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.025442s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project_voucher` [ RunTime:0.013519s ]
+[ sql ] [ SQL ] UPDATE `s_project_voucher`  SET `edit_status`=1  WHERE  `id` = 25 [ RunTime:0.012995s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:24:02+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/appalyDel?id=25
+[运行时间：2.739957s] [吞吐率：0.36req/s] [内存消耗：3,284.59kb] [文件加载：62]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000183s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.081495s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'appalyDel',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '0f875b91-29a7-4a3b-976f-1840148b5ad5',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '25',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.057443s ]
+[ info ] [ LOG ] INIT File
+[ error ] [0]方法参数错误:ids[D:\wamp64\www\Work\supervision_backend\thinkphp\library\think\App.php:431]
+---------------------------------------------------------------
+[ 2018-12-17T23:24:23+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/appalyDel?id=25
+[运行时间：2.404171s] [吞吐率：0.42req/s] [内存消耗：4,233.18kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000148s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.277747s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'appalyDel',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => 'abb998fa-8e7c-4fb5-80e7-73ade42e689f',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '25',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.065870s ]
+[ info ] [ RUN ] app\api\controller\Quality->appalyDel[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.024702s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project_voucher` [ RunTime:0.018965s ]
+[ sql ] [ SQL ] UPDATE `s_project_voucher`  SET `del_status`=1  WHERE  `id` = 25 [ RunTime:0.003828s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:31:39+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/imageDel?id=25
+[运行时间：1.799141s] [吞吐率：0.56req/s] [内存消耗：4,235.56kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001387s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.078927s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'imageDel',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '6296a2a1-3c41-4947-acff-2593dfe04831',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '25',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.042587s ]
+[ info ] [ RUN ] app\api\controller\Quality->imageDel[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.046740s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project_voucher` [ RunTime:0.067215s ]
+[ sql ] [ SQL ] DELETE FROM `s_project_voucher`    WHERE  `id` = 25 [ RunTime:0.010719s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:32:49+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/applyDel?id=24
+[运行时间：1.608570s] [吞吐率：0.62req/s] [内存消耗：3,290.61kb] [文件加载：63]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001085s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.038320s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'applyDel',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => 'f2e6a13d-f3f7-49a5-a573-256a042297aa',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '24',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.026938s ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-12-17T23:34:05+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/applyDel?id=24
+[运行时间：2.593755s] [吞吐率：0.39req/s] [内存消耗：4,236.30kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001541s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.073828s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'applyDel',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '2524c5ba-7e17-42f7-ad6f-091dcf4966f8',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '24',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.053494s ]
+[ info ] [ RUN ] app\api\controller\Quality->applyDel[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.045078s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project_voucher` [ RunTime:0.046441s ]
+[ sql ] [ SQL ] UPDATE `s_project_voucher`  SET `del_status`=1  WHERE  `id` = 24 [ RunTime:0.011094s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:34:38+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/applyEdit?id=24
+[运行时间：1.750189s] [吞吐率：0.57req/s] [内存消耗：4,236.30kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000149s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.128020s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'applyEdit',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '522b1dd0-9477-400b-bb5a-98547c4be22b',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '24',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.056455s ]
+[ info ] [ RUN ] app\api\controller\Quality->applyEdit[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011411s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project_voucher` [ RunTime:0.008211s ]
+[ sql ] [ SQL ] UPDATE `s_project_voucher`  SET `edit_status`=1  WHERE  `id` = 24 [ RunTime:0.001933s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:36:43+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/statusEdit?id=15
+[运行时间：1.115438s] [吞吐率：0.90req/s] [内存消耗：3,224.21kb] [文件加载：59]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.001343s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.040846s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'statusEdit',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => 'c2e508e8-90a9-4e53-ac89-90b16dd7a34e',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '15',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.033213s ]
+[ info ] [ RUN ] app\api\controller\Quality->statusEdit[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-12-17T23:36:59+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/statusEdit?id=15&status=2
+[运行时间：0.538275s] [吞吐率：1.86req/s] [内存消耗：4,238.71kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000108s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.009463s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'statusEdit',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => 'f197718f-cde5-46ae-9871-c6aa0d52cdd0',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '15',
+  'status' => '2',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.012715s ]
+[ info ] [ RUN ] app\api\controller\Quality->statusEdit[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.020921s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_quality_info` [ RunTime:0.016040s ]
+[ sql ] [ SQL ] UPDATE `s_quality_info`  SET `status`='2'  WHERE  `id` = 15 [ RunTime:0.025708s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:38:32+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/imageInfo?id=5
+[运行时间：2.149558s] [吞吐率：0.47req/s] [内存消耗：4,277.96kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.002321s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.049136s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'imageInfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '030cec09-910a-499f-a193-e00f951697c1',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '5',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.068740s ]
+[ info ] [ RUN ] app\api\controller\Quality->imageInfo[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.047426s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project_voucher` [ RunTime:0.049093s ]
+[ sql ] [ SQL ] SELECT * FROM `s_project_voucher` WHERE  `id` = 5 LIMIT 1 [ RunTime:0.007750s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:40:13+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/imageInfo?id=5
+[运行时间：1.865822s] [吞吐率：0.54req/s] [内存消耗：4,278.03kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.002474s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.084853s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'imageInfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => '84855152-ec72-497f-a2ce-cdce38267041',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '5',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.044187s ]
+[ info ] [ RUN ] app\api\controller\Quality->imageInfo[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.045945s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project_voucher` [ RunTime:0.042682s ]
+[ sql ] [ SQL ] SELECT * FROM `s_project_voucher` WHERE  `id` = 5 LIMIT 1 [ RunTime:0.006112s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:40:43+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/imageInfo?id=22
+[运行时间：1.059764s] [吞吐率：0.94req/s] [内存消耗：4,278.49kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000124s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.034874s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'imageInfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => 'fffe29c3-c681-4db6-8b8c-fffc4bf4e4b5',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '22',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.024299s ]
+[ info ] [ RUN ] app\api\controller\Quality->imageInfo[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004038s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project_voucher` [ RunTime:0.004790s ]
+[ sql ] [ SQL ] SELECT * FROM `s_project_voucher` WHERE  `id` = 22 LIMIT 1 [ RunTime:0.004588s ]
+---------------------------------------------------------------
+[ 2018-12-17T23:41:39+08:00 ] 127.0.0.1 GET 127.0.0.1/api/quality/editImage?id=22&desc=333&image=444
+[运行时间：1.049229s] [吞吐率：0.95req/s] [内存消耗：4,239.27kb] [文件加载：65]
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000145s ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.047816s ]
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'quality',
+    2 => 'editImage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'no-cache',
+  'postman-token' => 'db80d0ea-68c6-48cc-8b64-c901579ed0e9',
+  'user-agent' => 'PostmanRuntime/7.4.0',
+  'accept' => '*/*',
+  'host' => '127.0.0.1',
+  'cookie' => 'PHPSESSID=ncu3echpk863hf1rfv0k877jb7',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+  'id' => '22',
+  'desc' => '333',
+  'image' => '444',
+)
+[ info ] [ LANG ] D:\wamp64\www\Work\supervision_backend\public/../application/api\lang\zh-cn.php
+[ info ] [ BEHAVIOR ] Run app\common\behavior\Common @module_init [ RunTime:0.033657s ]
+[ info ] [ RUN ] app\api\controller\Quality->editImage[ D:\wamp64\www\Work\supervision_backend\application\api\controller\Quality.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.016009s ] mysql:host=127.0.0.1;dbname=supervision;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `s_project_voucher` [ RunTime:0.009830s ]
+[ sql ] [ SQL ] UPDATE `s_project_voucher`  SET `project_images`='444',`project_desc`='333',`push_time`='2018-12-17 23:41:38',`edit_status`=0  WHERE  `id` = 22 [ RunTime:0.013017s ]
