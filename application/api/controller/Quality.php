@@ -17,7 +17,7 @@ use think\Config;
 // 项目图片处理
 class Quality extends Api
 {
-    // protected $noNeedLogin = ['*'];
+    protected $noNeedLogin = ['*'];
     protected $noNeedRight = ['*'];
   
     //项目详情
@@ -59,26 +59,64 @@ class Quality extends Api
     //项目图片列表
     public function imageList()
     {
+        $user = $this->auth->getUser();
         $id = $this->request->param('id');
         $num = $this->request->param('num', 2);
         if ($id == null) {
             return $this->error('项目id不能为空', 3);
         }
+		
+		if($user['identity'] == 0){//质监身份
+			if($user['identity_type'] == 1){//质监副站长
+				$map['quality_assistant'] = $user['admin_id'];
+			}else{//质监员
+				$map['quality_id'] = $user['admin_id'];
+			}
+		}else {//安监身份
+			if($user['identity_type'] == 1){//质监副站长
+				$map['supervisor_assistant'] = $user['admin_id'];
+			}else{//质监员
+				$map['security_id'] = $user['admin_id'];
+			}
+		}
 
         $data = db('project_voucher')
             ->where('project_id', $id)
+			->where($map)
             ->order("push_time desc")
             ->paginate($num)->each(function ($item, $index) {
                 $item['project_images'] = explode(",", $item['project_images']);
-                $item['push_time'] = substr($item['push_time'], 0, 16);
+                //图片地址拼接
+		        for($i=0;$i<count($item['project_images']);$i++){
+		        	$item['project_images'][$i] = 'http://47.107.235.179/supervision/public'.$item['project_images'][$i];
+		        }
+            	$item['push_time'] = substr($item['push_time'], 0, 16);
                 return $item;
             });
-        $this->success('', $data->items());
+        //查出项目，是否竣工
+        $project = db('project')
+            ->field('finish_time')
+            ->where('id',$id)
+            ->find();
+        if($project['finish_time'] == null){
+            //项目无竣工日期
+            if ($user['identity_type'] == 2) {//只有主责才能有操作
+                $type = 0;
+            }else{
+                $type = 1;//站长。副站长不可操作
+            }
+        }else{
+            $type = 1;//项目有竣工日期，不可操作
+        }
+        $result = array('result' => $data->items(),'type' => $type);
+
+        $this->success('', $result);
     }
 
        //单条图片记录详情
     public function imageInfo()
     {
+        $user = $this->auth->getUser();
         $id = $this->request->param('id');
         if ($id == null) {
             return $this->error('图片id不能为空', 3);
@@ -92,8 +130,30 @@ class Quality extends Api
         }
         $data['project_images'] = explode(",", $data['project_images']);
 
+        //图片地址拼接
+        for($i=0;$i<count($data['project_images']);$i++){
+        	$data['project_images'][$i] = 'http://47.107.235.179/supervision/public'.$data['project_images'][$i];
+        }
+
+        //查出项目，是否竣工
+        $project = db('project')
+            ->field('finish_time')
+            ->where('id',$data['project_id'])
+            ->find();
+        if($project['finish_time'] == null){
+            //项目无竣工日期
+            if ($user['identity_type'] == 2) {//只有主责才能有操作
+                $data['type'] = 0;
+            }else{
+                $data['type'] = 1;//站长。副站长不可操作
+            }
+        }else{
+            $data['type'] = 1;//项目有竣工日期，不可操作
+        }
+
         $this->success('', $data);
     }
+
 
     /**
      * @return void
@@ -237,6 +297,7 @@ class Quality extends Api
         }
 
         $res = db('quality_info')->where(['id' => $id])->update($data);
+
         if ($res) {
             return $this->success('修改成功', 0);
         }
@@ -317,7 +378,7 @@ class Quality extends Api
             $attachment->data(array_filter($params));
             $attachment->save();
             \think\Hook::listen("upload_after", $attachment);
-            $url = 'http://192.168.50.182/' . $uploadDir . $splInfo->getSaveName();
+            $url = $uploadDir . $splInfo->getSaveName();
             $this->success('上传成功', $url);
         } else {
                 // 上传失败获取错误信息

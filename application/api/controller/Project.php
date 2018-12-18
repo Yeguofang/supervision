@@ -28,28 +28,18 @@ class Project extends Api
 
         if ($user['identity'] == 0) {
             //质监部门
-            if ($user['identity_type'] == 1) {
-                //副站长只能看到quality_assistant是自己
                 $data = $this->quality();
+                if($data == null){
+                    return $this->error('无数据', 0);
+                }
                 return $this->success('', $data);
-            } else if ($user['identity_type'] == 2) {
-                //副站长只能看到quality_id是自己
-                $data = $this->quality();
-                return $this->success('', $data);
-            }
-
         } else if ($user['identity'] == 1) {
-            //安部门
-            if ($user['identity_type'] == 1) {
-                //副站长只能看到quality_assistant是自己
-                $data = $this->safetiy();
+                //安监部门
+                $data = $this->safetily();
+                if($data == null){
+                    return $this->error('无数据', 0);
+                }
                 return $this->success('', $data);
-            } else if ($user['identity_type'] == 2) {
-                //副站长只能看到quality_id是自己
-                $data = $this->safetiy();
-                return $this->success('', $data);
-            }
-
         }
     }
 
@@ -65,10 +55,10 @@ class Project extends Api
         $map = [];
 
         if ($user['identity_type'] == 1) {
-            //副站长只能看到quality_assistant是自己
+            //副站长只能看到；quality_assistant是自己
             $map['quality_assistant'] = $user['admin_id'];
         } elseif ($user['identity_type'] == 2) {
-            //副站长只能看到quality_id是自己
+            //安监员只能看到；quality_id是自己
             $map['quality_id'] = $user['admin_id'];
         }
         //差竣工联系人
@@ -92,7 +82,7 @@ class Project extends Api
 
 
      //项目列表
-    public function safetity()
+    public function safetily()
     {
 
         $user = $this->auth->getUser();
@@ -101,10 +91,10 @@ class Project extends Api
         $map = [];
 
         if ($user['identity_type'] == 1) {
-             //副站长只能看到quality_assistant是自己
+             //副站长只能看到supervisor_assistant是自己
             $map['supervisor_assistant'] = $user['admin_id'];
         } elseif ($user['identity_type'] == 2) {
-             //副站长只能看到quality_id是自己
+             //副站长只能看到security_id是自己
             $map['security_id'] = $user['admin_id'];
         }
          //差竣工联系人

@@ -73,7 +73,11 @@ class Voucher extends Backend
     {
         //查出自己负责的项目，上传时选中项目
         $quality_id = Session::get('admin')['id'];
-        $project = db('project')->where('quality_id', $quality_id)->where('finish_time','not null')->select();
+        $project = db('project')
+                ->field('id,project_name')
+                ->where('quality_id', $quality_id)
+                ->where('finish_time','exp','is null')
+                ->select();
         $this->assign('project', $project);
 
         if ($this->request->isAjax()) {
