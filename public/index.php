@@ -12,7 +12,7 @@
 // [ 应用入口文件 ]
 // 定义应用目录
 define('APP_PATH', __DIR__ . '/../application/');
-
+define('EXTEND_PATH','./extend/');
 // 判断是否安装FastAdmin
 if (!is_file(APP_PATH . 'admin/command/Install/install.lock'))
 {

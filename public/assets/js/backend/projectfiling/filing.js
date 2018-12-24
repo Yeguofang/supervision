@@ -42,13 +42,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格
             table.bootstrapTable({
                 url        : $.fn.bootstrapTable.defaults.extend.index_url,
-                escape     : false,
-                sortName   : 'id',
-                pagination : false,
-                showToggle : false,
-                showColumns: false,
-                showExport : false,
-                search     : false,
+                pk      : 'id',
+                sortName: 'id',
                 columns    : [
                     [
                         //id,worker_code,nickname,mobile,supervisor_card,admin_code,is_law,username,admin_level
@@ -85,6 +80,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         return "<label class='label bg-red'>未备案</label>";
                     }else if(value == '1'){
                         return "<label class='label bg-green'>已备案</label>";
+                    }else if(value == '2'){
+                        return "<label class='label bg-green'>请赶紧备案</label>";
                     }
                 }
             }

@@ -84,6 +84,7 @@ class Voucher extends Backend
 
             $data['push_time'] = date('Y-m-d H:i:s', time());
             $data['security_id'] = $security_id;
+            $data['dept_type'] = 2;
             $data['supervisor_assistant'] = $assistant['supervisor_assistant'];
             $res = db('project_voucher')->insert($data);
             if ($res) {

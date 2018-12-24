@@ -45,15 +45,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             });
             // 初始化表格
             table.bootstrapTable({
-                url        : $.fn.bootstrapTable.defaults.extend.index_url,
-                escape     : false,
-                sortName   : 'id',
-                pagination : false,
-                showToggle : false,
-                showColumns: false,
-                showExport : false,
-                search     : false,
-                columns    : [
+                url         : $.fn.bootstrapTable.defaults.extend.index_url,
+                pk          : 'id',
+                sortName    : 'id',
+                escape      : false,
+                pagination  : true,
+                commonSearch: true,
+                columns     : [
                     [
                         //id,worker_code,nickname,mobile,supervisor_card,admin_code,is_law,username,admin_level
                         {checkbox: true},

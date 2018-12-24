@@ -9,9 +9,9 @@ use app\common\model\Version;
         $val = date("Y-m-d",$val);
     }else{
         $val = "暂无";
-        return $val;
+        
     }
-
+return $val;
 }
 
 

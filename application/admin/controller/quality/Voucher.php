@@ -90,6 +90,7 @@ class Voucher extends Backend
                 $assistant = db('project')->where('id', $data['project_id'])->find();
                 $data['push_time'] = date('Y-m-d H:i:s', time());
                 $data['quality_id'] = $quality_id;
+                $data['dept_type'] = 1;
                 $data['quality_assistant'] = $assistant['quality_assistant'];
                 $res = db('project_voucher')->insert($data);
                 if ($res) {

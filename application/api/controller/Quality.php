@@ -13,11 +13,12 @@ use app\common\model\Area;
 use app\common\model\Version;
 use fast\Random;
 use think\Config;
+use think\File;
 
 // 项目图片处理
 class Quality extends Api
 {
-    protected $noNeedLogin = ['*'];
+    //protected $noNeedLogin = ['*'];
     protected $noNeedRight = ['*'];
   
     //项目详情
@@ -65,32 +66,35 @@ class Quality extends Api
         if ($id == null) {
             return $this->error('项目id不能为空', 3);
         }
-		
-		if($user['identity'] == 0){//质监身份
-			if($user['identity_type'] == 1){//质监副站长
-				$map['quality_assistant'] = $user['admin_id'];
-			}else{//质监员
-				$map['quality_id'] = $user['admin_id'];
-			}
-		}else {//安监身份
-			if($user['identity_type'] == 1){//质监副站长
-				$map['supervisor_assistant'] = $user['admin_id'];
-			}else{//质监员
-				$map['security_id'] = $user['admin_id'];
-			}
-		}
+        
+        if($user['identity'] == 0){//质监身份
+            if($user['identity_type'] == 0){
+                $map['dept_type'] = 1; //质监站长
+            }else if($user['identity_type'] == 1){
+                $map['quality_assistant'] = $user['admin_id'];//质监副站长
+            }else{
+                $map['quality_id'] = $user['admin_id'];//质监员
+            }
+        }else {//安监身份
+            if($user['identity_type'] == 0){
+                 $map['dept_type'] = 2; //质监站长
+            }else if($user['identity_type'] == 1){
+                $map['supervisor_assistant'] = $user['admin_id'];//质监副站长
+            }else{
+                $map['security_id'] = $user['admin_id'];//质监员
+            }
+        }
 
         $data = db('project_voucher')
             ->where('project_id', $id)
-			->where($map)
+            ->where($map)
             ->order("push_time desc")
             ->paginate($num)->each(function ($item, $index) {
                 $item['project_images'] = explode(",", $item['project_images']);
-                //图片地址拼接
-		        for($i=0;$i<count($item['project_images']);$i++){
-		        	$item['project_images'][$i] = 'http://47.107.235.179/supervision/public'.$item['project_images'][$i];
-		        }
-            	$item['push_time'] = substr($item['push_time'], 0, 16);
+                for($i=0;$i<count($item['project_images']);$i++){
+                    $item['project_images'][$i] = 'http://47.107.235.179/supervision/public'.$item['project_images'][$i];//图片地址拼接
+                }
+                $item['push_time'] = substr($item['push_time'], 0, 16);
                 return $item;
             });
         //查出项目，是否竣工
@@ -98,12 +102,13 @@ class Quality extends Api
             ->field('finish_time')
             ->where('id',$id)
             ->find();
-        if($project['finish_time'] == null){
-            //项目无竣工日期
-            if ($user['identity_type'] == 2) {//只有主责才能有操作
+        if($project['finish_time'] == null){ //项目无竣工日期
+            if ($user['identity_type'] == 0) {//站长不可操作
+                $type = 1;
+            }else if($user['identity_type'] == 1){//副站长不可操作
+                $type = 1;
+            }else if($user['identity_type'] == 2){//只有主责才能有操作
                 $type = 0;
-            }else{
-                $type = 1;//站长。副站长不可操作
             }
         }else{
             $type = 1;//项目有竣工日期，不可操作
@@ -132,7 +137,9 @@ class Quality extends Api
 
         //图片地址拼接
         for($i=0;$i<count($data['project_images']);$i++){
-        	$data['project_images'][$i] = 'http://47.107.235.179/supervision/public'.$data['project_images'][$i];
+            $data['new_images'][$i] = $data['project_images'][$i];//无域名图片
+            $data['project_images'][$i] = 'http://47.107.235.179/supervision/public'.$data['project_images'][$i];//有域名图片
+            
         }
 
         //查出项目，是否竣工
@@ -156,10 +163,7 @@ class Quality extends Api
 
 
     /**
-     * @return void
-     * @Description 保存已上传图片的url跟图片说明
-     * @author YGF
-     * @DateTime {{datetime}}
+      保存已上传图片的url跟图片说明
      */
     public function addImage()
     {
@@ -186,10 +190,12 @@ class Quality extends Api
         $user = $this->auth->getUser();
         if ($user['identity'] == 0) {
             //质监部门
+            $data['dept_type'] = 1;
             $data['quality_id'] = $assistant['quality_id'];
             $data['quality_assistant'] = $assistant['quality_assistant'];
         } else if ($user['identity'] == 1) {
              //安监
+            $data['dept_type'] = 2;
             $data['security_id'] = $assistant['security_id'];
             $data['supervisor_assistant'] = $assistant['supervisor_assistant'];
         }
@@ -385,5 +391,6 @@ class Quality extends Api
             $this->error($file->getError());
         }
     }
+
 
 }
