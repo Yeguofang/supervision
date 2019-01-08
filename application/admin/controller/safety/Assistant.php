@@ -11,6 +11,13 @@ namespace app\admin\controller\safety;
 use app\common\controller\Backend;
 use think\Session;
 use think\Db;
+use PHPExcel;
+use PHPExcel_Style;
+use PHPExcel_Style_Fill;
+use PHPExcel_Style_Alignment;
+use PHPExcel_Style_Border;
+use PHPExcel_Style_NumberFormat;
+use PHPExcel_IOFactory;
 //副站长的项目管理
 class Assistant extends Backend{
     protected $noNeedRight = ['*'];
@@ -51,18 +58,6 @@ class Assistant extends Backend{
                 ->limit($offset, $limit)
                 ->select();
                 
-            // //查出主责要申请修改项目图片的数量  
-            // $list['edit_status'] = db('project_voucher')
-            //                 ->where('supervisor_assistant',$adminId)
-            //                 ->where('edit_status',1)
-            //                 ->count();
-            // //查出主责要申请删除项目图片的数量  
-            // $list['del_status'] = db('project_voucher')
-            //                 ->where('supervisor_assistant',$adminId)
-            //                 ->where('del_status',1)
-            //                 ->count();
-
-                // dump($list);exit;
             $result = array("total" => $total, "rows" => $list);
             return json($result);
         }
@@ -104,8 +99,6 @@ class Assistant extends Backend{
         return $this->view->fetch();
     }
 
-    //施工安全监督告知书
-    public function safety($ids){
-        safety_inform($ids);
-    }
+
+     
 }

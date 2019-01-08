@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:104:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\administration\project\edit.html";i:1544152861;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:104:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\administration\project\edit.html";i:1545824297;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1545909786;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -38,14 +38,7 @@
                             <?php if(!IS_DIALOG && !$config['fastadmin']['multiplenav']): ?>
                             <!-- RIBBON -->
                             <div id="ribbon">
-                                <ol class="breadcrumb pull-left">
-                                    <li><a href="dashboard" class="addtabsit"><i class="fa fa-dashboard"></i> <?php echo __('Dashboard'); ?></a></li>
-                                </ol>
-                                <ol class="breadcrumb pull-right">
-                                    <?php foreach($breadcrumb as $vo): ?>
-                                    <li><a href="javascript:;" data-url="<?php echo $vo['url']; ?>"><?php echo $vo['title']; ?></a></li>
-                                    <?php endforeach; ?>
-                                </ol>
+                                &nbsp;
                             </div>
                             <!-- END RIBBON -->
                             <?php endif; ?>
@@ -106,7 +99,7 @@
     <div class="form-group">
         <label for="cost" class="control-label col-xs-12 col-sm-2">合同价格:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="cost" name="licence[cost]" value="<?php echo $licence['area']; ?>"  />
+            <input type="text" class="form-control" id="cost" name="licence[cost]" value="<?php echo $licence['cost']; ?>"  />
         </div>
         <label class="col-xs-12 col-sm-2" style="margin-top: 8px;margin-left: -18px;">(万元)</label>
     </div>

@@ -1,3 +1,5 @@
+
+
 define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefined, Backend, Table, Form) {
 
     var Controller = {
@@ -12,7 +14,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             });
 
             var table = $("#table");
-
+            
             var submitForm = function (ids, layero) {
                 var options = table.bootstrapTable('getOptions');
                 console.log(options);
@@ -35,7 +37,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 var page = table.bootstrapTable('getData');
                 var all  = table.bootstrapTable('getOptions').totalRows;
                 console.log(ids, page, all);
-                Layer.confirm("请选择导出的选项<form action='" + Fast.api.fixurl("excel/export") + "' method='post' target='_blank'><input type='hidden' name='ids' value='' /><input type='hidden' name='filter' ><input type='hidden' name='op'><input type='hidden' name='search'><input type='hidden' name='columns'></form>", {
+                Layer.confirm("请选择导出的选项<form action='" + Fast.api.fixurl("administration/project/export") + "' method='post' target='_blank'><input type='hidden' name='ids' value='' /><input type='hidden' name='filter' ><input type='hidden' name='op'><input type='hidden' name='search'><input type='hidden' name='columns'></form>", {
                     title  : '导出数据',
                     btn    : ["选中项(" + ids.length + "条)", "本页(" + page.length + "条)", "全部(" + all + "条)"],
                     success: function (layero, index) {
@@ -62,12 +64,17 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 })
             });
 
+
             // 初始化表格
             table.bootstrapTable({
-                url     : $.fn.bootstrapTable.defaults.extend.index_url,
-                pk      : 'id',
-                sortName: 'id',
-                columns : [
+                url       : $.fn.bootstrapTable.defaults.extend.index_url,
+                pk        : 'id',
+                sortName  : 'id',
+                escape    : false,
+                showToggle: false,
+                search    : false,
+                showExport: false,
+                columns   : [
 
                     [
                         //id,worker_code,nickname,mobile,supervisor_card,admin_code,is_law,username,admin_level
@@ -97,12 +104,6 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 Form.api.bindevent($("form[role=form]"));
             }
         }
-
-        
     };
-    
-    
-    
     return Controller;
 });
-

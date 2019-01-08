@@ -1,0 +1,61 @@
+<script src="__CDN__/assets/js/jquery-3.2.1.js"></script>
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    
+     <div class="form-group">
+                <label for="check_company" class="control-label col-xs-12 col-sm-2">监督编号:</label>
+                <div class="col-xs-12 col-sm-8">
+                <input type="text" class="form-control" name="row[supervision_number]"   />
+                </div>
+    </div>
+    <div class="form-group">
+            <label for="check_company" class="control-label col-xs-12 col-sm-2">工程名称:</label>
+            <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" name="row[project_name]" readonly  value="{$project.project_name}"    />
+            </div>
+</div>
+<div class="form-group">
+        <label for="check_company" class="control-label col-xs-12 col-sm-2">工程地点:</label>
+        <div class="col-xs-12 col-sm-8">
+        <input type="text" class="form-control" name="row[project_address]" readonly  value="{$project.address}"  />
+        </div>
+</div>
+    <div class="form-group">
+        <label for="register_time" class="control-label col-xs-12 col-sm-2">论证时间:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control"  data-date-format="YYYY-MM-DD" name="row[proof_time]"   />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="check_company" class="control-label col-xs-12 col-sm-2">论证地点:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control"  name="row[proof_address]"   />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="check_person" class="control-label col-xs-12 col-sm-2">论证情况:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea name="row[proof_info]" style="width:400px;height:100px;" ></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="picture_company" class="control-label col-xs-12 col-sm-2">论证内容:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea name="row[proof_content]" style="width:400px;height:100px;" ></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="picture_person" class="control-label col-xs-12 col-sm-2">施工情况:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control"  name="row[build_info]"   />
+        </div>
+    </div>
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

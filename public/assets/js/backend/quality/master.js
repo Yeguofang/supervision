@@ -15,7 +15,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             var buttons = [
                 {
                     name     : 'detail',
-                    text     : '项目图片',
+                    text     : '发起检查',
+                    classname: 'btn btn-info btn-xs btn-detail btn-dialog',
+                    url      : 'quality/master/qualitycheck',
+                 },
+                {
+                    name     : 'detail',
+                    text     : '检查记录',
                     icon     : 'fa fa-image',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
                     url      : 'quality/vouchermaster/index',
@@ -51,12 +57,105 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 }
             ];
             var table = $("#table");
+
+            var submitForm = function (ids, layero) {
+                var options = table.bootstrapTable('getOptions');
+                console.log(options);
+                var columns = [];
+                $.each(options.columns[0], function (i, j) {
+                    if (j.field && !j.checkbox && j.visible && j.field != 'operate') {
+                        columns.push(j.field);
+                    }
+                });
+                var search = options.queryParams({});
+                $("input[name=search]", layero).val(options.searchText);
+                $("input[name=ids]", layero).val(ids);
+                $("input[name=filter]", layero).val(search.filter);
+                $("input[name=op]", layero).val(search.op);
+                $("input[name=columns]", layero).val(columns.join(','));
+                $("form", layero).submit();z
+            };
+            $(document).on("click", ".btn-export", function () {
+                var ids  = Table.api.selectedids(table);
+                var page = table.bootstrapTable('getData');
+                var all  = table.bootstrapTable('getOptions').totalRows;
+                console.log(ids, page, all);
+                Layer.confirm("请选择导出的选项<form action='" + Fast.api.fixurl("quality/info/export") + "' method='post' target='_blank'><input type='hidden' name='ids' value='' /><input type='hidden' name='filter' ><input type='hidden' name='op'><input type='hidden' name='search'><input type='hidden' name='columns'></form>", {
+                    title  : '导出数据',
+                    btn    : ["选中项(" + ids.length + "条)", "全部(" + all + "条)"],
+                    success: function (layero, index) {
+                        $(".layui-layer-btn a", layero).addClass("layui-layer-btn0");
+                    }
+                    , yes: function (index, layero) {
+                        if (ids.length == 0) {
+                            alert('请先选择数据！');
+                            return false;
+                        }
+                        submitForm(ids.join(","), layero);
+                        return false;
+                    }
+                    ,
+                    btn2: function (index, layero) {
+                        var ids = [];
+                        $.each(page, function (i, j) {
+                            ids.push(j.id);
+                        });
+                        submitForm(ids.join(","), layero);
+                        return false;
+                    }
+                    ,
+                    btn3: function (index, layero) {
+                        submitForm("all", layero);
+                        return false;
+                    }
+                })
+            });
+            $(document).on("click", ".btn-check", function () {
+                var ids  = Table.api.selectedids(table);
+                var page = table.bootstrapTable('getData');
+                var all  = table.bootstrapTable('getOptions').totalRows;
+                console.log(ids, page, all);
+                Layer.confirm("请选择导出的选项<form action='" + Fast.api.fixurl("quality/info/checkExport") + "' method='post' target='_blank'><input type='hidden' name='ids' value='' /><input type='hidden' name='filter' ><input type='hidden' name='op'><input type='hidden' name='search'><input type='hidden' name='columns'></form>", {
+                    title  : '导出数据',
+                    btn    : ["选中项(" + ids.length + "条)", "全部(" + all + "条)"],
+                    success: function (layero, index) {
+                        $(".layui-layer-btn a", layero).addClass("layui-layer-btn0");
+                    }
+                    , yes: function (index, layero) {
+                        if (ids.length == 0) {
+                            alert('请先选择数据！');
+                            return false;
+                        }
+                        submitForm(ids.join(","), layero);
+                        return false;
+                    }
+                    ,
+                    btn2: function (index, layero) {
+                        var ids = [];
+                        $.each(page, function (i, j) {
+                            ids.push(j.id);
+                        });
+                        submitForm(ids.join(","), layero);
+                        return false;
+                    }
+                    ,
+                    btn3: function (index, layero) {
+                        submitForm("all", layero);
+                        return false;
+                    }
+                })
+            });
+            
             // 初始化表格
             table.bootstrapTable({
-                url        : $.fn.bootstrapTable.defaults.extend.index_url,
-                pk      : 'id',
-                sortName: 'id',
-                columns    : [
+                url       : $.fn.bootstrapTable.defaults.extend.index_url,
+                pk        : 'id',
+                sortName  : 'id',
+                escape    : false,
+                showToggle: false,
+                search    : false,
+                showExport: false,
+                columns   : [
                     [
                         //id,worker_code,nickname,mobile,supervisor_card,admin_code,is_law,username,admin_level
                         {checkbox: true},
@@ -69,7 +168,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'i.project_kind', title: '工程类别', formatter:Controller.api.formatter.kind,searchList: {'0':'市政建设','1': '房建'}},
                         {field: 'i.situation', title: '工程概况', formatter:Controller.api.formatter.situation,searchList: {'0':'路基处理','1': '路面工程','2':'排水系统','3':'绿化照明','4':'标识标线','5':'完成','6':'竣工验收'}},
                         {field: 'i.status', title: '工程状态', formatter:Controller.api.formatter.status,searchList: {'0':'未开工','1': '在建','2':'质量停工','3':'安全停工','4':'局停工','5':'自停工'}},
-                        {field: 'quality_progress', title: '工程进度', formatter:Controller.api.formatter.quality_progress,searchList: {'0':'未处理','1': '已申请竣工并已通知副站','2':'已通知站长','3':'同意'}},
+                        {field: 'quality_progress', title: '质监进度', formatter:Controller.api.formatter.quality_progress,searchList: {'0':'未处理','1': '已申请竣工并已通知副站','2':'已通知站长','3':'同意'}},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate,buttons:buttons}
                     ]
                 ]
@@ -140,9 +239,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                             return "<label class='label bg-red'>竣工验收</label>"
                         }
                     }else if(row['i.project_kind'] == '1'){
-                        if(value == '0'){
-                            return "<label class='label bg-orange'>基础阶段</label>"
-                        }else if(value == '1'){
+                        if(value == '1'){
                             return "<label class='label bg-green'>主体阶段</label>"
                         }else if(value == '2'){
                             return "<label class='label bg-red'>装饰阶段</label>"

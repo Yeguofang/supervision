@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>详情</title>
+</head>
+
+<body>
+        {if condition="$all['terms'] neq null "}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td colspan="3">
+                    <h2>期限整改</h2>
+                </td>
+            </tr>
+            <tr>
+                <th>项目名称</th>
+                <th>到期日期</th>
+                <th>情况</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {volist name="$all['terms']" id="t"}
+            <tr>
+                <td>{$t.project_name}</td>
+                <td>{$t.expire_time}</td>
+                <td><b style="color:red">
+                    {if condition="$t.day < 0"}
+                        已过期
+                   {else /}
+                        还有 {$t.day} 天到期
+                  {/if}
+                </b></td>
+                <td><a href="javascript:void(0)" onclick="term({$t.id})"><b>已处理</b></a></td>
+            </tr>
+            {/volist}
+        </tbody>
+    </table>
+    {else /}
+
+    {/if}
+
+
+    {if condition="$all['suspends'] neq null "}
+    <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td colspan="3">
+                        <h2>暂停施工整改</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <th>项目名称</th>
+                    <th>到期日期</th>
+                    <th>情况</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {volist name="$all['suspends']" id="t"}
+                <tr>
+                    <td>{$t.project_name}</td>
+                    <td>{$t.expire_time}</td>
+                    <td><b style="color:red">
+                        {if condition="$t.day < 0"}
+                            已过期
+                       {else /}
+                            还有 {$t.day} 天到期
+                      {/if}
+                    </b></td>
+                    <td><a href="javascript:void(0)" onclick="term({$t.id})"><b>已处理</b></a></td>
+                </tr>
+                {/volist}
+            </tbody>
+        </table>
+        {else /}
+
+    {/if}
+
+    {if condition="$all['stops'] neq null "}
+        <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td colspan="3">
+                            <h2>停工整改</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>到期日期</th>
+                        <th>情况</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {volist name="$all['stops']" id="t"}
+                    <tr>
+                        <td>{$t.project_name}</td>
+                        <td>{$t.expire_time}</td>
+                        <td><b style="color:red">
+                            {if condition="$t.day < 0"}
+                                已过期
+                           {else /}
+                                还有 {$t.day} 天到期
+                          {/if}
+                        </b></td>
+                        <td><a href="javascript:void(0)" onclick="term({$t.id})"><b>已处理</b></a></td>
+                    </tr>
+                    {/volist}
+                </tbody>
+            </table>
+            {else /}
+
+            {/if}
+
+            
+            {if condition="$all['builds'] neq null "}
+            <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td colspan="3">
+                                <h2>施工安全抽查</h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>项目名称</th>
+                            <th>到期日期</th>
+                            <th>情况</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {volist name="$all['builds']" id="t"}
+                        <tr>
+                            <td>{$t.project_name}</td>
+                            <td>{$t.expire_time}</td>
+                            <td><b style="color:red">
+                                {if condition="$t.day < 0"}
+                                    已过期
+                               {else /}
+                                    还有 {$t.day} 天到期
+                              {/if}
+                            </b></td>
+                            <td><a href="javascript:void(0)" onclick="term({$t.id})"><b>已处理</b></a></td>
+                        </tr>
+                        {/volist}
+                    </tbody>
+                </table>
+                {else /}
+
+            {/if}
+
+            {if condition="$all['devices'] neq null "}
+            <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td colspan="3">
+                                <h2>起重机械</h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>项目名称</th>
+                            <th>检测日期</th>
+                            <th>检测到期时间</th>
+                            <th>情况</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {volist name="$all['devices']" id="t"}
+                        <tr>
+                            <td>{$t.project_name}</td>
+                            <td>{$t.test_time}</td>
+                            <td>{$t.test_end_time}</td>
+                            <td><b style="color:red">
+                                {if condition="$t.day < 0"}
+                                     已过期
+                                {else /}
+                                     还有 {$t.day} 天到期
+                               {/if}
+                            </b></td>
+                            <td><a href="javascript:void(0)" onclick="device({$t.id})"><b>已处理</b></a></td>
+                        </tr>
+                        {/volist}
+                    </tbody>
+                </table>
+                {else /}
+
+                {/if}
+                
+</body>
+<script type="text/javascript">
+    function term(ids) {
+        if (confirm("确定已处理？")) {
+            $.ajax({
+                type: "post",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "{:url('/admin/safety/system/status')}?ids=" + ids,
+                success: function (data) {
+                    console.log(data);
+                    if (data == 1) {
+                        location.replace(location);
+                    } 
+                }
+            });
+        }
+    }
+    function device(ids) {
+        if (confirm("确定已处理？")) {
+            $.ajax({
+                type: "post",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "{:url('/admin/safety/device/status')}?ids=" + ids,
+                success: function (data) {
+                    if (data == 1) {
+                        location.reload(location);
+                    } 
+                }
+            });
+        }
+    }
+</script>
+
+</html>

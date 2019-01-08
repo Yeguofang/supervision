@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:95:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\quality\info\index.html";i:1543541642;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:95:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\quality\info\index.html";i:1545891785;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1545909786;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -38,14 +38,7 @@
                             <?php if(!IS_DIALOG && !$config['fastadmin']['multiplenav']): ?>
                             <!-- RIBBON -->
                             <div id="ribbon">
-                                <ol class="breadcrumb pull-left">
-                                    <li><a href="dashboard" class="addtabsit"><i class="fa fa-dashboard"></i> <?php echo __('Dashboard'); ?></a></li>
-                                </ol>
-                                <ol class="breadcrumb pull-right">
-                                    <?php foreach($breadcrumb as $vo): ?>
-                                    <li><a href="javascript:;" data-url="<?php echo $vo['url']; ?>"><?php echo $vo['title']; ?></a></li>
-                                    <?php endforeach; ?>
-                                </ol>
+                                &nbsp;
                             </div>
                             <!-- END RIBBON -->
                             <?php endif; ?>
@@ -53,6 +46,9 @@
                                 <div class="panel panel-default panel-intro">
     <div id="toolbar" class="toolbar">
         <?php echo build_toolbar('refresh'); ?>
+        <a href="javascript:;" class="btn btn-success btn-export " title="<?php echo __('Export'); ?>" id="btn-export-file"><i class="fa fa-download"></i>导出项目信息</a>
+        <a href="javascript:;" class="btn btn-success btn-check " title="<?php echo __('Export'); ?>" id="btn-check-file"><i class="fa fa-download"></i>导出质量工程检查信息</a>
+    
     </div>
     <div class="panel-body">
         <div id="myTabContent" class="tab-content">

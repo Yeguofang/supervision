@@ -11,6 +11,13 @@ use app\common\controller\Backend;
 use think\Db;
 use think\Exception;
 use think\Session;
+use PHPExcel;
+use PHPExcel_Style;
+use PHPExcel_Style_Fill;
+use PHPExcel_Style_Alignment;
+use PHPExcel_Style_Border;
+use PHPExcel_Style_NumberFormat;
+use PHPExcel_IOFactory;
 
 //行政管理
 class Project extends Backend{
@@ -192,5 +199,160 @@ class Project extends Backend{
         return;
 
     }
+
+   
+
+
+    // 项目检查记录详情
+    public function Checkinfo($ids){
+        $project = db('project_voucher')->where('id',$ids)->find();
+        $info = db('quality_info')->where('id',$project['project_id'])->find();//查出工程进度
+        $image = explode(",",$project['project_images']);
+        for($i=0;$i<count($image);$i++){
+            $image[$i] = "http://47.107.235.179/supervision/public".$image[$i];
+        }
+
+        $w ="";
+        $h= "";
+        if($project['coordinate'] != null){
+            $coordinate = explode(",",$project['coordinate']);
+            $w = $coordinate[0];
+            $h = $coordinate[1];
+        }
+        $this->assign('schedule',$info['schedule']);
+        $this->assign('project',$project);
+        $this->assign('image',$image);
+        $this->assign('count',count($image));
+        $this->assign('w',$w);
+        $this->assign('h',$h);
+        return $this->fetch();
+    }
+
+      //建管验收excel表导出
+      public function export()
+      {
+          if ($this->request->isPost()) {
+              set_time_limit(0);
+              $search = $this->request->post('search');
+              $ids = $this->request->post('ids');
+              $filter = $this->request->post('filter');
+              $op = $this->request->post('op');
+  
+              $excel = new PHPExcel();
+  
+              $excel->getProperties()
+                  ->setCreator("FastAdmin")
+                  ->setLastModifiedBy("FastAdmin")
+                  ->setTitle("标题")
+                  ->setSubject("Subject");
+              $excel->getDefaultStyle()->getFont()->setName('Microsoft Yahei');
+              $excel->getDefaultStyle()->getFont()->setSize(12);
+  
+              $this->sharedStyle = new PHPExcel_Style();
+              $this->sharedStyle->applyFromArray(
+                  array(
+                      'fill' => array(
+                          'type' => PHPExcel_Style_Fill::FILL_SOLID,
+                          'color' => array('rgb' => '000000')
+                      ),
+                      'font' => array(
+                          'color' => array('rgb' => "000000"),
+                      ),
+                      'alignment' => array(
+                          'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                          'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                          'indent' => 1
+                      ),
+                      'borders' => array(
+                          'allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                      )
+                  )
+              );
+  
+              $worksheet = $excel->setActiveSheetIndex(0);
+              $worksheet->setTitle('标题');
+  
+              $whereIds = $ids == 'all' ? '1=1' : ['p.id' => ['in', explode(',', $ids)]];
+              $this->request->get(['search' => $search, 'ids' => $ids, 'filter' => $filter, 'op' => $op]);
+              list($where, $sort, $order, $offset, $limit) = $this->buildparams();
+              $line = 1;
+              $columns = "p.id,p.build_dept,p.project_name,p.address,p.licence_id,l.licence_code,l.area,l.cost,l.survey_company,l.design_company,l.construction_company,l.supervision_company,l.survey_person,l.design_person,l.construction_person,l.supervision_person,l.begin_time,l.end_time";
+            
+              $count = $this->model
+                  ->alias("p")
+                  ->where($where)
+                  ->where($whereIds)
+                  ->join('licence l','p.licence_id =l.id')
+                  ->count();
+  
+              $this->model
+                  ->alias("p")
+                  ->field($columns)
+                  ->where($where)
+                  ->where($whereIds)
+                  ->join('licence l','p.licence_id =l.id')
+                  ->paginate($count)
+                  ->each(function ($items, $index) use (&$line, &$worksheet) {
+                      $items = json_decode($items);
+                      $items->begin_time =date('Y-m-d', $items->begin_time);
+                      $items->end_time =date('Y-m-d', $items->end_time);
+                      $line++;
+                      $col = 0;
+                      foreach ($items as $index => $value) {
+                          $worksheet->setCellValueByColumnAndRow($col, $line, $value);
+                          $worksheet->getStyleByColumnAndRow($col, $line)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+                          $col++;
+                      }
+                  });
+               
+              $kv = [
+                  'p.id' => 'ID',
+                  'p.build_dept' => '建设单位',
+                  'p.project_name' => '工程名称',
+                  'p.address' => '建设地址',
+                  'l.licence_code' => '编号',
+                  'l.area' => '建设规模',
+                  'l.cost' => '合同价格',
+                  'l.survey_company' => '勘察单位',
+                  'l.design_company' => '设计单位',
+                  'l.construction_company' => '施工单位',
+                  'l.supervision_company' => '监理单位',
+                  'l.survey_person' => '勘察负责人',
+                  'l.design_person' => '设计负责人',
+                  'l.construction_person' => '施工负责人',
+                  'l.supervision_person' => '总监工程师',
+                  'l.begin_time' => '合同开始日期',
+                  'l.end_time' => '合同结束日期',
+                  'p.licence_id' => '',
+                 
+              ];
+
+              $columnsArr = explode(',', $columns);
+              foreach ($columnsArr as $index => $item) {
+                  $worksheet->setCellValueByColumnAndRow($index, 1, __($kv[$item]));
+              }
+  
+              $excel->createSheet();
+              // Redirect output to a client’s web browser (Excel2007)
+              $title = date("YmdHis");
+              ob_end_clean();
+              header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+              header('Content-Disposition: attachment;filename="行政建档' . $title . '.xls"');
+              header('Cache-Control: max-age=0');
+              // If you're serving to IE 9, then the following may be needed
+              header('Cache-Control: max-age=1');
+  
+              // If you're serving to IE over SSL, then the following may be needed
+              header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+              header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); // always modified
+              header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+              header('Pragma: public'); // HTTP/1.0
+  
+              $objWriter = PHPExcel_IOFactory::createWriter($excel, 'Excel5');
+              $objWriter->save('php://output');
+              return;
+          }
+      }
+  
 
 }

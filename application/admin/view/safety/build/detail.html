@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>详情</title>
+</head>
+
+<body>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>标题</th>
+                <th style="width: 85%">内容</th>
+            </tr>
+        </thead>
+        <tbody>
+            </tr>
+            <tr>
+                <td>工程名称:</td>
+                <td>
+                    {$data.project_name}
+                </td>
+            </tr>
+            <tr>
+                <td>监督编号:</td>
+                <td>
+                    {$data.number}
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>日期:</td>
+                <td>
+                    {$data.now_time}
+                </td>
+            </tr>
+            <tr>
+                <td>到期提醒时间:</td>
+                <td>
+                    {$data.expire_time}
+                </td>
+            </tr>
+            <tr>
+                <td>说明:</td>
+                <td>
+                    {$data.desc}
+                </td>
+            </tr>
+            <tr>
+                <td>图片:</td>
+                <td>
+                    <img src="{$data.images}"/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

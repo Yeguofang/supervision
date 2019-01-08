@@ -26,7 +26,6 @@ class Voucherapply extends Backend
 
     }
 
-
     public function list()
     {
         //取出项目id,查出当前项目的所有主责上传的图片

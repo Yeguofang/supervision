@@ -65,35 +65,35 @@ class Voucher extends Backend
 
     }
 
-    //上传项目图片
-    public function add()
-    {
-        //查出自己负责的项目，上传时选中项目
-        $security_id = Session::get('admin')['id'];
-        $project = db('project')
-                ->field('id,project_name')
-                ->where('security_id', $security_id)
-                ->where('finish_time','exp','is null')
-                ->select();
-        $this->assign('project', $project);
+    // //上传项目图片
+    // public function add()
+    // {
+    //     //查出自己负责的项目，上传时选中项目
+    //     $security_id = Session::get('admin')['id'];
+    //     $project = db('project')
+    //             ->field('id,project_name')
+    //             ->where('security_id', $security_id)
+    //             ->where('finish_time','exp','is null')
+    //             ->select();
+    //     $this->assign('project', $project);
 
-        if ($this->request->isAjax()) {
-            $data = $this->request->post('row/a');
-            //查出选中项目的副站长
-            $assistant = db('project')->where('id', $data['project_id'])->find();
+    //     if ($this->request->isAjax()) {
+    //         $data = $this->request->post('row/a');
+    //         //查出选中项目的副站长
+    //         $assistant = db('project')->where('id', $data['project_id'])->find();
 
-            $data['push_time'] = date('Y-m-d H:i:s', time());
-            $data['security_id'] = $security_id;
-            $data['dept_type'] = 2;
-            $data['supervisor_assistant'] = $assistant['supervisor_assistant'];
-            $res = db('project_voucher')->insert($data);
-            if ($res) {
-                return $this->success();
-            }
+    //         $data['push_time'] = date('Y-m-d H:i:s', time());
+    //         $data['security_id'] = $security_id;
+    //         $data['dept_type'] = 2;
+    //         $data['supervisor_assistant'] = $assistant['supervisor_assistant'];
+    //         $res = db('project_voucher')->insert($data);
+    //         if ($res) {
+    //             return $this->success();
+    //         }
 
-        }
-        return $this->fetch();
-    }
+    //     }
+    //     return $this->fetch();
+    // }
 
     //编辑上传过后的项目图片
     public function edit($ids = null)

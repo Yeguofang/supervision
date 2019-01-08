@@ -25,7 +25,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 var identy = $("#ret").val();
                 $("#ret").remove();
                 var str = "同意竣工";
-                if(identy==0){
+                if(identy == 0 || identy == 4){
                     str = "申请竣工";
                 }else if(identy==2){
                     str = str+"并通知主站";
@@ -34,13 +34,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     name     : 'notice',
                     text     : str,
                     icon     : 'fa fa-list',
-                    classname: 'btn btn-info btn-xs btn-detail btn-dialog small',
+                    classname: 'btn btn-info btn-xs btn-detail btn-dialog',
                     url      : 'check/quality/notice?ret='+identy,
                     visible  : function (row) {
                         //返回true时按钮显示,返回false隐藏
-                        if(identy==0){
+                        if(identy == 0){
                             //质检员
-                            if(row.quality_progress==0)
+                            if(row.quality_progress == 0 || row.quality_progress == 4)
                                 return true;
                         }else if(identy==2){
                             //副站
@@ -62,10 +62,14 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             });
             // 初始化表格
             table.bootstrapTable({
-                url        : $.fn.bootstrapTable.defaults.extend.index_url,
-                pk      : 'id',
-                sortName: 'id',
-                columns    : [
+                url       : $.fn.bootstrapTable.defaults.extend.index_url,
+                pk        : 'id',
+                sortName  : 'id',
+                escape    : false,
+                showToggle: false,
+                search    : false,
+                showExport: false,
+                columns   : [
                     [
                         //id,worker_code,nickname,mobile,supervisor_card,admin_code,is_law,username,admin_level
                         {checkbox: true},
@@ -99,9 +103,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     }else if(value == '1'){
                         return "<label class='label bg-green'>已通知副站</label>";
                     }else  if(value == '2'){
-                        return "<label class='label bg-green'>已通知主站</label>";
+                        return "<label class='label bg-green'>副站同意已通知主站</label>";
                     }else  if(value == '3'){
-                        return "<label class='label bg-green'>主站同意</label>";
+                        return "<label class='label bg-green'>主站同意已通知建管</label>";
+                    }else if(value == '4'){
+                        return "<label class='label bg-red'>建管不同意验收</label>"
+                    }else if(value == '5'){
+                        return "<label class='label bg-green'>建管同意验收</label>"
                     }
                 }
             }

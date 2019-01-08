@@ -1,18 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form id="deal" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
-
-    <div class="form-group layer-footer">
-        <label class="control-label col-xs-12 col-sm-2"></label>
+<script src="__CDN__/assets/js/jquery-3.2.1.js"></script>
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">参与验收人员：:</label>
         <div class="col-xs-12 col-sm-8">
-            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            {volist name="$quality" id="c"}
+                <input type="checkbox" name="check_name[]" value="{$c.name}" />{$c.name}<br/>
+            {/volist}
+            {volist name="$name" id="c"}
+               {$c}<br/>
+            {/volist}
+
         </div>
     </div>
+    <div class="form-group layer-footer">
+            <label class="control-label col-xs-12 col-sm-2"></label>
+            <div class="col-xs-12 col-sm-8">
+                <button type="submit" class="btn btn-success btn-embossed ">确定</button>
+                <!-- <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button> -->
+            </div>
+        </div>
 </form>
-</body>
-</html>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:94:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\quality\info\edit.html";i:1543541642;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:94:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\quality\info\edit.html";i:1546831359;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1545909786;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -38,14 +38,7 @@
                             <?php if(!IS_DIALOG && !$config['fastadmin']['multiplenav']): ?>
                             <!-- RIBBON -->
                             <div id="ribbon">
-                                <ol class="breadcrumb pull-left">
-                                    <li><a href="dashboard" class="addtabsit"><i class="fa fa-dashboard"></i> <?php echo __('Dashboard'); ?></a></li>
-                                </ol>
-                                <ol class="breadcrumb pull-right">
-                                    <?php foreach($breadcrumb as $vo): ?>
-                                    <li><a href="javascript:;" data-url="<?php echo $vo['url']; ?>"><?php echo $vo['title']; ?></a></li>
-                                    <?php endforeach; ?>
-                                </ol>
+                                &nbsp;
                             </div>
                             <!-- END RIBBON -->
                             <?php endif; ?>
@@ -165,7 +158,6 @@
         <div class="col-xs-12 col-sm-8">
             <select  id="situation" name="info[situation]" class="form-control">
             <?php if($info['project_kind'] == 1): ?>
-            <option value="0" <?php if(in_array(($info['situation']), explode(',',"0"))): ?>selected<?php endif; ?>>基础阶段</option>
             <option value="1"<?php if(in_array(($info['situation']), explode(',',"1"))): ?>selected<?php endif; ?>>主体阶段</option>
             <option value="2" <?php if(in_array(($info['situation']), explode(',',"2"))): ?>selected<?php endif; ?>>装饰阶段</option>
             <option value="3"<?php if(in_array(($info['situation']), explode(',',"3"))): ?>selected<?php endif; ?>>收尾</option>
@@ -207,7 +199,7 @@
 <script>
     $("#project_kind").change(function(){
         if($("#project_kind").val()==1){
-            var str = '<option value="0" >基础阶段</option> <option value="1">主体阶段</option> <option value="2" >装饰阶段</option> <option value="3">收尾</option> <option value="4" >完工</option> <option value="5" >竣工验收</option>';
+            var str = '<option value="1">主体阶段</option> <option value="2" >装饰阶段</option> <option value="3">收尾</option> <option value="4" >完工</option> <option value="5" >竣工验收</option>';
         }else {
             var str = ' <option value="0" >路基处理</option>  <option value="1">路面工程</option> <option value="2" >排水系统</option> <option value="3">绿化照明</option><option value="4" }>标识标线</option> <option value="5">完成</option> <option value="6">竣工验收</option>';
         }

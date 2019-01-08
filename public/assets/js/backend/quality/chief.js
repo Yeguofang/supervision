@@ -14,12 +14,23 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             });
             var buttons = [
                 {
-                    name: 'deal',
-                    text: '下发告知书',
-                    icon: 'fa fa-list',
+                    name     : 'statusDel',
+                    text     : '发起检查',
+                    title    : '发起检查',
+                    classname: 'btn btn-xs btn-success btn-magic btn-ajax',
+                    url      : 'quality/chief/applyCheck',
+                    confirm  : '确认发起检查？',
+                    success  : function (data, ret) {
+                        Layer.alert(ret.msg );
+                    },
+                },
+                {
+                    name     : 'deal',
+                    text     : '下发告知书',
+                    icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
-                    url: 'quality/chief/deal',
-                    visible: function (row) {
+                    url      : 'quality/chief/deal',
+                    visible  : function (row) {
                         //没发了告知书才显示
                         if(row.quality_code==null){
                             return true;
@@ -28,12 +39,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     }
                 }
                 ,{
-                    name: 'select',
-                    text: '修改责任人',
-                    icon: 'fa fa-list',
+                    name     : 'select',
+                    text     : '修改责任人',
+                    icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
-                    url: 'quality/chief/select',
-                    visible: function (row) {
+                    url      : 'quality/chief/select',
+                    visible  : function (row) {
                         //下发了告知书才显示
                         if(row.quality_code!=null){
                             return true;
@@ -42,20 +53,20 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     }
                 },
                 {
-                    name: 'detail',
-                    text: '详细信息',
-                    icon: 'fa fa-list',
+                    name     : 'detail',
+                    text     : '详细信息',
+                    icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
-                    url: 'quality/chief/detail',
+                    url      : 'quality/chief/detail',
                 },
                 {
-                    name: 'quality',
-                    text: '登记告知书',
-                    icon: 'fa fa-list',
+                    name     : 'quality',
+                    text     : '登记告知书',
+                    icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail  download',
-                    url: 'quality/chief/quality',
-                    extend:'target="_blank"',
-                    visible: function (row) {
+                    url      : 'quality/chief/quality',
+                    extend   : 'target="_blank"',
+                    visible  : function (row) {
                         //下发了告知书才显示
                         if(row.quality_code!=null){
                             return true;
@@ -65,13 +76,110 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 }
 
             ];
+           
+            
+            var submitForm = function (ids, layero) {
+                var options = table.bootstrapTable('getOptions');
+                console.log(options);
+                var columns = [];
+                $.each(options.columns[0], function (i, j) {
+                    if (j.field && !j.checkbox && j.visible && j.field != 'operate') {
+                        columns.push(j.field);
+                    }
+                });
+                var search = options.queryParams({});
+                $("input[name=search]", layero).val(options.searchText);
+                $("input[name=ids]", layero).val(ids);
+                $("input[name=filter]", layero).val(search.filter);
+                $("input[name=op]", layero).val(search.op);
+                $("input[name=columns]", layero).val(columns.join(','));
+                $("form", layero).submit();z
+            };
+            //导出项目信息
+            $(document).on("click", ".btn-export", function () {
+                var ids  = Table.api.selectedids(table);
+                var page = table.bootstrapTable('getData');
+                var all  = table.bootstrapTable('getOptions').totalRows;
+                console.log(ids, page, all);
+                Layer.confirm("请选择导出的选项<form action='" + Fast.api.fixurl("quality/chief/export") + "' method='post' target='_blank'><input type='hidden' name='ids' value='' /><input type='hidden' name='filter' ><input type='hidden' name='op'><input type='hidden' name='search'><input type='hidden' name='columns'></form>", {
+                    title  : '导出数据',
+                    btn    : ["选中项(" + ids.length + "条)", "全部(" + all + "条)"],
+                    success: function (layero, index) {
+                        $(".layui-layer-btn a", layero).addClass("layui-layer-btn0");
+                    }
+                    , yes: function (index, layero) {
+                        if (ids.length == 0) {
+                            alert('请先选择数据！');
+                            return false;
+                        }
+                        submitForm(ids.join(","), layero);
+                        return false;
+                    }
+                    ,
+                    btn2: function (index, layero) {
+                        var ids = [];
+                        $.each(page, function (i, j) {
+                            ids.push(j.id);
+                        });
+                        submitForm(ids.join(","), layero);
+                        return false;
+                    }
+                    ,
+                    btn3: function (index, layero) {
+                        submitForm("all", layero);
+                        return false;
+                    }
+                })
+            });
+            //导出项目检查记录
+            $(document).on("click", ".btn-check", function () {
+                var ids  = Table.api.selectedids(table);
+                var page = table.bootstrapTable('getData');
+                var all  = table.bootstrapTable('getOptions').totalRows;
+                console.log(ids, page, all);
+                Layer.confirm("请选择导出的选项<form action='" + Fast.api.fixurl("quality/info/checkExport") + "' method='post' target='_blank'><input type='hidden' name='ids' value='' /><input type='hidden' name='filter' ><input type='hidden' name='op'><input type='hidden' name='search'><input type='hidden' name='columns'></form>", {
+                    title  : '导出数据',
+                    btn    : ["选中项(" + ids.length + "条)", "全部(" + all + "条)"],
+                    success: function (layero, index) {
+                        $(".layui-layer-btn a", layero).addClass("layui-layer-btn0");
+                    }
+                    , yes: function (index, layero) {
+                        if (ids.length == 0) {
+                            alert('请先选择数据！');
+                            return false;
+                        }
+                        submitForm(ids.join(","), layero);
+                        return false;
+                    }
+                    ,
+                    btn2: function (index, layero) {
+                        var ids = [];
+                        $.each(page, function (i, j) {
+                            ids.push(j.id);
+                        });
+                        submitForm(ids.join(","), layero);
+                        return false;
+                    }
+                    ,
+                    btn3: function (index, layero) {
+                        submitForm("all", layero);
+                        return false;
+                    }
+                })
+            });
+            
+            
             var table = $("#table");
             // 初始化表格
             table.bootstrapTable({
-                url: $.fn.bootstrapTable.defaults.extend.index_url,
-                pk      : 'id',
-                sortName: 'id',
-                columns: [
+                url       : $.fn.bootstrapTable.defaults.extend.index_url,
+                pk        : 'id',
+                sortName  : 'id',
+                escape    : false,
+                showToggle: false,
+                search    : false,
+                showExport: false,
+                columns   : [
                     [
                         //id,worker_code,nickname,mobile,supervisor_card,admin_code,is_law,username,admin_level
                         {checkbox: true},

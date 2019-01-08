@@ -13,7 +13,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             });
 
             var buttons = [
-               
+                {
+                    name     : 'detail',
+                    text     : '查看详情',
+                    icon     : 'fa fa-image',
+                    classname: 'btn btn-info btn-xs btn-detail btn-addtabs',
+                    url      : 'administration/project/checkinfo',
+                 },
                 {
                     name     : 'statusEdit',
                     text     : '修改',
@@ -94,22 +100,27 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 初始化表格
             table.bootstrapTable({
-                url     : $.fn.bootstrapTable.defaults.extend.index_url,
-                pk      : 'id',
-                sortName: 'id',
-                columns : [
+                url       : $.fn.bootstrapTable.defaults.extend.index_url,
+                pk        : 'id',
+                sortName  : 'id',
+                escape    : false,
+                showToggle: false,
+                search    : false,
+                showExport: false,
+                showExport: false,
+                columns   : [
                     [
                         {checkbox: true},
                        
-                        {field: 'id', title: __('序号') },
+                        {field: 'id', title: __('序号'),operate: false, },
                         {field: 'i.project_name', title: __('工程名称') },
                         {field: 'i.build_dept', title: __('建设单位')},
-                        {field: 'project_images', title: __('项目图片'), formatter: Table.api.formatter.images},
+                        {field: 'project_images', title: __('项目图片'),operate: false, formatter: Table.api.formatter.images},
                         {field: 'project_desc', title: __('图片说明')},
                         { field: 'push_time', title: __('上传时间'), operate: 'RANGE', addclass: 'datetimerange', formatter: Table.api.formatter.datetime },
                         { field: 'edit_status', title: '修改权限', formatter:Controller.api.formatter.edit_status, },
                         { field: 'del_status', title: '删除权限', formatter:Controller.api.formatter.del_status},
-                        {field: 'edit_status', title: '操作',table: table, events: Table.api.events.operate,formatter: Table.api.formatter.operate, buttons: buttons},
+                        {field: 'edit_status', title: '操作',operate: false,table: table, events: Table.api.events.operate,formatter: Table.api.formatter.operate, buttons: buttons},
                    ]
                     
                 ]

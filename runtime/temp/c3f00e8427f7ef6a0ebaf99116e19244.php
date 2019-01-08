@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:6:{s:88:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\index\index.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\header.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\menu.html";i:1545207428;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\control.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:6:{s:88:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\index\index.html";i:1545637554;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\header.html";i:1545637557;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\menu.html";i:1546599746;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\control.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
 <head>
@@ -110,7 +110,7 @@
 
     <!-- 左侧菜单栏 -->
     <aside class="main-sidebar">
-        <!-- 左侧菜单栏 -->
+        ﻿<!-- 左侧菜单栏 -->
 <section class="sidebar">
     <!-- 管理员信息 -->
     <div class="user-panel hidden-xs">
@@ -143,12 +143,28 @@
 
     <!--如果想始终显示子菜单,则给ul加上show-submenu类即可,当multiplenav开启的情况下默认为展开-->
     <ul class="sidebar-menu <?php if($config['fastadmin']['multiplenav']): ?>show-submenu<?php endif; ?>">
-
         <!-- 菜单可以在 后台管理->权限管理->菜单规则 中进行增删改排序 -->
         <?php echo $menulist; ?>
-       </a></li>
-    </ul>
+     </ul>
 </section>
+<script src="/assets/js/jquery-3.2.1.js"></script>
+<script>
+    function notice(){
+        setTimeout(function(){
+          $.get("http://www.jiandu.com/admin/safety/system/message",function(data){
+              if(data[0]['status'] ==1){
+                Fast.api.open("safety/system/notice", "消息通知", {
+                    callback:function(value){
+                    }
+                });
+              }
+          });
+        },10000);
+      }
+      window.onload=function(){     //自动调用上面那个方法
+            	 notice();
+        }
+  </script>
     </aside>
 
     <!-- 主体内容区域 -->

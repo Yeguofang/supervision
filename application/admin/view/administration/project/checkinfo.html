@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="__CDN__/assets/js/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" href="__CDN__/assets/css/viewer/viewer.min.css">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=DcxfH5QHZDdQguhhQrOQFBbTZq7m3Mod"></script>
+
+    <title>地图展示</title>
+</head>
+<style>
+ul li{
+list-style:none;
+float: left;
+margin-left: 10px;
+}
+</style>
+
+<body>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>标题</th>
+                <th style="width: 85%">内容</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>工程进度:</td>
+                <td>
+                    {$schedule}
+                </td>
+            </tr>
+            <tr>
+                <td>检查说明:</td>
+                <td>
+                    {$project.project_desc}
+                </td>
+            </tr>
+            <tr>
+                <td>图片:</td>
+                <td>
+                    
+                    <ul id="dowebok">
+                            {for start="0" end="$count"}
+                            <li><img data-original="{$image[$i]}" src="{$image[$i]}" alt="点击可放大，缩小" width="100px" height="150px"></li>
+                            {/for}
+                        </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>位置:</td>
+                <td>
+                    <input type="text" id="w" disabled value="{$w}" />
+                    <input type="text" id="h" disabled value="{$h}" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div id="allmap" class="form-control" style="height:400px;width: 500px;padding-left: 20%;"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+   
+    <script src="__CDN__/assets/js/backend/viewer/jquery.min.js"></script>
+    <script src="__CDN__/assets/js/backend/viewer/viewer-jquery.min.js"></script>
+    <script>
+    $(function() {
+        $('#dowebok').viewer({
+            url: 'data-original',
+        });
+    });
+    </script>
+</body>
+
+</html>
+<script type="text/javascript">
+    // 百度地图API功能
+    var w = document.getElementById("w");
+    var h = document.getElementById("h");
+    // 百度地图API功能
+    var map = new BMap.Map("allmap"); // 创建Map实例
+    //添加地图类型控件
+    var point = new BMap.Point(h.value, w.value);
+    map.centerAndZoom(point, 15);
+    var marker = new BMap.Marker(point); // 创建标注
+    map.addOverlay(marker);
+</script>

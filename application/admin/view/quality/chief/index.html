@@ -1,6 +1,50 @@
+
+<script src="__CDN__/assets/js/jquery-3.2.1.js"></script>
+<div class="message" style="display:none">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="width: 25%">需要检查工程名称</th>
+                <th style="width: 25%">检查任务内容</th>
+                <th style="width: 25%">协助监督人员</th>
+                <th>发起时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="color:red;">
+                <td>
+                    {volist name="$project" id="i"}
+                        {$i.project_name}<br/>
+                    {/volist}
+                </td>
+                <td>
+                    {volist name="$task" id="t"}
+                        {$t}<br/>
+                    {/volist}
+                </td>
+                <td>
+                    {volist name="$quality_list" id="t"}
+                        {$t}<br/>
+                    {/volist}
+                </td>
+                <td>
+                    {volist name="$time" id="i"}
+                        {$i}<br/>
+                    {/volist}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 <div class="panel panel-default panel-intro">
-    <div id="toolbar" class="toolbar">
+    <div id="toolbar" class="toolbar" >
         {:build_toolbar('refresh')}
+        <a href="javascript:;" class="btn btn-success btn-export " title="{:__('Export')}" id="btn-export-file"><i class="fa fa-download"></i>导出项目信息</a>
+        <a href="javascript:;" class="btn btn-success btn-check " title="{:__('Export')}" id="btn-check-file"><i class="fa fa-download"></i>导出质量工程检查信息</a>
+        {if condition="$count eq 0 "}
+        {else/}
+        <a class="btn bg-orange " id="msg" title="点击查看，隐藏消息"></i>你有<b> {$count} </b>条消息！</a>
+        {/if}
     </div>
     <div class="panel-body">
         <div id="myTabContent" class="tab-content">
@@ -14,3 +58,10 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function (e) {
+        $("#msg").click(function (e) {
+            $(".message").toggle();
+        });
+    });
+</script>

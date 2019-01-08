@@ -18,14 +18,14 @@ use think\File;
 // 项目图片处理
 class Quality extends Api
 {
-    //protected $noNeedLogin = ['*'];
+    protected $noNeedLogin = ['*'];
     protected $noNeedRight = ['*'];
   
     //项目详情
     public function detail()
     {
         $id = $this->request->param('id');
-        $field = 'p.id,p.build_dept,p.project_name,p.address,l.area,l.cost,i.floor,p.push_time,p.supervise_time,p.begin_time bTime,l.begin_time,l.end_time,p.finish_time,p.check_time,l.construction_person,l.supervision_person,i.status';
+        $field = 'p.id,p.build_dept,p.project_name,p.address,l.area,l.cost,i.floor,p.push_time,p.supervise_time,p.begin_time bTime,i.schedule,l.begin_time,l.end_time,p.finish_time,p.check_time,l.construction_person,l.supervision_person,i.status,i.project_kind,i.situation';
         $data = db('project p')
             ->field($field)
             ->join('quality_info i', 'p.quality_info=i.id')
@@ -163,15 +163,17 @@ class Quality extends Api
 
 
     /**
-      保存已上传图片的url跟图片说明
+     * @Description 保存已上传图片的url跟图片说明
+     * @author YGF
      */
     public function addImage()
     {
 
-        $data['project_images'] = $this->request->param('image');
-        $data['project_desc'] = $this->request->param('desc');
-        $data['project_id'] = $this->request->param('id');
-
+        $data['project_images'] = $this->request->param('image');//图片url
+        $data['project_desc'] = $this->request->param('desc');//检查情况
+        $data['project_id'] = $this->request->param('id');//项目id
+        $data['coordinate'] = $this->request->param('coordinate');//坐标
+        
         if ($data['project_images'] == null) {
             return $this->error('图片不能为空', 1);
         }
@@ -181,25 +183,36 @@ class Quality extends Api
         if ($data['project_id'] == null) {
             return $this->error('项目id不能为空', 3);
         }
-
-         //查出选中项目的副站长
-        $assistant = db('project')->where('id', $data['project_id'])->find();
-        $data['push_time'] = date('Y-m-d H:i:s', time());
-        
+        if($data['coordinate'] == null){
+            return $this->error('当前位置获取失败', 5);
+        }
+       
         //获取用户信息
         $user = $this->auth->getUser();
         if ($user['identity'] == 0) {
+              //查出上传项目的状态，是否符合上传条件
+            $msg = db('check_msg')->where('project_id',$data['project_id'])->where('status',2)->find();
+            if($msg == null){
+                return $this->error('项目还未指派协助检查人员，不能上传。',2);
+            }
             //质监部门
             $data['dept_type'] = 1;
-            $data['quality_id'] = $assistant['quality_id'];
-            $data['quality_assistant'] = $assistant['quality_assistant'];
+            $data['quality_id'] = $msg['quality_id'];//主责id
+            $data['task'] = $msg['task'];//检查任务
+            $data['supervisor'] =$msg['c_supervisor'];//协助检查人员
+            $data['push_time'] =Date("Y-m-d,H:i:s");//检查时间
+            $res = db('project_voucher')->insert($data);
+            if($res){
+                db('check_msg')->where('id',$msg['id'])->delete();//删除check_msg表关联项目id的发起信息内容
+                return $this->success('上传成功', $msg['id']);
+            }
         } else if ($user['identity'] == 1) {
-             //安监
+            //安监部门
+            $security = db('project')->where('id', $data['project_id'])->find();
             $data['dept_type'] = 2;
-            $data['security_id'] = $assistant['security_id'];
-            $data['supervisor_assistant'] = $assistant['supervisor_assistant'];
+            $data['push_time'] =Date("Y-m-d,H:i:s");//检查时间
+            $data['security_id'] = $security['security_id'];
         }
-
         $res = db('project_voucher')->insert($data);
         if ($res) {
             return $this->success('上传成功', 0);
@@ -208,18 +221,15 @@ class Quality extends Api
     }
 
     /**
-     * @return void
      * @Description  修改图片
      * @author YGF
-     * @DateTime {{datetime}}
-     * @since 1.0.0
-     * @
      */
     public function editImage()
     {
         $id = $this->request->param('id');
-        $data['project_images'] = $this->request->param('image');
-        $data['project_desc'] = $this->request->param('desc');
+        $data['project_images'] = $this->request->param('image');//图片url
+        $data['project_desc'] = $this->request->param('desc');//说明
+        $data['coordinate'] = $this->request->param('coordinate');//坐标
 
         if ($data['project_images'] == null) {
             return $this->error('图片不能为空', 1);
@@ -229,6 +239,9 @@ class Quality extends Api
         }
         if ($id == null) {
             return $this->error('图片id不能为空', 3);
+        }
+        if($data['coordinate'] == null){
+            return $this->error('当前位置获取失败', 5);
         }
 
         $data['push_time'] = date('Y-m-d H:i:s', time());
@@ -242,7 +255,10 @@ class Quality extends Api
 
     }
 
-    //申请修改
+     /**
+     * @Description  申请修改
+     * @author YGF
+     */
     public function applyEdit()
     {
         $id = $this->request->param('id');
@@ -274,7 +290,11 @@ class Quality extends Api
         return $this->error('申请失败', 2);
     }
 
-    //删除图片记录
+    
+     /**
+     * @Description  删除图片记录
+     * @author YGF
+     */
     public function imageDel()
     {
         $id = $this->request->param('id');
@@ -289,12 +309,17 @@ class Quality extends Api
     }
 
 
-     //修改项目工程状态
+      /**
+     * @Description  修改项目工程状态
+     * @author YGF
+     */
     public function statusEdit()
     {
-
         $id = $this->request->param('id');
-        $data['status'] = $this->request->param('status');
+        $data['status'] = $this->request->param('status');//工程状态
+        $data['schedule'] = $this->request->param('schedule');//工程进度
+        $data['situation'] = $this->request->param('situation');//工程概况
+
         if ($id == null) {
             return $this->error('项目id不能为空', 1);
         }
@@ -310,6 +335,10 @@ class Quality extends Api
         return $this->error('修改失败', 2);
     }
 
+    /**
+     * @Description  上传图片
+     * @author YGF
+     */
     public function upload()
     {
         $file = $this->request->file('file');

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:97:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\check\quality\notice.html";i:1543541642;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1543541642;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1543541642;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1543541642;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:97:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\check\quality\notice.html";i:1545902442;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1545909786;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -38,36 +38,32 @@
                             <?php if(!IS_DIALOG && !$config['fastadmin']['multiplenav']): ?>
                             <!-- RIBBON -->
                             <div id="ribbon">
-                                <ol class="breadcrumb pull-left">
-                                    <li><a href="dashboard" class="addtabsit"><i class="fa fa-dashboard"></i> <?php echo __('Dashboard'); ?></a></li>
-                                </ol>
-                                <ol class="breadcrumb pull-right">
-                                    <?php foreach($breadcrumb as $vo): ?>
-                                    <li><a href="javascript:;" data-url="<?php echo $vo['url']; ?>"><?php echo $vo['title']; ?></a></li>
-                                    <?php endforeach; ?>
-                                </ol>
+                                &nbsp;
                             </div>
                             <!-- END RIBBON -->
                             <?php endif; ?>
                             <div class="content">
-                                <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form id="deal" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
-
-    <div class="form-group layer-footer">
-        <label class="control-label col-xs-12 col-sm-2"></label>
+                                <script src="/assets/js/jquery-3.2.1.js"></script>
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">参与验收人员：:</label>
         <div class="col-xs-12 col-sm-8">
-            <button type="submit" class="btn btn-success btn-embossed disabled"><?php echo __('OK'); ?></button>
+            <?php if(is_array($quality) || $quality instanceof \think\Collection || $quality instanceof \think\Paginator): $i = 0; $__LIST__ = $quality;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$c): $mod = ($i % 2 );++$i;?>
+                <input type="checkbox" name="check_name[]" value="<?php echo $c['name']; ?>" /><?php echo $c['name']; ?><br/>
+            <?php endforeach; endif; else: echo "" ;endif; if(is_array($name) || $name instanceof \think\Collection || $name instanceof \think\Paginator): $i = 0; $__LIST__ = $name;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$c): $mod = ($i % 2 );++$i;?>
+               <?php echo $c; ?><br/>
+            <?php endforeach; endif; else: echo "" ;endif; ?>
+
         </div>
     </div>
+    <div class="form-group layer-footer">
+            <label class="control-label col-xs-12 col-sm-2"></label>
+            <div class="col-xs-12 col-sm-8">
+                <button type="submit" class="btn btn-success btn-embossed ">确定</button>
+                <!-- <button type="reset" class="btn btn-default btn-embossed"><?php echo __('Reset'); ?></button> -->
+            </div>
+        </div>
 </form>
-</body>
-</html>
                             </div>
                         </div>
                     </div>

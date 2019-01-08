@@ -38,7 +38,6 @@ class Filing extends Backend
                 ->limit($offset, $limit)
                 ->select();
 
-            $five = array();
             for ($i = 0; $i < count($list); $i++) {
                 $list[$i]['begin_time'] = DataTiem($list[$i]['begin_time']);
                 $list[$i]['finish_time'] = DataTiem($list[$i]['finish_time']);
@@ -47,9 +46,7 @@ class Filing extends Backend
                 $list[$i]['record_time'] = DataTiem($list[$i]['record_time']);
                 $list[$i]['push_time'] = DataTiem($list[$i]['push_time']);
             }
-
-
-           $result = array("total" => $total, "rows" => $list);
+            $result = array("total" => $total, "rows" => $list);
             return json($result);
         }
         return $this->view->fetch();

@@ -12,6 +12,7 @@ use app\common\controller\Backend;
 use think\Db;
 use think\Session;
 
+
 //主责安监员的项目管理
 class Chief extends Backend
 {
@@ -28,6 +29,7 @@ class Chief extends Backend
     public function index()
     {
         $adminId = Session::get('admin')['id'];
+
         //查出自己被指派的项目，指派主责
         if ($this->request->isAjax()) {
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
@@ -193,4 +195,6 @@ class Chief extends Backend
     public function safety($ids){
         safety_inform($ids);
     }
+
+ 
 }

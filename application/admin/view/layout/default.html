@@ -19,14 +19,7 @@
                             {if !IS_DIALOG && !$config.fastadmin.multiplenav}
                             <!-- RIBBON -->
                             <div id="ribbon">
-                                <ol class="breadcrumb pull-left">
-                                    <li><a href="dashboard" class="addtabsit"><i class="fa fa-dashboard"></i> {:__('Dashboard')}</a></li>
-                                </ol>
-                                <ol class="breadcrumb pull-right">
-                                    {foreach $breadcrumb as $vo}
-                                    <li><a href="javascript:;" data-url="{$vo.url}">{$vo.title}</a></li>
-                                    {/foreach}
-                                </ol>
+                                &nbsp;
                             </div>
                             <!-- END RIBBON -->
                             {/if}
