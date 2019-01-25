@@ -206,10 +206,9 @@ class Project extends Backend{
     // 项目检查记录详情
     public function Checkinfo($ids){
         $project = db('project_voucher')->where('id',$ids)->find();
-        $info = db('quality_info')->where('id',$project['project_id'])->find();//查出工程进度
         $image = explode(",",$project['project_images']);
         for($i=0;$i<count($image);$i++){
-            $image[$i] = "http://47.107.235.179/supervision/public".$image[$i];
+            $image[$i] = "http://security.dreamwintime.com/supervision/public".$image[$i];
         }
 
         $w ="";
@@ -219,7 +218,6 @@ class Project extends Backend{
             $w = $coordinate[0];
             $h = $coordinate[1];
         }
-        $this->assign('schedule',$info['schedule']);
         $this->assign('project',$project);
         $this->assign('image',$image);
         $this->assign('count',count($image));
@@ -296,6 +294,8 @@ class Project extends Backend{
                       $items = json_decode($items);
                       $items->begin_time =date('Y-m-d', $items->begin_time);
                       $items->end_time =date('Y-m-d', $items->end_time);
+                      $items->area = $items->area."平方米";
+                      $items->cost = $items->cost."万";
                       $line++;
                       $col = 0;
                       foreach ($items as $index => $value) {

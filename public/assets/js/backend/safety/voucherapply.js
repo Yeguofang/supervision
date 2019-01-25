@@ -77,7 +77,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                        
                         {field: 'id', title: __('序号') ,operate: false,},
                         {field: 'i.build_dept', title: __('建设单位')},
-                        {field: 'i.project_name', title: __('工程名称') },
+                        { field: 'i.project_name', title: __('工程名称') },
+                        {field: 'situation', title: __('工程进度'),operate: false,formatter:Controller.api.formatter.situation},
                         {field: 'project_images', title: __('项目图片'),operate: false, formatter: Table.api.formatter.images},
                         {field: 'project_desc', title: __('图片说明')},
                         { field: 'push_time', title: __('上传时间'), operate: 'RANGE', addclass: 'datetimerange', formatter: Table.api.formatter.datetime },
@@ -103,7 +104,42 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             del_status: function (value, row, index) {
                 console.log(row)
             },
-           
+            formatter: {
+                situation: function (value, row, index) {
+                    if (row['kind'] == '0') {
+                        if (value == '0') {
+                            return "<label class='label bg-orange'>路基处理</label>"
+                        } else if (value == '1') {
+                            return "<label class='label bg-green'>路面工程</label>"
+                        } else if (value == '2') {
+                            return "<label class='label bg-red'>排水系统</label>"
+                        } else if (value == '3') {
+                            return "<label class='label bg-red'>绿化照明</label>"
+                        } else if (value == '4') {
+                            return "<label class='label bg-red'>标识标线</label>"
+                        } else if (value == '5') {
+                            return "<label class='label bg-red'>完成</label>"
+                        } else if (value == '6') {
+                            return "<label class='label bg-red'>竣工验收</label>"
+                        }
+                    } else if (row['kind'] == '1') {
+                        if (value == '0') {
+                            return "<label class='label bg-green'>基础阶段</label>"
+                        } else if (value == '1') {
+                            return "<label class='label bg-green'>主体阶段</label>" + row['schedule'];
+                        } else if (value == '2') {
+                            return "<label class='label bg-red'>装饰阶段</label>"
+                        } else if (value == '3') {
+                            return "<label class='label bg-red'>收尾</label>"
+                        } else if (value == '4') {
+                            return "<label class='label bg-red'>完工</label>"
+                        } else if (value == '5') {
+                            return "<label class='label bg-red'>竣工验收</label>"
+                        }
+                    }
+
+                }
+            }
         }
     };
     return Controller;

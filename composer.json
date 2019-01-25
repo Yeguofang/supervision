@@ -25,7 +25,8 @@
         "karsonzhang/fastadmin-addons": "~1.1.4",
         "overtrue/pinyin": "~3.0",
         "phpoffice/phpexcel": "^1.8",
-        "phpoffice/phpword": "v0.14.*"
+        "phpoffice/phpword": "v0.14.*",
+        "aliyuncs/oss-sdk-php": "^2.3"
     },
     "config": {
         "preferred-install": "dist"

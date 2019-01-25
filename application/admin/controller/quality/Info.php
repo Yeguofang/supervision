@@ -79,7 +79,7 @@ class Info extends Backend
         $row['push_time'] = DataTiem($row['push_time']);
         $row['register_time'] = DataTiem($row['register_time']);
         $row['permit_time'] = DataTiem($row['permit_time']);
-
+        
         $this->assign('row', $row);
         $this->assign('info', $info);
         if ($this->request->isAjax()) {
@@ -89,7 +89,7 @@ class Info extends Backend
             $row['finish_time'] = StrtoTime($row['finish_time']);
             $row['push_time'] = StrtoTime($row['push_time']);
             $row['register_time'] = StrtoTime($row['register_time']);
-            $row['permit_time'] = StrtoTime($row['begin_time']);
+            $row['permit_time'] = StrtoTime($row['permit_time']);
 
             $info = $this->request->post('info/a');
             $floor = $this->request->post('floor/a');
@@ -184,7 +184,6 @@ class Info extends Backend
             $this->request->get(['search' => $search, 'ids' => $ids, 'filter' => $filter, 'op' => $op]);
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
             $line = 2;
-            // $columns = "p.id,p.build_dept,l.survey_company,l.design_company,l.supervision_company,l.construction_company,i.check_company,i.picture_company,p.project_name,i.project_kind,i.energy,p.address,l.area,i.extend,l.cost,i.structure,i.floor,l.licence_code,i.schedule,p.supervise_time,p.register_time,p.permit_time,p.begin_time,p.finish_time,p.push_time,p.begin_time,p.check_time,p.record_time,a.nickname,i.build_person,survey_person,l.design_person,l.supervision_company";
             $columns = "p.id,p.build_dept,l.survey_company,l.design_company,l.supervision_company,l.construction_company,i.check_company,i.picture_company,p.project_name,i.project_kind,i.energy,p.address,l.area,i.extend,l.cost,i.structure,i.floor,l.licence_code,i.schedule,p.supervise_time,p.register_time,p.permit_time,p.begin_time,p.finish_time,p.push_time,p.begin_time,p.check_time,p.record_time,a.nickname,i.build_person,survey_person,l.design_person,l.supervision_company";
 
             $count = $this->model

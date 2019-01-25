@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:92:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\safety\stop\add.html";i:1546510327;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1545909786;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:92:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\safety\stop\add.html";i:1546932522;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1545909786;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -60,9 +60,6 @@
                             data-input-id="c-project_images" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp"
                             data-multiple="true" data-preview-id="p-project_images"><i class="fa fa-upload"></i>
                             <?php echo __('Upload'); ?></button></span>
-                    <span><button type="button" id="fachoose-project_images" class="btn btn-primary fachoose"
-                            data-input-id="c-project_images" data-mimetype="image/*" data-multiple="true"><i class="fa fa-list"></i>
-                            <?php echo __('Choose'); ?></button></span>
                 </div>
                 <span class="msg-box n-right" for="c-project_images"></span>
             </div>
@@ -83,7 +80,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="register_time" class="control-label col-xs-12 col-sm-2">到期提醒时间:</label>
+        <label for="register_time" class="control-label col-xs-12 col-sm-2">到期时间:</label>
         <div class="col-xs-12 col-sm-8">
             <input type="text" class="datetimepicker form-control" data-date-format="YYYY-MM-DD" name="row[expire_time]" />
         </div>

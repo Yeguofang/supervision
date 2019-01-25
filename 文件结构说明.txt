@@ -1,0 +1,30 @@
+supervision  应用部署目录
+├─application           web应用目录
+│  ├─common             公共模块目录
+│  ├─admin              模块目录
+│  │  ├─config.php      模块配置文件
+│  │  ├─common.php      模块函数文件
+│  │  ├─controller      控制器目录
+│  │  │  ├─auth         权限管理
+│  │  │  ├─check         项目验收
+│  │  │  ├─dept        部门管理
+│  │  │  ├─projectfiling         工程备案
+│  │  │  ├─quality         质监部门
+│  │  │  ├─safety         安监部门
+│  │  │  ├─user         手机端账号控制器文件
+│  │  ├─model           模型目录
+│  │  └─view            视图目录
+│  ├─api                api接口目录
+│  |  ├─controller      控制器目录
+│  ├─database.php       数据库配置文件
+├─extend                扩展类库目录
+├─public                公共文件目录
+│  ├─assets             框架css/js文件
+|  |  ├─css             框架css文件
+|  |  ├─js              框架js文件
+│  ├─doc                安监/质监告知书doc模板文件夹
+|  ├─uploads            上传的图片文件
+│  ├─index.php          应用入口文件
+├─runtime               应用的运行时目录
+├─vendor                第三方类库目录
+├─thinkphp              框架系统目录

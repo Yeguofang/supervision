@@ -59,7 +59,7 @@ class Stop extends Backend
 
     }
    
-     //下发整改书
+     //下发停工整改书
      public function add($ids=null)
      {
          if($this->request->isAjax()){
@@ -77,6 +77,9 @@ class Stop extends Backend
              $data['type'] = 4;//停工整改通知书
              $res = db('safety_books')->insert($data);
              if($res){
+                 $status['status'] = 4;
+                //  $safety = db('safety_info')->where('id',$ids)->update($status);
+                 $quality = db('quality_info')->where('id',$ids)->update($status);
                  return $this->success('添加成功');
              }
              return $this->error('添加失败');
@@ -89,6 +92,7 @@ class Stop extends Backend
     public function detail($ids)
     {
         $data = db('safety_books')->where('id', $ids)->find();
+        $data['images'] = "http://47.107.235.179/supervision/public".$data['images'];
         $this->assign('data', $data);
         return $this->fetch();
     }

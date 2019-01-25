@@ -6,10 +6,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             Table.api.init({
                 extend: {
                     index_url: 'check/safety/index',
-                    // add_url: 'project/application/add',
-                    // edit_url: 'project/application/edit',
-                    // del_url: 'project/application/del',
-                    // multi_url: 'user/user/multi',
+               
                 }
             });
             var buttons = [

@@ -52,18 +52,70 @@ class Filing extends Backend
         return $this->view->fetch();
     }
 
-    //工程备案状态
+    //工程备案
     public function recodeStatus($ids)
     {
         if ($this->request->isAjax()) {
-            $data['recode_status'] = 1;
+            $data['recode_status'] = 1;//状态：1.已备案，0.未备案
             $data['record_time'] = strtotime(date('Y-m-d H:i:s', time()));
             $res = db('project')->where('id', $ids)->update($data);
 
             if ($res == 1) {
-               return $this->success("备案成功");
+                return $this->success("备案成功");
             }
         }
     }
+
+    public function message()
+    {
+        $adminId = session::get('admin')['id'];//账号id
+        $group = db('auth_group_access')->where('uid', $adminId)->find();//查出账号所属的分组
+        if ($group['group_id'] == 9) {//判断账号是否为建管部门
+
+            $time = Date("Y-m-d");
+            $project_id = array();
+            $check_time = db('project')->where('check_time', 'not null')->where('recode_status',0)->select(); //查询有备案时间的。还没备案
+            for ($i = 0; $i < count($check_time); $i++) {
+                $terms_second =  strtotime($time) -$check_time[$i]['check_time']."+15 day";
+                $terms_day = floor($terms_second / (3600 * 24));//计算到期剩余的天数
+                if($terms_day >= 15){
+                    array_push($project_id, $check_time[$i]['id']);
+                }
+            }
+            if (empty($project_id)) {//全部都还没到期的记录，就不提醒
+                $arr = array('status' => 0);
+                return array($arr);
+            } else {
+                $arr = array('status' => 1);
+                return array($arr);
+            }
+        } else {//不是安监部门则不提醒
+            $arr = array('status' => 0);
+            return array($arr);
+        }
+    }
+
+    public function notice()
+    {
+        $time = Date("Y-m-d");
+        $project_id = array();
+        $check_time = db('project')->where('check_time', 'not null')->where('recode_status',0)->select(); //查询有备案时间的。还没备案
+        for ($i = 0; $i < count($check_time); $i++) {
+            $terms_second =  strtotime($time) -$check_time[$i]['check_time']."+15 day";
+            $terms_day = floor($terms_second / (3600 * 24));//计算到期剩余的天数
+            if($terms_day >= 15){
+                array_push($project_id, $check_time[$i]['id']);
+            }
+        }
+        $project = db('project')->where('id', 'in', $project_id)->select();
+
+        for($i=0;$i<count($project);$i++){
+            $project[$i]['check_time'] = DataTiem($project[$i]['check_time']);
+        }
+       
+        $this->assign('project', $project);
+        return $this->fetch();
+    }
+
 
 }

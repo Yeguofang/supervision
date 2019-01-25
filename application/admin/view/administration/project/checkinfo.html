@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -6,7 +6,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <script src="__CDN__/assets/js/jquery-3.2.1.js"></script>
     <link rel="stylesheet" href="__CDN__/assets/css/viewer/viewer.min.css">
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=DcxfH5QHZDdQguhhQrOQFBbTZq7m3Mod"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=Glwf24m5E1jPF92wCrA6YE6GbwREBlw3"></script>
 
     <title>地图展示</title>
 </head>
@@ -31,7 +31,37 @@ margin-left: 10px;
             <tr>
                 <td>工程进度:</td>
                 <td>
-                    {$schedule}
+                    {if condition="$project.kind == 0"}
+                        {if condition="$project.situation == '0'"}
+                        路基处理
+                        {elseif condition="$project.situation == '1'" /}
+                        路面工程
+                        {elseif condition="$project.situation == '2'" /}
+                        排水系统
+                        {elseif condition="$project.situation == '3'" /}
+                        绿化照明
+                        {elseif condition="$project.situation == '4'" /}
+                        标识标线
+                        {elseif condition="$project.situation == '5'" /}
+                        完成
+                        {elseif condition="$project.situation == '6'" /}'
+                        竣工验收
+                        {/if}
+                    {elseif condition="$project.kind == '1'" /}
+                        {if condition="$project.situation == '0'"}
+                        基础阶段
+                        {elseif condition="$project.situation == '1'" /}
+                        主体阶段 &nbsp;&nbsp;&nbsp;{$project.schedule}
+                        {elseif condition="$project.situation == '2'" /}
+                        装饰阶段
+                        {elseif condition="$project.situation == '3'" /}
+                        收尾
+                        {elseif condition="$project.situation == '4'" /}
+                        完工
+                        {elseif condition="$project.situation == '5'" /}
+                        竣工验收
+                        {/if}
+                    {/if}
                 </td>
             </tr>
             <tr>
@@ -54,8 +84,9 @@ margin-left: 10px;
             <tr>
                 <td>位置:</td>
                 <td>
-                    <input type="text" id="w" disabled value="{$w}" />
-                    <input type="text" id="h" disabled value="{$h}" />
+                    <input type="text" id="x" disabled value="{$h}" />
+                    <input type="text" id="y" disabled value="{$w}" />
+                   
                 </td>
             </tr>
             <tr>
@@ -81,13 +112,24 @@ margin-left: 10px;
 </html>
 <script type="text/javascript">
     // 百度地图API功能
-    var w = document.getElementById("w");
-    var h = document.getElementById("h");
-    // 百度地图API功能
-    var map = new BMap.Map("allmap"); // 创建Map实例
-    //添加地图类型控件
-    var point = new BMap.Point(h.value, w.value);
-    map.centerAndZoom(point, 15);
-    var marker = new BMap.Marker(point); // 创建标注
-    map.addOverlay(marker);
+    var x = document.getElementById("x");
+    var y = document.getElementById("y");
+    var url = "https://api.map.baidu.com/geoconv/v1/?coords="+x.value+","+y.value+"&from=1&to=5&ak=Glwf24m5E1jPF92wCrA6YE6GbwREBlw3";
+      $.ajax(url, {
+        dataType: 'jsonp',
+        crossDomain: true,
+        success: function(data) {
+             x = data.result[0].x;
+             y = data.result[0].y;
+             var map = new BMap.Map("allmap"); // 创建Map实例
+            //添加地图类型控件
+            var point = new BMap.Point(x,y);
+            map.centerAndZoom(point, 15);
+            var marker = new BMap.Marker(point); // 创建标注
+            map.addOverlay(marker);
+            map.enableScrollWheelZoom(true);   
+        }
+      });
+    
 </script>
+

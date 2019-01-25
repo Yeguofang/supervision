@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:97:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\safety\voucher\index.html";i:1545637548;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1545637553;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:97:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\safety\voucher\index.html";i:1545979819;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1545909786;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -38,14 +38,7 @@
                             <?php if(!IS_DIALOG && !$config['fastadmin']['multiplenav']): ?>
                             <!-- RIBBON -->
                             <div id="ribbon">
-                                <ol class="breadcrumb pull-left">
-                                    <li><a href="dashboard" class="addtabsit"><i class="fa fa-dashboard"></i> <?php echo __('Dashboard'); ?></a></li>
-                                </ol>
-                                <ol class="breadcrumb pull-right">
-                                    <?php foreach($breadcrumb as $vo): ?>
-                                    <li><a href="javascript:;" data-url="<?php echo $vo['url']; ?>"><?php echo $vo['title']; ?></a></li>
-                                    <?php endforeach; ?>
-                                </ol>
+                                &nbsp;
                             </div>
                             <!-- END RIBBON -->
                             <?php endif; ?>
@@ -59,7 +52,7 @@
                 <div class="widget-body no-padding">
                     <div id="toolbar" class="toolbar">
                         <a href="javascript:;" class="btn btn-primary btn-refresh" title="<?php echo __('Refresh'); ?>" ><i class="fa fa-refresh"></i> </a>
-                        <a href="javascript:;" class="btn btn-success btn-add " title="<?php echo __('Add'); ?>" ><i class="fa fa-plus"></i>上传图片</a>
+                        <!-- <a href="javascript:;" class="btn btn-success btn-add " title="<?php echo __('Add'); ?>" ><i class="fa fa-plus"></i>上传图片</a> -->
                        
                         <div class="dropdown btn-group <?php echo $auth->check('project/multi')?'':'hide'; ?>">
                             <a class="btn btn-primary btn-more dropdown-toggle btn-disabled disabled" data-toggle="dropdown"><i class="fa fa-cog"></i> <?php echo __('More'); ?></a>

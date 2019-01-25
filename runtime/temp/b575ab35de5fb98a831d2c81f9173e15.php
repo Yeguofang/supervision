@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:109:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\administration\project\checkinfo.html";i:1546399454;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1545909786;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:109:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\administration\project\checkinfo.html";i:1547186522;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1545909786;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -76,7 +76,32 @@ margin-left: 10px;
             <tr>
                 <td>工程进度:</td>
                 <td>
-                    <?php echo $schedule; ?>
+                    <?php if($project['kind'] == 0): if($project['situation'] == '0'): ?>
+                        路基处理
+                        <?php elseif($project['situation'] == '1'): ?>
+                        路面工程
+                        <?php elseif($project['situation'] == '2'): ?>
+                        排水系统
+                        <?php elseif($project['situation'] == '3'): ?>
+                        绿化照明
+                        <?php elseif($project['situation'] == '4'): ?>
+                        标识标线
+                        <?php elseif($project['situation'] == '5'): ?>
+                        完成
+                        <?php elseif($project['situation'] == '6'): ?>'
+                        竣工验收
+                        <?php endif; elseif($project['kind'] == '1'): if($project['situation'] == '0'): ?>
+                        基础阶段
+                        <?php elseif($project['situation'] == '1'): ?>
+                        主体阶段 &nbsp;&nbsp;&nbsp;<?php echo $project['schedule']; elseif($project['situation'] == '2'): ?>
+                        装饰阶段
+                        <?php elseif($project['situation'] == '3'): ?>
+                        收尾
+                        <?php elseif($project['situation'] == '4'): ?>
+                        完工
+                        <?php elseif($project['situation'] == '5'): ?>
+                        竣工验收
+                        <?php endif; endif; ?>
                 </td>
             </tr>
             <tr>
@@ -90,7 +115,7 @@ margin-left: 10px;
                 <td>
                     
                     <ul id="dowebok">
-                            <?php $__FOR_START_31732__=0;$__FOR_END_31732__=$count;for($i=$__FOR_START_31732__;$i < $__FOR_END_31732__;$i+=1){ ?>
+                            <?php $__FOR_START_30568__=0;$__FOR_END_30568__=$count;for($i=$__FOR_START_30568__;$i < $__FOR_END_30568__;$i+=1){ ?>
                             <li><img data-original="<?php echo $image[$i]; ?>" src="<?php echo $image[$i]; ?>" alt="点击可放大，缩小" width="100px" height="150px"></li>
                             <?php } ?>
                         </ul>
@@ -99,8 +124,9 @@ margin-left: 10px;
             <tr>
                 <td>位置:</td>
                 <td>
-                    <input type="text" id="w" disabled value="<?php echo $w; ?>" />
-                    <input type="text" id="h" disabled value="<?php echo $h; ?>" />
+                    <input type="text" id="x" disabled value="<?php echo $h; ?>" />
+                    <input type="text" id="y" disabled value="<?php echo $w; ?>" />
+                   
                 </td>
             </tr>
             <tr>
@@ -125,17 +151,36 @@ margin-left: 10px;
 
 </html>
 <script type="text/javascript">
+$(document).ready(function(){
+    
     // 百度地图API功能
-    var w = document.getElementById("w");
-    var h = document.getElementById("h");
-    // 百度地图API功能
-    var map = new BMap.Map("allmap"); // 创建Map实例
-    //添加地图类型控件
-    var point = new BMap.Point(h.value, w.value);
-    map.centerAndZoom(point, 15);
-    var marker = new BMap.Marker(point); // 创建标注
-    map.addOverlay(marker);
+    var x = document.getElementById("x");
+    var y = document.getElementById("y");
+    var url = "https://api.map.baidu.com/geoconv/v1/?coords="+x.value+","+y.value+"&from=1&to=5&ak=Glwf24m5E1jPF92wCrA6YE6GbwREBlw3";
+      $.ajax(url, {
+        dataType: 'jsonp',
+        crossDomain: true,
+        success: function(data) {
+            console.log(data);
+             x = data.result[0].x;
+            y = data.result[0].y;
+            var map = new BMap.Map("allmap"); // 创建Map实例
+            //添加地图类型控件
+            var point = new BMap.Point(x,y);
+            map.centerAndZoom(point, 15);
+            var marker = new BMap.Marker(point); // 创建标注
+            map.addOverlay(marker);
+            map.enableScrollWheelZoom(true);    
+        }
+      });
+});
 </script>
+
+
+
+
+
+
                             </div>
                         </div>
                     </div>

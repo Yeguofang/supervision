@@ -1,0 +1,68 @@
+<script src="__CDN__/assets/js/jquery-3.2.1.js"></script>
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label for="check_company" class="control-label col-xs-12 col-sm-2">监督编号:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" name="row[supervision_number]"  value="{$device.supervision_number}"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="check_company" class="control-label col-xs-12 col-sm-2">工程名称:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" name="row[project_name]" readonly value="{$device.project_name}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="check_company" class="control-label col-xs-12 col-sm-2">起重机械类别:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" name="row[type]"  value="{$device.type}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="check_company" class="control-label col-xs-12 col-sm-2">设备备案号:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" name="row[device_record]" value="{$device.device_record}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="check_company" class="control-label col-xs-12 col-sm-2">安装单位:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" name="row[install_unit]"  value="{$device.install_unit}"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="register_time" class="control-label col-xs-12 col-sm-2">安装告知时间:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control" data-date-format="YYYY-MM-DD" name="row[install_time]" value="{$device.install_time}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="register_time" class="control-label col-xs-12 col-sm-2">检测时间:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control" data-date-format="YYYY-MM-DD" name="row[test_time]"  value="{$device.test_time}"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="register_time" class="control-label col-xs-12 col-sm-2">检测到期时间:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control" data-date-format="YYYY-MM-DD" name="row[test_end_time]"  value="{$device.test_end_time}"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="register_time" class="control-label col-xs-12 col-sm-2">办理使用登记牌时间:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="datetimepicker form-control" data-date-format="YYYY-MM-DD" name="row[handle_time]" value="{$device.handle_time}" />
+        </div>
+    </div>
+
+
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

@@ -35,7 +35,7 @@ class Master extends Backend{
         {
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
 
-            $field="project.id,project.build_dept,project.project_name,project.address,project.supervisor_code,supervisor_progress,i.project_kind `i.project_kind`,i.status `i.status`,i.situation `i.situation`,a.nickname `a.nickname`,s.nickname `s.nickname`";
+            $field="project.id,project.build_dept,project.project_name,project.address,project.supervisor_code,supervisor_progress,i.schedule `i.schedule`,i.project_kind `i.project_kind`,i.status `i.status`,i.situation `i.situation`,a.nickname `a.nickname`,s.nickname `s.nickname`";
             $total = $this->model
                 ->alias("project")
                 ->field($field)

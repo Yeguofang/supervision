@@ -29,8 +29,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         Layer.alert(ret.msg );
                     },
                     visible  : function (row) {
-                        //返回true时按钮显示,返回false隐藏  && row.supervisor_progress == 3 /安监也申请了竣工
-                        if (row.quality_progress == 3 ) {
+                        //返回true时按钮显示,返回false隐藏   质监跟安监都申请了竣工
+                        if (row.quality_progress == 3 && row.supervisor_progress == 3) {
                             if (row.build_check == 1) {
                                 return false;
                             }

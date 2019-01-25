@@ -56,22 +56,26 @@ class Assistant extends Backend
 
             //自己指派的项目quality_assistant
             $map['quality_assistant'] = $adminId;
-            $field = "project.id,project.build_dept,project.project_name,project.address,project.quality_code,i.project_kind `i.project_kind`,i.status `i.status`";
+          
+            $field = "project.id,project.build_dept,project.project_name,project.quality_code,project.address,quality_progress,i.schedule `i.schedule`,i.project_kind `i.project_kind`,i.status `i.status`,i.situation `i.situation`,a.nickname `a.nickname`";
             $total = $this->model
                 ->alias("project")
-                ->join('quality_info i', 'project.quality_info=i.id')
                 ->field($field)
                 ->where($where)
                 ->where($map)
+                ->join('quality_info i', 'project.quality_info=i.id','LEFT')
+                ->join('admin a', 'project.quality_id=a.id', 'LEFT')
                 ->order($sort, $order)
+                ->limit($offset, $limit)
                 ->count();
 
             $list = $this->model
-                ->alias("project")
-                ->join('quality_info i', 'project.quality_info=i.id')
+                ->alias("project", '')
                 ->field($field)
                 ->where($where)
                 ->where($map)
+                ->join('quality_info i', 'project.quality_info=i.id','LEFT')
+                ->join('admin a', 'project.quality_id=a.id', 'LEFT')
                 ->order($sort, $order)
                 ->limit($offset, $limit)
                 ->select();
@@ -130,13 +134,14 @@ class Assistant extends Backend
     public function qualitycheck($ids)
     {
 
-        $result = db('check_msg')->where('project_id', $ids)->where('status', 2)->find();//判断该项目是否以指派人员
-        $res = db('check_msg')->where('project_id', $ids)->where('c_status', 3)->where('status', 2)->find();//判断该项目是否以指派人员
+        $result = db('check_msg')->where('project_id', $ids)->where('c_status', 2)->where('status', 2)->find();//判断是否副站指派人员
+        $res = db('check_msg')->where('project_id', $ids)->where('c_status', 3)->where('status', 2)->find();//判断是否站长指派人员
+        
         if ($res) {
-            return "<span style='color:red;'>站长已发起检查并指派人员</span>";
+            return "<span style='color:red;'>站长已发起检查：<br/>人员名单：".$res['c_supervisor']."<br/>检查任务：".$res['task']."</span>";
         }
         if ($result) {
-            return "<span style='color:red;'>已发起检查并指派人员</span>";
+            return "<span style='color:red;'>你已发起检查<br/>人员名单：".$result['c_supervisor']."<br/>检查任务：".$result['task']."</span>";
         }
         
         $quality_id = db('project')->where('id', $ids)->find();
@@ -172,7 +177,7 @@ class Assistant extends Backend
                 $row['status'] = 2;
                 $data = db('check_msg')->where('id', $result['id'])->update($row);
                 if ($data == 1) {
-                    return '发起成功！';
+                    return '发起成功';
                 }
                 return '发起失败！';
             }

@@ -40,15 +40,21 @@ if(!function_exists('StrtoTime')){
         return $time;
     }
 }
+//时间转换  Y-m-d转时间戳
+if(!function_exists('newUrl')){
+    function newUrl($url){
+        // http://47.107.235.179/supervision/public
+        // //127.0.0.1/supervision/public
+        $newUrl = "https://security.dreamwintime.com/supervision/public".$url; 
+        return $newUrl;
 
-
+    }
+}
 
 // /施工安全监督告知书
 if (!function_exists('safety_inform')) {
     function safety_inform($ids) {
-
         $templateProcessor = new TemplateProcessor("./doc/safety.docx");
-        dump("aa");
         $data =  db('project p')->field('build_dept,project_name,supervisor_time,supervisor_code,c.nickname quality,c.mobile quality_mobile')
             ->where(['p.id'=>$ids])
             ->join('admin c','c.id=p.security_id')

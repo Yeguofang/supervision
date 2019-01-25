@@ -60,9 +60,9 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'supervise_time', title: "报监日期", operate: false },
                         {field: 'begin_time', title: "开工日期", operate: false },
                         {field: 'finish_time', title: "竣工日期",operate:false},
-                        {field: 'check_time', title: "验收日期", operate: "false" },
+                        {field: 'check_time', title: "验收日期", operate: false},
                         {field: 'recode_status', title: "备案状态",formatter:Controller.api.formatter.recode_status,searchList: {'0':'未备案','1': '已备案'}},
-                        {field: 'record_time', title: "备案日期",operate:"like"},
+                        {field: 'record_time', title: "备案日期",operate:false},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate,buttons:buttons}
                     ]
                 ]

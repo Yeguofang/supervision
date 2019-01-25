@@ -92,7 +92,7 @@ class Quality extends Api
             ->paginate($num)->each(function ($item, $index) {
                 $item['project_images'] = explode(",", $item['project_images']);
                 for($i=0;$i<count($item['project_images']);$i++){
-                    $item['project_images'][$i] = 'http://47.107.235.179/supervision/public'.$item['project_images'][$i];//图片地址拼接
+                    $item['project_images'][$i] = 'https://security.dreamwintime.com/supervision/public'.$item['project_images'][$i];//图片地址拼接
                 }
                 $item['push_time'] = substr($item['push_time'], 0, 16);
                 return $item;
@@ -138,7 +138,7 @@ class Quality extends Api
         //图片地址拼接
         for($i=0;$i<count($data['project_images']);$i++){
             $data['new_images'][$i] = $data['project_images'][$i];//无域名图片
-            $data['project_images'][$i] = 'http://47.107.235.179/supervision/public'.$data['project_images'][$i];//有域名图片
+            $data['project_images'][$i] = 'https://security.dreamwintime.com/supervision/public'.$data['project_images'][$i];//有域名图片
             
         }
 
@@ -168,6 +168,7 @@ class Quality extends Api
      */
     public function addImage()
     {
+        
 
         $data['project_images'] = $this->request->param('image');//图片url
         $data['project_desc'] = $this->request->param('desc');//检查情况
@@ -186,7 +187,14 @@ class Quality extends Api
         if($data['coordinate'] == null){
             return $this->error('当前位置获取失败', 5);
         }
-       
+
+        $kind = db('quality_info')->where('id', $data['project_id'])->find();//获取当前记录时的工程概况
+        if($kind['project_kind'] == 1 && $kind['situation'] == 1){
+            $schedule = $kind['schedule'];//当工程类别为房建，工程概况为主体阶段的时候，才有进度 ，例如：3/5
+        }else{
+            $schedule = "";
+        }
+
         //获取用户信息
         $user = $this->auth->getUser();
         if ($user['identity'] == 0) {
@@ -196,28 +204,37 @@ class Quality extends Api
                 return $this->error('项目还未指派协助检查人员，不能上传。',2);
             }
             //质监部门
+            $qua = db('project')->where('id', $data['project_id'])->find();
             $data['dept_type'] = 1;
             $data['quality_id'] = $msg['quality_id'];//主责id
             $data['task'] = $msg['task'];//检查任务
             $data['supervisor'] =$msg['c_supervisor'];//协助检查人员
             $data['push_time'] =Date("Y-m-d,H:i:s");//检查时间
+            $data['situation'] = $kind['situation'];//工程概况
+            $data['kind'] = $kind['project_kind'];//工程类别
+            $data['schedule'] =$schedule;
+            $data['quality_assistant'] =  $qua['quality_assistant'];
             $res = db('project_voucher')->insert($data);
             if($res){
                 db('check_msg')->where('id',$msg['id'])->delete();//删除check_msg表关联项目id的发起信息内容
-                return $this->success('上传成功', $msg['id']);
+                return $this->success('上传成功');
             }
         } else if ($user['identity'] == 1) {
             //安监部门
-            $security = db('project')->where('id', $data['project_id'])->find();
+             $security = db('project')->where('id', $data['project_id'])->find();
             $data['dept_type'] = 2;
             $data['push_time'] =Date("Y-m-d,H:i:s");//检查时间
-            $data['security_id'] = $security['security_id'];
+            $data['situation'] = $kind['situation'];//工程概况
+            $data['kind'] = $kind['project_kind'];//工程类别
+            $data['schedule'] =$schedule;//工程进度
+            $data['security_id'] = $user['admin_id'];
+            $data['supervisor_assistant'] = $security['supervisor_assistant'];
         }
         $res = db('project_voucher')->insert($data);
-        if ($res) {
+        if ($res ==1 ) {
             return $this->success('上传成功', 0);
         }
-        return $this->error('', $data);
+        return $this->error('上传失败', $data);
     }
 
     /**
@@ -247,7 +264,7 @@ class Quality extends Api
         $data['push_time'] = date('Y-m-d H:i:s', time());
         $data['edit_status'] = 0;
         $res = db('project_voucher')->where(['id' => $id])->update($data);
-        if ($res) {
+        if ($res == 1 ) {
             return $this->success('修改成功', 0);
         } else {
             return $this->error('修改失败', 4);
@@ -268,7 +285,7 @@ class Quality extends Api
 
         $data['edit_status'] = 1;
         $res = db('project_voucher')->where(['id' => $id])->update($data);
-        if ($res) {
+        if ($res == 1) {
             return $this->success('申请成功', 0);
         }
         return $this->error('申请失败', 4);
@@ -284,7 +301,7 @@ class Quality extends Api
 
         $data['del_status'] = 1;
         $res = db('project_voucher')->where(['id' => $id])->update($data);
-        if ($res) {
+        if ($res == 1) {
             return $this->success('申请成功', 0);
         }
         return $this->error('申请失败', 2);
@@ -302,7 +319,7 @@ class Quality extends Api
             return $this->error('项目id不能为空', 1);
         }
         $res = db('project_voucher')->where(['id' => $id])->delete();
-        if ($res) {
+        if ($res ==1 ) {
             return $this->success('删除成功', 0);
         }
         return $this->error('删除失败', 2);
@@ -329,17 +346,42 @@ class Quality extends Api
 
         $res = db('quality_info')->where(['id' => $id])->update($data);
 
-        if ($res) {
+        if ($res ==1 ) {
             return $this->success('修改成功', 0);
         }
         return $this->error('修改失败', 2);
     }
 
-    /**
+     /**
      * @Description  上传图片
      * @author YGF
      */
-    public function upload()
+    public function upload(){
+        $base64 = $this->request->request('file');
+        if ($base64 != null) {
+            $base64 = substr(strstr($base64,','),1);
+            $base64_body2 = base64_decode($base64);
+            
+            $dir = ROOT_PATH ."public/uploads/".Date("Ymd");
+            if(!is_readable($dir))
+                {
+                    is_file($dir) or mkdir($dir,0777);
+                }
+
+            $url = "/uploads/".Date("Ymd")."/".time().".jpg";
+            $path = ROOT_PATH ."public".$url;
+            $res = file_put_contents($path, $base64_body2);
+            if($res){
+                $this->success(__('上传成功了base64'),$url,1);
+            }
+        }else{
+            $this->error(__('没有上传文件'),0,2);
+        }
+
+    }
+
+
+    public function uploadsaa()
     {
         $file = $this->request->file('file');
         if (empty($file)) {
@@ -421,5 +463,7 @@ class Quality extends Api
         }
     }
 
+
+ 
 
 }

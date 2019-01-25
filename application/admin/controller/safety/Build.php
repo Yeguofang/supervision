@@ -89,6 +89,7 @@ class Build extends Backend
     public function detail($ids)
     {
         $data = db('safety_books')->where('id', $ids)->find();
+        $data['images'] = "http://47.107.235.179/supervision/public".$data['images'];
         $this->assign('data', $data);
         return $this->fetch();
     }

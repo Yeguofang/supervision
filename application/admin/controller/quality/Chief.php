@@ -59,13 +59,14 @@ class Chief extends Backend
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
             //自己指派的项目quality_id
             $map['quality_id'] = $adminId;
-            $field = "project.id,project.build_dept,project.project_name,project.quality_code,project.address,i.project_kind `i.project_kind`,i.status `i.status`";
+            $field = "project.id,project.build_dept,project.project_name,project.quality_code,project.address,i.project_kind `i.project_kind`,i.status `i.status`,a.nickname `a.nickname`";
             $total = $this->model
                 ->alias("project")
                 ->field($field)
                 ->where($where)
                 ->where($map)
                 ->join('quality_info i', 'project.quality_info=i.id')
+                ->join('admin a','project.quality_assistant=a.id')
                 ->order($sort, $order)
                 ->count();
 
@@ -75,6 +76,7 @@ class Chief extends Backend
                 ->where($where)
                 ->where($map)
                 ->join('quality_info i', 'project.quality_info=i.id')
+                ->join('admin a','project.quality_assistant=a.id')
                 ->order($sort, $order)
                 ->limit($offset, $limit)
                 ->select();
@@ -206,6 +208,9 @@ class Chief extends Backend
         if (count($extra) == 2) {
             $info['extra_type'] = $extra[0];
             $info['extra_floor'] = $extra[1];
+        }else{
+            $info['extra_type'] = "";
+            $info['extra_floor'] = "";
         }
         //施工联系人 监理联系人
         $licence = db('licence')->field('supervision_person,construction_person')->where(['id' => $row['licence_id']])->find();
@@ -238,7 +243,7 @@ class Chief extends Backend
             $data['c_status'] = 1;//主责发起，未指派人员。
             $data['project_id'] = $ids;//项目id;
             $data['open_time'] = Date("Y-m-d");//发起时间
-            $row['quality_id'] = Session::get('admin')['id'];
+            $data['quality_id'] = $quality_id['quality_id'];
             $data['quality_assistant'] = $quality_id['quality_assistant'];
             $res = db('check_msg')->insert($data);
             if ($res == 1) {

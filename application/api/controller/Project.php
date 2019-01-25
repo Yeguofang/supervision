@@ -58,7 +58,7 @@ class Project extends Api
             //副站长只能看到；quality_assistant是自己
             $map['quality_assistant'] = $user['admin_id'];
         } elseif ($user['identity_type'] == 2) {
-            //安监员只能看到；quality_id是自己
+            //质监员只能看到；quality_id是自己
             $map['quality_id'] = $user['admin_id'];
         }
         //差竣工联系人
@@ -94,8 +94,8 @@ class Project extends Api
              //副站长只能看到supervisor_assistant是自己
             $map['supervisor_assistant'] = $user['admin_id'];
         } elseif ($user['identity_type'] == 2) {
-             //副站长只能看到security_id是自己
-            $map['security_id'] = $user['admin_id'];
+             //安监员只能看到security_id是自己
+            // $map['security_id'] = $user['admin_id'];
         }
          //差竣工联系人
         $field = 'p.id,p.build_dept,p.project_name,p.address,p.push_time,p.begin_time,p.finish_time,p.check_time,l.supervision_person,i.status';

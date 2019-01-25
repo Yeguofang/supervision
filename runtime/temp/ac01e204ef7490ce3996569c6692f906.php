@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:94:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\quality\info\edit.html";i:1546831359;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1545909786;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:94:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\quality\info\edit.html";i:1547033252;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1545909786;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -144,20 +144,13 @@
             <input type="text" class="form-control"  name="floor[]" value="<?php echo $info['floor_down']; ?>"/>
         </div>
     </div>
+    
     <div class="form-group">
-        <div  style="text-align: center;color: red">工程进度 (分子代表进度，分母代表总数 如:1/22)</div>
-    </div>
-    <div class="form-group">
-        <label for="schedule" class="control-label col-xs-12 col-sm-2">工程进度:</label>
-        <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="schedule" name="info[schedule]" value="<?php echo $info['schedule']; ?>"  />
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="situation" class="control-label col-xs-12 col-sm-2">工程概况:</label>
-        <div class="col-xs-12 col-sm-8">
+        <label for="situation" class="control-label col-xs-12 col-sm-2">工程进度:</label>
+        <div class="col-xs-12 col-sm-2">
             <select  id="situation" name="info[situation]" class="form-control">
             <?php if($info['project_kind'] == 1): ?>
+            <option value="0"<?php if(in_array(($info['situation']), explode(',',"0"))): ?>selected<?php endif; ?>>基础阶段</option>
             <option value="1"<?php if(in_array(($info['situation']), explode(',',"1"))): ?>selected<?php endif; ?>>主体阶段</option>
             <option value="2" <?php if(in_array(($info['situation']), explode(',',"2"))): ?>selected<?php endif; ?>>装饰阶段</option>
             <option value="3"<?php if(in_array(($info['situation']), explode(',',"3"))): ?>selected<?php endif; ?>>收尾</option>
@@ -173,6 +166,13 @@
             <option value="6"<?php if(in_array(($info['situation']), explode(',',"6"))): ?>selected<?php endif; ?>>竣工验收</option>
             <?php endif; ?>
             </select>
+        </div>
+        <div id="jindu">
+            <!-- <label for="schedule" class="control-label col-xs-12 col-sm-2">工程进度:</label> -->
+            <div class="col-xs-12 col-sm-2">
+                <input type="text" class="form-control" id="schedule" name="info[schedule]" value="<?php echo $info['schedule']; ?>"  />
+            </div>
+                    <div   class="col-xs-12 col-sm-4" style="text-align: center;color: red">主体阶段进度：分子代表进度，<br/>分母代表总数 如:1/22</div>
         </div>
     </div>
     <div class="form-group">
@@ -197,14 +197,27 @@
     </div>
 </form>
 <script>
+      if($("#situation").val()==1 && $("#project_kind").val()==1){
+            $("#jindu").show();
+      }else{
+        $("#jindu").hide();
+      }
     $("#project_kind").change(function(){
         if($("#project_kind").val()==1){
-            var str = '<option value="1">主体阶段</option> <option value="2" >装饰阶段</option> <option value="3">收尾</option> <option value="4" >完工</option> <option value="5" >竣工验收</option>';
+            var str = '<option value="0">基础阶段</option><option value="1">主体阶段</option> <option value="2" >装饰阶段</option> <option value="3">收尾</option> <option value="4" >完工</option> <option value="5" >竣工验收</option>';
         }else {
             var str = ' <option value="0" >路基处理</option>  <option value="1">路面工程</option> <option value="2" >排水系统</option> <option value="3">绿化照明</option><option value="4" }>标识标线</option> <option value="5">完成</option> <option value="6">竣工验收</option>';
         }
         $("#situation").empty();
         $("#situation").append(str);
+    });
+    $("#situation").change(function(){
+        if($("#situation").val()==1 && $("#project_kind").val()==1){
+            $("#jindu").show();
+        }else {
+            $("#jindu").hide();
+        }
+   
     });
 </script>
                             </div>

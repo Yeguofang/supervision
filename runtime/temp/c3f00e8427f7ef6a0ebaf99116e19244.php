@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:6:{s:88:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\index\index.html";i:1545637554;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\header.html";i:1545637557;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\menu.html";i:1546599746;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\control.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:6:{s:88:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\index\index.html";i:1545637554;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\header.html";i:1545637557;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\menu.html";i:1547194184;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\control.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
 <head>
@@ -145,26 +145,48 @@
     <ul class="sidebar-menu <?php if($config['fastadmin']['multiplenav']): ?>show-submenu<?php endif; ?>">
         <!-- 菜单可以在 后台管理->权限管理->菜单规则 中进行增删改排序 -->
         <?php echo $menulist; ?>
-     </ul>
+    </ul>
 </section>
 <script src="/assets/js/jquery-3.2.1.js"></script>
 <script>
-    function notice(){
-        setTimeout(function(){
-          $.get("http://www.jiandu.com/admin/safety/system/message",function(data){
-              if(data[0]['status'] ==1){
-                Fast.api.open("safety/system/notice", "消息通知", {
-                    callback:function(value){
+    //安监部门弹窗通知
+    function safety_notice() {
+        setTimeout(function () {
+            var url = "http://security.dreamwintime.com/supervision/public/index.php/admin/safety/system/message";
+            $.ajax(url, {
+                dataType: 'json',
+                success: function (data) {
+                    if(data[0]['status']== 1){
+                    Fast.api.open("safety/system/notice", "消息通知", {
+                        callback: function (value) {}
+                    });
                     }
-                });
-              }
-          });
-        },10000);
-      }
-      window.onload=function(){     //自动调用上面那个方法
-            	 notice();
-        }
-  </script>
+                }
+            });
+        }, 7000);
+    }
+//建管登录弹窗通知
+     function project_notice() {
+        setTimeout(function () {
+            var url = "http://security.dreamwintime.com/supervision/public/index.php/admin/projectfiling/filing/message";
+            $.ajax(url, {
+                dataType: 'json',
+                success: function (data) {
+                    if(data[0]['status']== 1){
+                    Fast.api.open("projectfiling/filing//notice", "消息通知", {
+                        callback: function (value) {}
+                    });
+                    }
+                }
+            });
+        }, 7000);
+    }
+    
+    window.onload = function () { //自动调用上面那个方法
+        safety_notice();
+        project_notice();
+    }
+</script>
     </aside>
 
     <!-- 主体内容区域 -->

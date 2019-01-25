@@ -33,23 +33,45 @@
     <ul class="sidebar-menu {if $config.fastadmin.multiplenav}show-submenu{/if}">
         <!-- 菜单可以在 后台管理->权限管理->菜单规则 中进行增删改排序 -->
         {$menulist}
-     </ul>
+    </ul>
 </section>
 <script src="__CDN__/assets/js/jquery-3.2.1.js"></script>
 <script>
-    function notice(){
-        setTimeout(function(){
-          $.get("http://www.jiandu.com/admin/safety/system/message",function(data){
-              if(data[0]['status'] ==1){
-                Fast.api.open("safety/system/notice", "消息通知", {
-                    callback:function(value){
+    //安监部门弹窗通知
+    function safety_notice() {
+        setTimeout(function () {
+            var url = "127.0.0.1/supervision/public/index.php/admin/safety/system/message";
+            $.ajax(url, {
+                dataType: 'json',
+                success: function (data) {
+                    if(data[0]['status']== 1){
+                    Fast.api.open("safety/system/notice", "消息通知", {
+                        callback: function (value) {}
+                    });
                     }
-                });
-              }
-          });
-        },10000);
-      }
-      window.onload=function(){     //自动调用上面那个方法
-            	 notice();
-        }
-  </script>
+                }
+            });
+        }, 7000);
+    }
+//建管登录弹窗通知
+     function project_notice() {
+        setTimeout(function () {
+            var url = "127.0.0.1/supervision/public/index.php/admin/projectfiling/filing/message";
+            $.ajax(url, {
+                dataType: 'json',
+                success: function (data) {
+                    if(data[0]['status']== 1){
+                    Fast.api.open("projectfiling/filing//notice", "消息通知", {
+                        callback: function (value) {}
+                    });
+                    }
+                }
+            });
+        }, 7000);
+    }
+    
+    window.onload = function () { //自动调用上面那个方法
+        safety_notice();
+        project_notice();
+    }
+</script>

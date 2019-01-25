@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:97:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\safety\system\notice.html";i:1546840924;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1545909786;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:97:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\safety\system\notice.html";i:1547106025;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1545909786;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -79,7 +79,7 @@
                         还有 <?php echo $t['day']; ?> 天到期
                   <?php endif; ?>
                 </b></td>
-                <td><a href="javascript:void(0)" onclick="term(<?php echo $t['id']; ?>)"><b>已处理</b></a></td>
+                <td><a href="javascript:void(0)" onclick="term(<?php echo $t['id']; ?>)"><b>处理</b></a></td>
             </tr>
             <?php endforeach; endif; else: echo "" ;endif; ?>
         </tbody>
@@ -111,7 +111,7 @@
                             还有 <?php echo $t['day']; ?> 天到期
                       <?php endif; ?>
                     </b></td>
-                    <td><a href="javascript:void(0)" onclick="term(<?php echo $t['id']; ?>)"><b>已处理</b></a></td>
+                    <td><a href="javascript:void(0)" onclick="term(<?php echo $t['id']; ?>)"><b>处理</b></a></td>
                 </tr>
                 <?php endforeach; endif; else: echo "" ;endif; ?>
             </tbody>
@@ -143,7 +143,7 @@
                                 还有 <?php echo $t['day']; ?> 天到期
                           <?php endif; ?>
                         </b></td>
-                        <td><a href="javascript:void(0)" onclick="term(<?php echo $t['id']; ?>)"><b>已处理</b></a></td>
+                        <td><a href="javascript:void(0)" onclick="term(<?php echo $t['id']; ?>)"><b>处理</b></a></td>
                     </tr>
                     <?php endforeach; endif; else: echo "" ;endif; ?>
                 </tbody>
@@ -175,7 +175,7 @@
                                     还有 <?php echo $t['day']; ?> 天到期
                               <?php endif; ?>
                             </b></td>
-                            <td><a href="javascript:void(0)" onclick="term(<?php echo $t['id']; ?>)"><b>已处理</b></a></td>
+                            <td><a href="javascript:void(0)" onclick="term(<?php echo $t['id']; ?>)"><b>处理</b></a></td>
                         </tr>
                         <?php endforeach; endif; else: echo "" ;endif; ?>
                     </tbody>
@@ -209,7 +209,7 @@
                                      还有 <?php echo $t['day']; ?> 天到期
                                <?php endif; ?>
                             </b></td>
-                            <td><a href="javascript:void(0)" onclick="device(<?php echo $t['id']; ?>)"><b>已处理</b></a></td>
+                            <td><a href="javascript:void(0)" onclick="device(<?php echo $t['id']; ?>)"><b>处理</b></a></td>
                         </tr>
                         <?php endforeach; endif; else: echo "" ;endif; ?>
                     </tbody>

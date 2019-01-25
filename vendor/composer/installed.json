@@ -1,5 +1,48 @@
 [
     {
+        "name": "aliyuncs/oss-sdk-php",
+        "version": "v2.3.0",
+        "version_normalized": "2.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/aliyun/aliyun-oss-php-sdk.git",
+            "reference": "e69f57916678458642ac9d2fd341ae78a56996c8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/aliyun/aliyun-oss-php-sdk/zipball/e69f57916678458642ac9d2fd341ae78a56996c8",
+            "reference": "e69f57916678458642ac9d2fd341ae78a56996c8",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0",
+            "satooshi/php-coveralls": "~1.0"
+        },
+        "time": "2018-01-08T06:59:35+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "OSS\\": "src/OSS"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Aliyuncs",
+                "homepage": "http://www.aliyun.com"
+            }
+        ],
+        "description": "Aliyun OSS SDK for PHP",
+        "homepage": "http://www.aliyun.com/product/oss/"
+    },
+    {
         "name": "doctrine/cache",
         "version": "v1.4.4",
         "version_normalized": "1.4.4.0",
@@ -255,34 +298,35 @@
     },
     {
         "name": "guzzlehttp/psr7",
-        "version": "1.4.2",
-        "version_normalized": "1.4.2.0",
+        "version": "1.5.2",
+        "version_normalized": "1.5.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/guzzle/psr7.git",
-            "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c"
+            "reference": "9f83dded91781a01c63574e387eaa769be769115"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
-            "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+            "url": "https://api.github.com/repos/guzzle/psr7/zipball/9f83dded91781a01c63574e387eaa769be769115",
+            "reference": "9f83dded91781a01c63574e387eaa769be769115",
             "shasum": ""
         },
         "require": {
             "php": ">=5.4.0",
-            "psr/http-message": "~1.0"
+            "psr/http-message": "~1.0",
+            "ralouphie/getallheaders": "^2.0.5"
         },
         "provide": {
             "psr/http-message-implementation": "1.0"
         },
         "require-dev": {
-            "phpunit/phpunit": "~4.0"
+            "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
         },
-        "time": "2017-03-20T17:10:46+00:00",
+        "time": "2018-12-04T20:46:45+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.4-dev"
+                "dev-master": "1.5-dev"
             }
         },
         "installation-source": "dist",
@@ -313,6 +357,7 @@
         "keywords": [
             "http",
             "message",
+            "psr-7",
             "request",
             "response",
             "stream",
@@ -660,32 +705,36 @@
     },
     {
         "name": "paragonie/random_compat",
-        "version": "v9.99.99",
-        "version_normalized": "9.99.99.0",
+        "version": "v2.0.18",
+        "version_normalized": "2.0.18.0",
         "source": {
             "type": "git",
             "url": "https://github.com/paragonie/random_compat.git",
-            "reference": "84b4dfb120c6f9b4ff7b3685f9b8f1aa365a0c95"
+            "reference": "0a58ef6e3146256cc3dc7cc393927bcc7d1b72db"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/paragonie/random_compat/zipball/84b4dfb120c6f9b4ff7b3685f9b8f1aa365a0c95",
-            "reference": "84b4dfb120c6f9b4ff7b3685f9b8f1aa365a0c95",
+            "url": "https://api.github.com/repos/paragonie/random_compat/zipball/0a58ef6e3146256cc3dc7cc393927bcc7d1b72db",
+            "reference": "0a58ef6e3146256cc3dc7cc393927bcc7d1b72db",
             "shasum": ""
         },
         "require": {
-            "php": "^7"
+            "php": ">=5.2.0"
         },
         "require-dev": {
-            "phpunit/phpunit": "4.*|5.*",
-            "vimeo/psalm": "^1"
+            "phpunit/phpunit": "4.*|5.*"
         },
         "suggest": {
             "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
         },
-        "time": "2018-07-02T15:55:56+00:00",
+        "time": "2019-01-03T20:59:08+00:00",
         "type": "library",
         "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "lib/random.php"
+            ]
+        },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
             "MIT"
@@ -1255,18 +1304,60 @@
         ]
     },
     {
-        "name": "symfony/http-foundation",
-        "version": "v3.4.19",
-        "version_normalized": "3.4.19.0",
+        "name": "ralouphie/getallheaders",
+        "version": "2.0.5",
+        "version_normalized": "2.0.5.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/http-foundation.git",
-            "reference": "ea61dd57c4399b0b2a4162e1820cd9d0783acd38"
+            "url": "https://github.com/ralouphie/getallheaders.git",
+            "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/http-foundation/zipball/ea61dd57c4399b0b2a4162e1820cd9d0783acd38",
-            "reference": "ea61dd57c4399b0b2a4162e1820cd9d0783acd38",
+            "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
+            "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~3.7.0",
+            "satooshi/php-coveralls": ">=1.0"
+        },
+        "time": "2016-02-11T07:05:27+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/getallheaders.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ralph Khattar",
+                "email": "ralph.khattar@gmail.com"
+            }
+        ],
+        "description": "A polyfill for getallheaders."
+    },
+    {
+        "name": "symfony/http-foundation",
+        "version": "v3.4.21",
+        "version_normalized": "3.4.21.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/http-foundation.git",
+            "reference": "2b97319e68816d2120eee7f13f4b76da12e04d03"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/http-foundation/zipball/2b97319e68816d2120eee7f13f4b76da12e04d03",
+            "reference": "2b97319e68816d2120eee7f13f4b76da12e04d03",
             "shasum": ""
         },
         "require": {
@@ -1277,7 +1368,7 @@
         "require-dev": {
             "symfony/expression-language": "~2.8|~3.0|~4.0"
         },
-        "time": "2018-11-26T10:17:44+00:00",
+        "time": "2019-01-05T08:05:37+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1312,23 +1403,23 @@
     },
     {
         "name": "symfony/options-resolver",
-        "version": "v3.4.19",
-        "version_normalized": "3.4.19.0",
+        "version": "v3.4.21",
+        "version_normalized": "3.4.21.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/options-resolver.git",
-            "reference": "2cf5aa084338c1f67166013aebe87e2026bbe953"
+            "reference": "8a10e36ffd04c0c551051594952304d34ecece71"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/options-resolver/zipball/2cf5aa084338c1f67166013aebe87e2026bbe953",
-            "reference": "2cf5aa084338c1f67166013aebe87e2026bbe953",
+            "url": "https://api.github.com/repos/symfony/options-resolver/zipball/8a10e36ffd04c0c551051594952304d34ecece71",
+            "reference": "8a10e36ffd04c0c551051594952304d34ecece71",
             "shasum": ""
         },
         "require": {
             "php": "^5.5.9|>=7.0.8"
         },
-        "time": "2018-11-11T19:48:54+00:00",
+        "time": "2019-01-01T13:45:19+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1553,17 +1644,17 @@
     },
     {
         "name": "topthink/framework",
-        "version": "v5.0.22",
-        "version_normalized": "5.0.22.0",
+        "version": "v5.0.24",
+        "version_normalized": "5.0.24.0",
         "source": {
             "type": "git",
             "url": "https://github.com/top-think/framework.git",
-            "reference": "b0514ee54c4703c1598d3caa3fad2b8a6a41e311"
+            "reference": "c255c22b2f5fa30f320ecf6c1d29f7740eb3e8be"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/top-think/framework/zipball/b0514ee54c4703c1598d3caa3fad2b8a6a41e311",
-            "reference": "b0514ee54c4703c1598d3caa3fad2b8a6a41e311",
+            "url": "https://api.github.com/repos/top-think/framework/zipball/c255c22b2f5fa30f320ecf6c1d29f7740eb3e8be",
+            "reference": "c255c22b2f5fa30f320ecf6c1d29f7740eb3e8be",
             "shasum": ""
         },
         "require": {
@@ -1578,7 +1669,7 @@
             "phpunit/phpunit": "4.8.*",
             "sebastian/phpcpd": "2.*"
         },
-        "time": "2018-10-21T08:36:55+00:00",
+        "time": "2019-01-11T08:04:58+00:00",
         "type": "think-framework",
         "installation-source": "dist",
         "autoload": {
@@ -1644,20 +1735,20 @@
     },
     {
         "name": "topthink/think-helper",
-        "version": "v1.0.6",
-        "version_normalized": "1.0.6.0",
+        "version": "v1.0.7",
+        "version_normalized": "1.0.7.0",
         "source": {
             "type": "git",
             "url": "https://github.com/top-think/think-helper.git",
-            "reference": "0c99dc625b0d2d4124e1b6ca15a3ad6f0125963f"
+            "reference": "5f92178606c8ce131d36b37a57c58eb71e55f019"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/top-think/think-helper/zipball/0c99dc625b0d2d4124e1b6ca15a3ad6f0125963f",
-            "reference": "0c99dc625b0d2d4124e1b6ca15a3ad6f0125963f",
+            "url": "https://api.github.com/repos/top-think/think-helper/zipball/5f92178606c8ce131d36b37a57c58eb71e55f019",
+            "reference": "5f92178606c8ce131d36b37a57c58eb71e55f019",
             "shasum": ""
         },
-        "time": "2017-04-05T07:15:37+00:00",
+        "time": "2018-10-05T00:43:21+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

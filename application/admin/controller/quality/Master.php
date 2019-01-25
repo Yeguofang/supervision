@@ -39,14 +39,13 @@ class Master extends Backend
         if ($this->request->isAjax()) {
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
 
-            $field = "project.id,project.build_dept,project.project_name,project.quality_code,project.address,quality_progress,i.project_kind `i.project_kind`,i.status `i.status`,i.situation `i.situation`,a.nickname `a.nickname`,z.nickname `z.nickname`";
+            $field = "project.id,project.build_dept,project.project_name,project.quality_code,project.address,quality_progress,i.schedule `i.schedule`,i.project_kind `i.project_kind`,i.status `i.status`,i.situation `i.situation`,a.nickname `a.nickname`";
             $total = $this->model
                 ->alias("project")
                 ->field($field)
                 ->where($where)
                 ->join('quality_info i', 'project.quality_info=i.id')
                 ->join('admin a', 'project.quality_id=a.id', 'LEFT')
-                ->join('admin z', 'project.quality_assistant=z.id', 'LEFT')
                 ->order($sort, $order)
                 ->count();
 
@@ -56,7 +55,6 @@ class Master extends Backend
                 ->where($where)
                 ->join('quality_info i', 'project.quality_info=i.id')
                 ->join('admin a', 'project.quality_id=a.id', 'LEFT')
-                ->join('admin z', 'project.quality_assistant=z.id', 'LEFT')
                 ->order($sort, $order)
                 ->limit($offset, $limit)
                 ->select();
@@ -115,15 +113,16 @@ class Master extends Backend
     //项目检查
     public function qualitycheck($ids)
     {
-        $result = db('check_msg')->where('project_id', $ids)->where('status', 2)->find();//判断该项目是否以指派人员
-        $res = db('check_msg')->where('project_id', $ids)->where('c_status', 2)->where('status', 2)->find();//查找是否有副站发起记录
+        $result = db('check_msg')->where('project_id', $ids)->where('c_status', 3)->where('status', 2)->find();//判断是否站长指派人员
+        $res = db('check_msg')->where('project_id', $ids)->where('c_status', 2)->where('status', 2)->find();//判断是否副站指派人员
+       
         if ($res) {
-            return "<span style='color:red;'>副站已发起检查并指派人员</span>";
+            return "<span style='color:red;'>副站长已发起检查：<br/>人员名单：".$res['c_supervisor']."<br/>检查任务：".$res['task']."</span>";
         }
         if ($result) {
-            return "<span style='color:red;'>已发起检查并指派人员</span>";
+            return "<span style='color:red;'>你已发起检查<br/>人员名单：".$result['c_supervisor']."<br/>检查任务：".$result['task']."</span>";
         }
-       
+        
 
         $quality_id = db('project')->where('id', $ids)->find();
          //查出除了主责的质监员 12

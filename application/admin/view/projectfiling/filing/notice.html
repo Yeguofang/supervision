@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>详情</title>
+</head>
+
+<body>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td colspan="3">
+                    <h2>工程备案</h2>
+                </td>
+            </tr>
+            <tr>
+                <th>项目名称</th>
+                <th>验收日期</th>
+                <th>情况</th>
+            </tr>
+        </thead>
+        <tbody>
+            {volist name="$project" id="t"}
+            <tr>
+                <td>{$t.project_name}</td>
+                <td>{$t.check_time}</td>
+                <td><b style="color:red">
+                     已超出15个工作日，请前往备案
+                </b></td>
+            </tr>
+            {/volist}
+        </tbody>
+    </table>
+</body>
+</html>

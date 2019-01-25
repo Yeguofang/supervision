@@ -38,13 +38,15 @@ class Assistant extends Backend{
 
             //自己指派的项目supervisor_assistant
             $map['supervisor_assistant']=$adminId;
-            $field="project.id,project.build_dept,project.project_name,project.supervisor_code,project.address,i.project_kind `i.project_kind`,i.status `i.status`";
+            $field="project.id,project.build_dept,project.project_name,project.address,project.supervisor_code,supervisor_progress,i.schedule `i.schedule`,i.project_kind `i.project_kind`,i.status `i.status`,i.situation `i.situation`,a.nickname `a.nickname`";
+            
             $total = $this->model
                 ->alias("project")
                 ->field($field)
                 ->where($where)
                 ->where($map)
                 ->join('quality_info i','project.quality_info=i.id')
+                ->join('admin a','project.security_id=a.id','LEFT')
                 ->order($sort, $order)
                 ->count();
 
@@ -54,6 +56,7 @@ class Assistant extends Backend{
                 ->where($where)
                 ->where($map)
                 ->join('quality_info i','project.quality_info=i.id')
+                ->join('admin a','project.security_id=a.id','LEFT')
                 ->order($sort, $order)
                 ->limit($offset, $limit)
                 ->select();

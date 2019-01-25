@@ -7,7 +7,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 extend: {
                     index_url: 'safety/device/list',
                     add_url  : 'safety/device/add',
-                    // edit_url: 'quality/chief/edit',
+                    edit_url : 'safety/device/edit',
                     // del_url: 'quality/chief/del',
                     // multi_url: 'quality/chief/multi',
                 }
@@ -49,7 +49,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         { field: 'test_time', title: '检测时间', operate: false },
                         {field: 'test_end_time', title: '检测到期时间', operate:false},
                         { field: 'handle_time', title: '办理使用登记牌时间',  operate:false},
-                        // {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate,buttons:buttons}
+                        {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate,}
                     ]
                 ]
             });

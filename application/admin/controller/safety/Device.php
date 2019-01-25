@@ -85,6 +85,33 @@ class Device extends Backend
         return $this->view->fetch();
     }
 
+
+//修改机械信息
+public function edit($ids =null)
+{
+    $device = db('device')->where('id', $ids)->find();
+    $this->assign('device', $device);
+
+    if ($this->request->isAjax()) {
+        $row = $this->request->post('row/a');
+        $data['supervision_number'] = $row['supervision_number'];
+        $data['type'] = $row['type'];
+        $data['device_record'] = $row['device_record'];
+        $data['install_unit'] = $row['install_unit'];
+        $data['install_time'] = $row['install_time'];
+        $data['test_time'] = $row['test_time'];
+        $data['test_end_time'] = $row['test_end_time'];
+        $data['handle_time'] = $row['handle_time'];
+        $res = db('device')->where('id',$ids)->update($data);
+        if ($res) {
+            $this->success('修改成功');
+        }
+        $this->error('修改失败');
+    }
+
+    return $this->view->fetch();
+}
+
    //重大危险源信息详情
     public function detail($ids)
     {

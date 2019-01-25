@@ -40,7 +40,7 @@ class Voucherapply extends Backend
 
             $map['project_voucher.project_id'] = $ids;
              $map['project_voucher.dept_type'] = 2;
-            $field = "project_voucher.id,project_voucher.project_images,project_voucher.project_desc,project_voucher.push_time,project_voucher.edit_status,project_voucher.del_status,i.project_name `i.project_name`,i.build_dept `i.build_dept`";
+            $field = "project_voucher.id,project_voucher.project_images,project_voucher.project_desc,project_voucher.push_time,project_voucher.situation,project_voucher.kind,project_voucher.schedule,project_voucher.edit_status,project_voucher.del_status,i.project_name `i.project_name`,i.build_dept `i.build_dept`";
 
             $total = $this->model
                 ->alias("project_voucher")

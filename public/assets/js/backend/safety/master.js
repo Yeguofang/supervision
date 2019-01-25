@@ -54,7 +54,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         if(row.supervisor_code!=null){
                             return true;
                         }
-                        return true;
+                        return false;
                     }
                 }
             ];
@@ -134,7 +134,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'a.nickname', title: '安监员', operate:false},
                         {field: 's.nickname', title: '安监副站长', operate:false},
                         {field: 'i.project_kind', title: '工程类别', formatter:Controller.api.formatter.kind,searchList: {'0':'市政建设','1': '房建'}},
-                        {field: 'i.situation', title: '工程概况', formatter:Controller.api.formatter.situation,searchList: {'0':'路基处理','1': '路面工程','2':'排水系统','3':'绿化照明','4':'标识标线','5':'完成','6':'竣工验收'}},
+                        {field: 'i.situation', title: '工程进度', formatter:Controller.api.formatter.situation,searchList: {'0':'路基处理','1': '路面工程','2':'排水系统','3':'绿化照明','4':'标识标线','5':'完成','6':'竣工验收'}},
                         {field: 'i.status', title: '工程状态', formatter:Controller.api.formatter.status,searchList: {'0':'未开工','1': '在建','2':'质量停工','3':'安全停工','4':'局停工','5':'自停工'}},
                         {field: 'supervisor_progress', title: '安监进度', formatter:Controller.api.formatter.supervisor_progress,searchList: {'0':'未处理','1': '已申请中止施工并已通知副站','2':'已通知副站','3':'同意'}},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate,buttons:buttons}
@@ -210,7 +210,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         if(value == '0'){
                             return "<label class='label bg-orange'>基础阶段</label>"
                         }else if(value == '1'){
-                            return "<label class='label bg-green'>主体阶段</label>"
+                            return "<label class='label bg-green'>主体阶段</label> &nbsp;&nbsp;" + row['i.schedule'];
                         }else if(value == '2'){
                             return "<label class='label bg-red'>装饰阶段</label>"
                         }else if(value == '3'){

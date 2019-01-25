@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:104:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\quality\master\qualitycheck.html";i:1545961956;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1545909786;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:104:"D:\wamp64\www\Work\supervision_backend\public/../application/admin\view\quality\master\qualitycheck.html";i:1547030156;s:81:"D:\wamp64\www\Work\supervision_backend\application\admin\view\layout\default.html";i:1545909786;s:78:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\meta.html";i:1545637557;s:80:"D:\wamp64\www\Work\supervision_backend\application\admin\view\common\script.html";i:1545637557;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -60,13 +60,11 @@
         </div>
        
     </div>
-    <div class="form-group layer-footer">
             <label class="control-label col-xs-12 col-sm-2"></label>
             <div class="col-xs-12 col-sm-8">
                 <button type="submit" class="btn btn-success btn-embossed "><?php echo __('OK'); ?></button>
                 <button type="reset" class="btn btn-default btn-embossed"><?php echo __('Reset'); ?></button>
             </div>
-        </div>
 </form>
                             </div>
                         </div>

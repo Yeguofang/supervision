@@ -72,7 +72,11 @@ class Rectify extends Backend
     //申请下发
     public function rectifyApply($ids,$identy)
     {
-        if($identy == 0){
+        if($identy == 0){//安监员申请
+            $result = db('project')->where('id',$ids)->find();
+            if($result['finish_time'] != null){
+                return $this->error('该项目已竣工');
+            }
         $data['rectify_status'] = 1;
         $res = db('project')->where('id',$ids)->update($data);
         return $this->success('已发出申请');
