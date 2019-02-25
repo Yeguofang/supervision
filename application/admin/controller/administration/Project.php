@@ -97,8 +97,11 @@ class Project extends Backend{
     {
        
         $row = db('project')
-            ->field('build_dept,project_name,address,licence_id')
+            ->field('build_dept,project_name,address,licence_id,project_type,special_one,special_two,supervisor_one,supervisor_two')
             ->where(['id'=>$ids])->find();
+            // dump($row);exit;
+        $row['project_type'] =explode(',', $row['project_type']);//工程项目
+
         $licence = db('licence')
             ->field('qr_code,licence_code,area,cost,survey_company,design_company,construction_company,supervision_company,survey_person,design_person,construction_person,supervision_person,begin_time,end_time')
             ->where(['id'=>$row['licence_id']])
@@ -120,6 +123,11 @@ class Project extends Backend{
         if ($this->request->isAjax())
         {
            $project = $this->request->post('row/a');
+           
+           //工程项目
+           $project['project_type'] = $this->request->post('project_type/a');
+           $project['project_type'] = implode(",",$project['project_type']);
+
            $licence = $this->request->post('licence/a');
             if($licence['begin_time']==''){
                 $licence['begin_time']=null;

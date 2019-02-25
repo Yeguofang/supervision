@@ -1,34 +1,25 @@
 <script src="__CDN__/assets/js/jquery-3.2.1.js"></script>
 <div class="message" style="display:none">
+   
     <table class="table table-striped">
-        <thead>
-            <tr>
-                <th style="width: 25%">主责检查工程名称</th>
-                <th>发起人</th>
-                <th>发起时间</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    {volist name="$project" id="i"}
-                    {$i.project_name}<br />
-                    {/volist}
-                </td>
-                <td>
-                    {volist name="$name" id="i"}
-                    {$i.nickname}<br />
-                    {/volist}
-                </td>
-                <td>
-                    {volist name="$time" id="i"}
-                    {$i}<br />
-                    {/volist}
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    
+            <thead>
+                <tr>
+                    <th style="width: 25%">申请检查工程名称</th>
+                    <th style="width: 25%">发起人</th>
+                    <th>发起时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                {volist name="$result" id="i"}
+                    <tr style="color:red;">
+                        <td>{$i.name}</td>
+                        <td>{$i.nickname}</td>
+                        <td>{$i.open_time}</td>
+                    </tr>
+                {/volist}
+            </tbody>
+        </table>
+
 </div>
 <div class="panel panel-default panel-intro">
     <div id="toolbar" class="toolbar" >

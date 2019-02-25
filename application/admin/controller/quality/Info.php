@@ -34,11 +34,11 @@ class Info extends Backend
         //查出所有的项目
         if ($this->request->isAjax()) {
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
-
-            $field = "project.id,project.build_dept,project.project_name,project.address,i.project_kind `i.project_kind`,i.situation `i.situation`,i.status `i.status`";
+            
+            $field = "project.id,project.build_dept,project.project_name,project.address,project.register_time,project.permit_time,project.finish_time,project.address,project.project_type,i.check_company `i.check_company`,i.project_kind `i.project_kind`,i.situation `i.situation`,i.status `i.status`,i.energy `i.energy`,l.design_company `l.design_company`,l.survey_company `l.survey_company`,l.construction_company `l.construction_company`,l.supervision_company `l.supervision_company`";
+            
             $total = $this->model
                 ->alias("project")
-                ->join('quality_info i', 'project.quality_info=i.id')
                 ->field($field)
                 ->where($where)
                 ->order($sort, $order)
@@ -47,11 +47,16 @@ class Info extends Backend
             $list = $this->model
                 ->alias("project", '')
                 ->join('quality_info i', 'project.quality_info=i.id')
+                ->join('licence l','project.licence_id=l.id')
                 ->field($field)
                 ->where($where)
                 ->order($sort, $order)
                 ->limit($offset, $limit)
                 ->select();
+                //对工程项目处理
+            for($i=0;$i<count($list);$i++){
+                    $list[$i]['project_type'] = explode(',',$list[$i]['project_type']);
+            }
             $result = array("total" => $total, "rows" => $list);
             return json($result);
         }
@@ -63,10 +68,6 @@ class Info extends Backend
     {
         $row = db('project')->where(['id' => $ids])->find();
        
-    //    //检查项目是否下发告知书
-    //    if($row['quality_code'] == "" ){
-    //        return "<h1>项目还未下发告知书，暂时无法编辑！</h1>";
-    //    }
 
         $infoId = $row['quality_info'];
         $info = db('quality_info')->where(['id' => $infoId])->find();

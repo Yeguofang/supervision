@@ -22,28 +22,24 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 {
                     name     : 'detail',
                     text     : '检查记录',
-                    icon     : 'fa fa-image',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
                     url      : 'quality/vouchermaster/index',
                  },
                 {
                     name     : 'select',
                     text     : '选择副站长',
-                    icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
                     url      : 'quality/master/select',
                 },
                 {
                     name     : 'detail',
                     text     : '详细信息',
-                    icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
                     url      : 'quality/master/detail',
                 },
                 {
                     name     : 'quality',
                     text     : '登记告知书',
-                    icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail  download',
                     url      : 'quality/master/quality',
                     extend   : 'target="_blank"',
@@ -168,6 +164,14 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'i.situation', title: '工程进度', formatter:Controller.api.formatter.situation,},
                         {field: 'i.status', title: '工程状态', formatter:Controller.api.formatter.status,searchList: {'0':'未开工','1': '在建','2':'质量停工','3':'安全停工','4':'局停工','5':'自停工'}},
                         {field: 'quality_progress', title: '质监进度', formatter:Controller.api.formatter.quality_progress,searchList: {'0':'未处理','1': '已申请竣工并已通知副站','2':'已通知站长','3':'同意'}},
+                        {field: 'i.energy', title: '节能', formatter:Controller.api.formatter.energy,searchList: {'0':'否','1': '是'}},
+                        {field: 'permit_time', title: '施工许可审批时间', operate: 'RANGE', addclass: 'datetimerange', formatter: Table.api.formatter.datetime},
+                        {field: 'register_time', title: '监督注册表审批时间', operate: 'RANGE', addclass: 'datetimerange', formatter: Table.api.formatter.datetime},
+                        {field: 'project_type', title: '工程项目',operate: 'FIND_IN_SET',formatter:Controller.api.formatter.project_type,searchList: {'1':'房地产','2': '住宅','3':'保障性住房','4':'公共建筑','5':'工业建筑','6':'装修装饰','7':'建筑设备安装','8':'市政基础设施'} },
+                        {field: 'l.construction_company', title: '施工单位', operate: "LIKE"},
+                        {field: 'l.supervision_company', title: '监理单位',operate: "LIKE"},
+                        {field: 'i.check_company', title: '检测单位',operate: "LIKE"},
+
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate,buttons:buttons}
                     ]
                 ]
@@ -196,7 +200,15 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     }else if(value == '1'){
                         return "<label class='label bg-green'>房建</label>"
                     }
-                },status:function (value,row,index) {
+                },
+                energy:function (value,row,index) {
+                    if(value == '0'){
+                        return "<label class='label bg-red'>否</label>"
+                    }else if(value == '1'){
+                        return "<label class='label bg-green'>是</label>"
+                    }
+                },
+                status:function (value,row,index) {
                     if(value == '0'){
                         return "<label class='label bg-orange'>未开工</label>"
                     }else if(value == '1'){
@@ -253,8 +265,22 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                             return "<label class='label bg-red'>竣工验收</label>"
                         }
                     }
-
-                }
+                    
+                },
+                project_type: function (value, row, index) {//项目工程显示处理
+                  if(value[0] ==''){
+                      return '-';
+                    }else{  
+                    var project_type = [
+                        '','房地产','住宅','保障性住房','公共建筑','工业建筑','装修装饰','建筑设备安装','市政基础设施',
+                    ];
+                    let str = '';
+                    value.forEach((v,i) => {
+                        str += project_type[v]+',';
+                    })
+                    return str.substring(str.length-1,1);
+                  }
+            }
             }
         }
     };

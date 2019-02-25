@@ -131,7 +131,7 @@ class Auth
      * @param array $extend    扩展参数
      * @return boolean
      */
-    public function register($username, $password, $email = '', $mobile = '', $extend = [])
+    public function register($username, $password, $mobile = '', $extend = [])
     {
         // 检测用户名或邮箱、手机号是否存在
         if (User::getByUsername($username))
@@ -139,11 +139,11 @@ class Auth
             $this->setError('Username already exist');
             return FALSE;
         }
-        if ($email && User::getByEmail($email))
-        {
-            $this->setError('Email already exist');
-            return FALSE;
-        }
+        // if ($email && User::getByEmail($email))
+        // {
+        //     $this->setError('Email already exist');
+        //     return FALSE;
+        // }
         if ($mobile && User::getByMobile($mobile))
         {
             $this->setError('Mobile already exist');
@@ -228,7 +228,8 @@ class Auth
      */
     public function login($account, $password,$identity)
     {
-        $field = Validate::is($account, 'email') ? 'email' : (Validate::regex($account, '/^1\d{10}$/') ? 'mobile' : 'username');
+        // $field = Validate::is($account, 'email') ? 'email' : (Validate::regex($account, '/^1\d{10}$/') ? 'mobile' : 'username');
+        $field = "mobile";
         $user = User::get([$field => $account,'identity'=>$identity]);
         if (!$user)
         {

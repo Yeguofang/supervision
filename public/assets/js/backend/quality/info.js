@@ -7,13 +7,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 extend: {
                     index_url: 'quality/info/index',
                     edit_url : 'quality/info/edit',
+                    add_url:'administration/project/add',
                 }
             });
             var buttons = [
                 {
                     name     : 'situation',
                     text     : '工程概况额外状态',
-                    icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
                     url      : 'quality/info/situation',
                     visible  : function (row) {
@@ -22,8 +22,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         }
                         return false;
                     }
-                }
-
+                },
+                {
+                    name     : 'situation',
+                    text     : '编辑项目',
+                    classname: 'btn btn-info btn-xs btn-detail btn-dialog',
+                    url      : 'administration/project/edit',
+                },
             ];
 
              
@@ -130,14 +135,25 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'id', title: '序号', sortable: true, operate: false},
                         {field: 'build_dept', title: '建设单位', operate: "LIKE"},
                         {field: 'project_name', title: '工程名称', operate: "LIKE"},
-                        {field: 'address', title: '建设地址', operate:false},
+                        {field: 'address', title: '建设地址', operate: "LIKE"},
                         {field: 'i.project_kind', title: '工程类别', formatter:Controller.api.formatter.kind,searchList: {'0':'市政建设','1': '房建'}},
-                        {field: 'i.status', title: '工程状态', formatter:Controller.api.formatter.status,searchList: {'0':'未开工','1': '在建','2':'质量停工','3':'安全停工','4':'局停工','5':'自停工'}},
+                        {field: 'i.energy', title: '节能', formatter:Controller.api.formatter.energy,searchList: {'0':'否','1': '是'}},
+                        {field: 'i.status', title: '状态',operate: 'FIND_IN_SET',formatter:Controller.api.formatter.status,searchList: {'0':'未开工','1': '在建','2':'质量停工','3':'安全停工','4':'局停工','5':'自停工'} },
+                        {field: 'permit_time', title: '施工许可审批时间', operate: 'RANGE', addclass: 'datetimerange', formatter: Table.api.formatter.datetime},
+                        {field: 'register_time', title: '监督注册表审批时间', operate: 'RANGE', addclass: 'datetimerange', formatter: Table.api.formatter.datetime},
+                        {field: 'finish_time', title: '竣工日期',operate: 'RANGE', addclass: 'datetimerange', formatter: Table.api.formatter.datetime},
+                        {field: 'project_type', title: '工程项目',operate: 'FIND_IN_SET',formatter:Controller.api.formatter.project_type,searchList: {'1':'房地产','2': '住宅','3':'保障性住房','4':'公共建筑','5':'工业建筑','6':'装修装饰','7':'建筑设备安装','8':'市政基础设施'} },
+                        {field: 'l.design_company', title: '设计单位', operate: "LIKE"},
+                        {field: 'l.survey_company', title: '勘察单位', operate: "LIKE"},
+                        {field: 'l.construction_company', title: '施工单位', operate: "LIKE"},
+                        {field: 'l.supervision_company', title: '监理单位',operate: "LIKE"},
+                        {field: 'i.check_company', title: '检测单位',operate: "LIKE"},
+                       
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate,buttons:buttons}
                     ]
                 ]
             });
-
+        
             // 为表格绑定事件
             Table.api.bindevent(table);
         },
@@ -162,6 +178,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         return "<label class='label bg-green'>房建</label>"
                     }
                 },
+                energy:function (value,row,index) {
+                    if(value == '1'){
+                        return "<label class='label bg-green'>是</label>"
+                    }else if(value == '0'){
+                        return "<label class='label bg-red'>否</label>"
+                    }
+                },
                 status: function (value, row, index) {
                     if(value == '0'){
                         return "<label class='label bg-orange'>未开工</label>"
@@ -175,6 +198,20 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         return "<label class='label bg-red'>局停工</label>"
                     }else if(value == '5'){
                         return "<label class='label bg-red'>自停工</label>"
+                    }
+                },
+                project_type: function (value, row, index) {//项目工程显示处理
+                    if(value[0] ==''){
+                        return '-';
+                      }else{  
+                      var project_type = [
+                          '','房地产','住宅','保障性住房','公共建筑','工业建筑','装修装饰','建筑设备安装','市政基础设施',
+                      ];
+                      let str = '';
+                      value.forEach((v,i) => {
+                          str += project_type[v]+',';
+                      })
+                      return str.substring(str.length-1,1);
                     }
                 }
             }

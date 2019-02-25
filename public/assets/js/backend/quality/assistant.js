@@ -47,21 +47,21 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
                     url      : 'quality/assistant/detail',
                 },
-                {
-                    name     : 'quality',
-                    text     : '登记告知书',
-                    icon     : 'fa fa-list',
-                    classname: 'btn btn-info btn-xs btn-detail  download',
-                    url      : 'quality/assistant/quality',
-                    extend   : 'target="_blank"',
-                    visible  : function (row) {
-                        //下发了告知书才显示
-                        if(row.quality_code!=null){
-                            return true;
-                        }
-                        return false;
-                    }
-                }
+                // {
+                //     name     : 'quality',
+                //     text     : '登记告知书',
+                //     icon     : 'fa fa-list',
+                //     classname: 'btn btn-info btn-xs btn-detail  download',
+                //     url      : 'quality/assistant/quality',
+                //     extend   : 'target="_blank"',
+                //     visible  : function (row) {
+                //         //下发了告知书才显示
+                //         if(row.quality_code!=null){
+                //             return true;
+                //         }
+                //         return false;
+                //     }
+                // }
 
             ];
 

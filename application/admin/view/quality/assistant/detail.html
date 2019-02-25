@@ -133,17 +133,12 @@
     <tr>
         <td>工程进度:</td>
         <td>
-            {$info.schedule}
-        </td>
-    </tr>
-    <tr>
-        <td>工程概况:</td>
-        <td>
             {if $info.project_kind == 1 }
              {if $info.situation == '0' }
               基础阶段
                {elseif $info.situation == 1 }
               主体阶段。类型：{if $info.extra_type == 0 }框架 {elseif $info.extra_type == 1 }砌砖    层数：{$info.extra_floor} {/if}
+              {$info.schedule}
                {elseif $info.situation == 2 }
               装饰阶段。类型：{if $info.status_extra == 0 }水电安装 {elseif $info.status_extra == 1 }普通装饰 {/if}
                {elseif $info.situation == 3 }

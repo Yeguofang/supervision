@@ -10,16 +10,6 @@
 namespace app\admin\controller\quality;
 
 use app\common\controller\Backend;
-use PhpOffice\PhpWord\Exception\Exception;
-use PhpOffice\PhpWord\PhpWord;
-use PhpOffice\PhpWord\TemplateProcessor;
-use PHPExcel;
-use PHPExcel_Style;
-use PHPExcel_Style_Fill;
-use PHPExcel_Style_Alignment;
-use PHPExcel_Style_Border;
-use PHPExcel_Style_NumberFormat;
-use PHPExcel_IOFactory;
 
 //质监站长项目管理
 class Master extends Backend
@@ -39,12 +29,13 @@ class Master extends Backend
         if ($this->request->isAjax()) {
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
 
-            $field = "project.id,project.build_dept,project.project_name,project.quality_code,project.address,quality_progress,i.schedule `i.schedule`,i.project_kind `i.project_kind`,i.status `i.status`,i.situation `i.situation`,a.nickname `a.nickname`";
+            $field = "project.id,project.build_dept,project.project_name,project.quality_code,project.address,quality_progress,project.permit_time,project.register_time,project.project_type,l.construction_company `l.construction_company`,l.supervision_company `l.supervision_company`,i.schedule `i.schedule`,i.project_kind `i.project_kind`,i.status `i.status`,i.situation `i.situation`,a.nickname `a.nickname`, i.check_company `i.check_company`, i.energy `i.energy`";
             $total = $this->model
                 ->alias("project")
                 ->field($field)
                 ->where($where)
                 ->join('quality_info i', 'project.quality_info=i.id')
+                ->join('licence l', 'project.licence_id=l.id', 'LEFT')
                 ->join('admin a', 'project.quality_id=a.id', 'LEFT')
                 ->order($sort, $order)
                 ->count();
@@ -54,16 +45,22 @@ class Master extends Backend
                 ->field($field)
                 ->where($where)
                 ->join('quality_info i', 'project.quality_info=i.id')
+                ->join('licence l', 'project.licence_id=l.id', 'LEFT')
                 ->join('admin a', 'project.quality_id=a.id', 'LEFT')
                 ->order($sort, $order)
                 ->limit($offset, $limit)
                 ->select();
+            //对工程项目处理
+            for ($i = 0; $i < count($list); $i++) {
+                $list[$i]['project_type'] = explode(',', $list[$i]['project_type']);
+            }
+            $result = array("total" => $total, "rows" => $list);
             $result = array("total" => $total, "rows" => $list);
             return json($result);
         }
         return $this->view->fetch();
     }
-    
+
     //选择副站长
     public function select($ids)
     {
@@ -101,7 +98,7 @@ class Master extends Backend
             $info['extra_type'] = "";
             $info['extra_floor'] = "";
         }
-        
+
         //施工联系人 监理联系人
         $licence = db('licence')->field('supervision_person,construction_person')->where(['id' => $row['licence_id']])->find();
         $this->assign('licence', $licence);
@@ -113,19 +110,18 @@ class Master extends Backend
     //项目检查
     public function qualitycheck($ids)
     {
-        $result = db('check_msg')->where('project_id', $ids)->where('c_status', 3)->where('status', 2)->find();//判断是否站长指派人员
-        $res = db('check_msg')->where('project_id', $ids)->where('c_status', 2)->where('status', 2)->find();//判断是否副站指派人员
-       
+        $result = db('check_msg')->where('project_id', $ids)->where('c_status', 3)->where('status', 2)->find(); //判断是否站长指派人员
+        $res = db('check_msg')->where('project_id', $ids)->where('c_status', 2)->where('status', 2)->find(); //判断是否副站指派人员
+
         if ($res) {
-            return "<span style='color:red;'>副站长已发起检查：<br/>人员名单：".$res['c_supervisor']."<br/>检查任务：".$res['task']."</span>";
+            return "<span style='color:red;'>副站长已发起检查：<br/>人员名单：" . $res['c_supervisor'] . "<br/>检查任务：" . $res['task'] . "</span>";
         }
         if ($result) {
-            return "<span style='color:red;'>你已发起检查<br/>人员名单：".$result['c_supervisor']."<br/>检查任务：".$result['task']."</span>";
+            return "<span style='color:red;'>你已发起检查<br/>人员名单：" . $result['c_supervisor'] . "<br/>检查任务：" . $result['task'] . "</span>";
         }
-        
 
         $quality_id = db('project')->where('id', $ids)->find();
-         //查出除了主责的质监员 12
+        //查出除了主责的质监员 12
         $quality = db('admin admin')
             ->where('admin.id', 'neq', $quality_id['quality_id'])
             ->field('admin.id,admin.nickname name')

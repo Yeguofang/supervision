@@ -34,22 +34,18 @@ class Assistant extends Backend
     public function index()
     {
         $adminId = Session::get('admin')['id'];
-        $result = db('check_msg')->where('quality_assistant', $adminId)->where('c_status', 1)->select();
-        
-        $time = array();
-        $ids = array();
-        $quality_id =array();
-        for ($i = 0; $i < count($result); $i++) {
-            array_push($ids, $result[$i]['project_id']);
-            array_push($time, $result[$i]['open_time']);
-            array_push($quality_id, $result[$i]['quality_id']);
-        }
-        $project = db('project')->field('project_name')->where('id', 'in', $ids)->select();
-        $name = db('admin')->field('nickname')->where('id', 'in', $quality_id)->select();
-        $this->assign('project', $project);//著指责发起检擦，待带指派监督人员的项目
-        $this->assign('count',count($project));//项目总数
-        $this->assign('time', $time);//发起检查的时间
-        $this->assign('name', $name);//发起检查的主责
+  
+        $result = db('check_msg')
+            ->alias('m')
+            ->field('m.open_time,m.task,m.c_supervisor,p.project_name `name`,a.nickname `nickname`')
+            ->join('project p','m.project_id=p.id')
+            ->join('admin a','m.quality_id=a.id')
+            ->where('m.quality_assistant', $adminId)
+            ->where('m.c_status', 1)
+            ->select();
+        $this->assign('result', $result);//著指责发起检擦，待带指派监督人员的项目
+        $this->assign('count',count($result));//项目总数
+
 
         if ($this->request->isAjax()) {
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
@@ -120,6 +116,9 @@ class Assistant extends Backend
         if (count($extra) == 2) {
             $info['extra_type'] = $extra[0];
             $info['extra_floor'] = $extra[1];
+        }else{
+            $info['extra_type'] = '';
+            $info['extra_floor'] = '';
         }
         //施工联系人 监理联系人
         $licence = db('licence')->field('supervision_person,construction_person')->where(['id' => $row['licence_id']])->find();

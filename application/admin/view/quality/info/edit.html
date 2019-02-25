@@ -60,6 +60,35 @@
             <input type="text" class="form-control" id="build_person" name="info[build_person]" value="{$info.build_person}"  />
         </div>
     </div>
+    
+    <div class="form-group">
+            <label for="special_one" class="control-label col-xs-12 col-sm-2">专监1:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input type="text" class="form-control" id="special_one" name="row[special_one]" value="{$row.special_one}"
+                    />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="special_two" class="control-label col-xs-12 col-sm-2">专监2:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input type="text" class="form-control" id="special_two" name="row[special_two]" value="{$row.special_two}"
+                     />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="supervisor_one" class="control-label col-xs-12 col-sm-2">监理员1:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input type="text" class="form-control" id="supervisor_one" name="row[supervisor_one]" value="{$row.supervisor_one}"
+                     />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="supervisor_two" class="control-label col-xs-12 col-sm-2">监理员2:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input type="text" class="form-control" id="supervisor_two" name="row[supervisor_two]" value="{$row.supervisor_two}"
+                    />
+            </div>
+        </div>
     <div class="form-group">
         <label for="project_kind" class="control-label col-xs-12 col-sm-2">工程类别:</label>
         <div class="col-xs-12 col-sm-8">
@@ -72,7 +101,10 @@
     <div class="form-group">
         <label for="energy" class="control-label col-xs-12 col-sm-2">节能:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="energy" name="info[energy]" value="{$info.energy}" />
+                <select  id="energy"  name="info[energy]" class="form-control">
+                        <option value="0" {in name="info.energy" value="0"}selected{/in}>否</option>
+                        <option value="1"{in name="info.energy" value="1"}selected{/in}>是</option>
+                    </select>
         </div>
     </div>
     <div class="form-group">

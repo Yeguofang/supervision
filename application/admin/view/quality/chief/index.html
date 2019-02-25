@@ -11,28 +11,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr style="color:red;">
-                <td>
-                    {volist name="$project" id="i"}
-                        {$i.project_name}<br/>
-                    {/volist}
-                </td>
-                <td>
-                    {volist name="$task" id="t"}
-                        {$t}<br/>
-                    {/volist}
-                </td>
-                <td>
-                    {volist name="$quality_list" id="t"}
-                        {$t}<br/>
-                    {/volist}
-                </td>
-                <td>
-                    {volist name="$time" id="i"}
-                        {$i}<br/>
-                    {/volist}
-                </td>
-            </tr>
+            {volist name="$result" id="i"}
+                <tr style="color:red;">
+                    <td>{$i.name}</td>
+                    <td>{$i.task}</td>
+                    <td>{$i.c_supervisor}</td>
+                    <td>{$i.open_time}</td>
+                </tr>
+            {/volist}
         </tbody>
     </table>
 </div>

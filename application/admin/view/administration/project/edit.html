@@ -3,12 +3,13 @@
     <div class="form-group">
         <label for="build_dept" class="control-label col-xs-12 col-sm-2">建设单位:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text"  list="depts" class="form-control" id="build_dept" name="row[build_dept]" value="{$row.build_dept}" data-rule="required" />
+            <input type="text" list="depts" class="form-control" id="build_dept" name="row[build_dept]" value="{$row.build_dept}"
+                data-rule="required" />
             <datalist id="depts">
                 {notempty name="five['build_dept']"}
-                    {foreach name="five['build_dept']" item="vo"}
-                    <option >{$vo.name}</option>
-                    {/foreach}
+                {foreach name="five['build_dept']" item="vo"}
+                <option>{$vo.name}</option>
+                {/foreach}
                 {/notempty}
             </datalist>
         </div>
@@ -16,22 +17,26 @@
     <div class="form-group">
         <label for="project_name" class="control-label col-xs-12 col-sm-2">工程名称:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="project_name" name="row[project_name]" value="{$row.project_name}"data-rule="required" />
+            <input type="text" class="form-control" id="project_name" name="row[project_name]" value="{$row.project_name}"
+                data-rule="required" />
         </div>
     </div>
     <div class="form-group">
         <label for="address" class="control-label col-xs-12 col-sm-2">建设地址:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="address" name="row[address]" value="{$row.address}"  data-rule="required"/>
+            <input type="text" class="form-control" id="address" name="row[address]" value="{$row.address}" data-rule="required" />
         </div>
     </div>
     <div class="form-group">
         <label for="c-avatar" class="control-label col-xs-12 col-sm-2">许可证二维码:</label>
         <div class="col-xs-12 col-sm-8">
             <div class="input-group">
-                <input id="c-avatar"class="form-control" size="50" name="licence[qr_code]" type="text" value="{$licence.qr_code}" readonly="readonly">
+                <input id="c-avatar" class="form-control" size="50" name="licence[qr_code]" type="text" value="{$licence.qr_code}"
+                    readonly="readonly">
                 <div class="input-group-addon no-border no-padding">
-                    <span><button type="button" id="plupload-avatar" class="btn btn-danger plupload" data-input-id="c-avatar" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false"   data-preview-id="p-avatar"><i class="fa fa-upload"></i> 上传</button></span>
+                    <span><button type="button" id="plupload-avatar" class="btn btn-danger plupload" data-input-id="c-avatar"
+                            data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false"
+                            data-preview-id="p-avatar"><i class="fa fa-upload"></i> 上传</button></span>
                 </div>
                 <span class="msg-box n-right" for="c-avatar"></span>
             </div>
@@ -42,33 +47,34 @@
     <div class="form-group">
         <label for="licence_code" class="control-label col-xs-12 col-sm-2">编号:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="licence_code" name="licence[licence_code]" value="{$licence.licence_code}"  />
+            <input type="text" class="form-control" id="licence_code" name="licence[licence_code]" value="{$licence.licence_code}" />
         </div>
         <i style="color:red;font-size: 24px;">*</i>
     </div>
     <div class="form-group">
         <label for="area" class="control-label col-xs-12 col-sm-2">建设规模:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="area" name="licence[area]" value="{$licence.area}"  />
+            <input type="text" class="form-control" id="area" name="licence[area]" value="{$licence.area}" />
         </div>
         <label class="col-xs-12 col-sm-2" style="margin-top: 8px;margin-left: -25px;">（平方米）</label>
     </div>
     <div class="form-group">
         <label for="cost" class="control-label col-xs-12 col-sm-2">合同价格:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="cost" name="licence[cost]" value="{$licence.cost}"  />
+            <input type="text" class="form-control" id="cost" name="licence[cost]" value="{$licence.cost}" />
         </div>
         <label class="col-xs-12 col-sm-2" style="margin-top: 8px;margin-left: -18px;">(万元)</label>
     </div>
     <div class="form-group">
         <label for="survey_company" class="control-label col-xs-12 col-sm-2">勘察单位:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" list="survey_companys" class="form-control" id="survey_company" name="licence[survey_company]" value="{$licence.survey_company}" />
+            <input type="text" list="survey_companys" class="form-control" id="survey_company" name="licence[survey_company]"
+                value="{$licence.survey_company}" />
             <datalist id="survey_companys">
                 {notempty name="five['survey_company']"}
-                    {foreach name="five['survey_company']" item="vo"}
-                        <option>{$vo.name}</option>
-                    {/foreach}
+                {foreach name="five['survey_company']" item="vo"}
+                <option>{$vo.name}</option>
+                {/foreach}
                 {/notempty}
             </datalist>
         </div>
@@ -76,103 +82,165 @@
     <div class="form-group">
         <label for="design_company" class="control-label col-xs-12 col-sm-2">设计单位:</label>
         <div class="col-xs-12 col-sm-8">
-            <input  type="text" lsit="design_companys" class="form-control" id="design_company" name="licence[design_company]" value="{$licence.design_company}" />
+            <input type="text" lsit="design_companys" class="form-control" id="design_company" name="licence[design_company]"
+                value="{$licence.design_company}" />
             <datalist id="design_companys">
-                    {notempty name="five['design_company']"}
-                        {foreach name="five['design_company']" item="vo"}
-                            <option>{$vo.name}</option>
-                        {/foreach}
-                    {/notempty}
-             </datalist>
+                {notempty name="five['design_company']"}
+                {foreach name="five['design_company']" item="vo"}
+                <option>{$vo.name}</option>
+                {/foreach}
+                {/notempty}
+            </datalist>
         </div>
     </div>
     <div class="form-group">
         <label for="construction_company" class="control-label col-xs-12 col-sm-2">施工单位:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" list="construction_companys"  class="form-control" id="construction_company" name="licence[construction_company]" value="{$licence.construction_company}"  />
+            <input type="text" list="construction_companys" class="form-control" id="construction_company" name="licence[construction_company]"
+                value="{$licence.construction_company}" />
             <datalist id="construction_companys">
-                    {notempty name="five['construction_company']"}
-                        {foreach name="five['construction_company']" item="vo"}
-                            <option>{$vo.name}</option>
-                        {/foreach}
-                    {/notempty}
-             </datalist>
+                {notempty name="five['construction_company']"}
+                {foreach name="five['construction_company']" item="vo"}
+                <option>{$vo.name}</option>
+                {/foreach}
+                {/notempty}
+            </datalist>
         </div>
     </div>
     <div class="form-group">
         <label for="supervision_company" class="control-label col-xs-12 col-sm-2">监理单位:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" list="supervision_companys"  class="form-control" id="supervision_company" name="licence[supervision_company]" value="{$licence.supervision_company}"  />
+            <input type="text" list="supervision_companys" class="form-control" id="supervision_company" name="licence[supervision_company]"
+                value="{$licence.supervision_company}" />
             <datalist id="supervision_companys">
-                    {notempty name="five['supervision_company']"}
-                        {foreach name="five['supervision_company']" item="vo"}
-                            <option>{$vo.name}</option>
-                        {/foreach}
-                    {/notempty}
-             </datalist>
+                {notempty name="five['supervision_company']"}
+                {foreach name="five['supervision_company']" item="vo"}
+                <option>{$vo.name}</option>
+                {/foreach}
+                {/notempty}
+            </datalist>
         </div>
     </div>
     <div class="form-group">
         <label for="survey_person" class="control-label col-xs-12 col-sm-2">勘察项目负责人:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" list="survey_persons" class="form-control" id="survey_person" name="licence[survey_person]" value="{$licence.survey_person}"/>
+            <input type="text" list="survey_persons" class="form-control" id="survey_person" name="licence[survey_person]"
+                value="{$licence.survey_person}" />
             <datalist id="survey_persons">
-                    {notempty name="five['survey_person']"}
-                        {foreach name="five['survey_person']" item="vo"}
-                            <option>{$vo.name}</option>
-                        {/foreach}
-                    {/notempty}
-             </datalist>
+                {notempty name="five['survey_person']"}
+                {foreach name="five['survey_person']" item="vo"}
+                <option>{$vo.name}</option>
+                {/foreach}
+                {/notempty}
+            </datalist>
         </div>
     </div>
     <div class="form-group">
         <label for="design_person" class="control-label col-xs-12 col-sm-2">设计项目负责人:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" list="design_persons" class="form-control" id="design_person" name="licence[design_person]" value="{$licence.design_person}"  />
+            <input type="text" list="design_persons" class="form-control" id="design_person" name="licence[design_person]"
+                value="{$licence.design_person}" />
             <datalist id="design_persons">
-                    {notempty name="five['design_person']"}
-                        {foreach name="five['design_person']" item="vo"}
-                            <option>{$vo.name}</option>
-                        {/foreach}
-                    {/notempty}
-             </datalist>
+                {notempty name="five['design_person']"}
+                {foreach name="five['design_person']" item="vo"}
+                <option>{$vo.name}</option>
+                {/foreach}
+                {/notempty}
+            </datalist>
         </div>
     </div>
     <div class="form-group">
         <label for="construction_person" class="control-label col-xs-12 col-sm-2">施工项目负责人:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" list="construction_persons" class="form-control" id="construction_person" name="licence[construction_person]" value="{$licence.construction_person}"  />
+            <input type="text" list="construction_persons" class="form-control" id="construction_person" name="licence[construction_person]"
+                value="{$licence.construction_person}" />
             <datalist id="construction_persons">
-                    {notempty name="five['construction_person']"}
-                        {foreach name="five['construction_person']" item="vo"}
-                            <option>{$vo.name}</option>
-                        {/foreach}
-                    {/notempty}
-             </datalist>
+                {notempty name="five['construction_person']"}
+                {foreach name="five['construction_person']" item="vo"}
+                <option>{$vo.name}</option>
+                {/foreach}
+                {/notempty}
+            </datalist>
         </div>
     </div>
     <div class="form-group">
         <label for="supervision_person" class="control-label col-xs-12 col-sm-2">总监理工程师:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" list="supervision_persons" class="form-control man" id="supervision_person" name="licence[supervision_person]" value="{$licence.supervision_person}"  />
+            <input type="text" list="supervision_persons" class="form-control man" id="supervision_person" name="licence[supervision_person]"
+                value="{$licence.supervision_person}" />
             <datalist id="supervision_persons">
-                    {notempty name="five['supervision_person']"}
-                        {foreach name="five['supervision_person']" item="vo"}
-                            <option>{$vo.name}</option>
-                        {/foreach}
-                    {/notempty}
-             </datalist>
+                {notempty name="five['supervision_person']"}
+                {foreach name="five['supervision_person']" item="vo"}
+                <option>{$vo.name}</option>
+                {/foreach}
+                {/notempty}
+            </datalist>
+        </div>
+    </div>
+  
+    <div class="form-group">
+        <label for="special_one" class="control-label col-xs-12 col-sm-2">专监1:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="special_one" name="row[special_one]" value="{$row.special_one}"
+                />
         </div>
     </div>
     <div class="form-group">
-        <label for="begin_time" class="control-label col-xs-12 col-sm-2">合同工期:</label>
+        <label for="special_two" class="control-label col-xs-12 col-sm-2">专监2:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="datetimepicker form" id="begin_time" data-date-format="YYYY-MM-DD" name="licence[begin_time]" value="{$licence.begin_time}"  />
-            ——
-            <input type="text" class="datetimepicker form" id="end_time" data-date-format="YYYY-MM-DD" name="licence[end_time]" value="{$licence.end_time}"  />
+            <input type="text" class="form-control" id="special_two" name="row[special_two]" value="{$row.special_two}"
+                 />
         </div>
     </div>
-    
+    <div class="form-group">
+        <label for="supervisor_one" class="control-label col-xs-12 col-sm-2">监理员1:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="supervisor_one" name="row[supervisor_one]" value="{$row.supervisor_one}"
+                 />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="supervisor_two" class="control-label col-xs-12 col-sm-2">监理员2:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="supervisor_two" name="row[supervisor_two]" value="{$row.supervisor_two}"
+                />
+        </div>
+    </div>
+
+    <div class="form-group">
+            <label for="begin_time" class="control-label col-xs-12 col-sm-2">合同工期:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input type="text" class="datetimepicker form" id="begin_time" data-date-format="YYYY-MM-DD" name="licence[begin_time]"
+                    value="{$licence.begin_time}" />
+                ——
+                <input type="text" class="datetimepicker form" id="end_time" data-date-format="YYYY-MM-DD" name="licence[end_time]"
+                    value="{$licence.end_time}" />
+            </div>
+        </div>
+        
+    <div class="form-group">
+        <label for="begin_time" class="control-label col-xs-12 col-sm-2">工程项目:</label>
+        <div class="col-xs-12 col-sm-8" data-rule="required">
+            <input type="checkbox" name="project_type[]" {if condition="in_array('1', $row.project_type)" }checked{/if}
+                value="1" /> 房地产
+            <input type="checkbox" name="project_type[]" {if condition="in_array('2', $row.project_type)" }checked{/if}
+                value="2" /> 住宅
+            <input type="checkbox" name="project_type[]" {if condition="in_array('3', $row.project_type)" }checked{/if}
+                value="3" /> 保障性住房
+            <input type="checkbox" name="project_type[]" {if condition="in_array('4', $row.project_type)" }checked{/if}
+                value="4" /> 公共建筑
+            <br />
+            <input type="checkbox" name="project_type[]" {if condition="in_array('5', $row.project_type)" }checked{/if}
+                value="5" /> 工业建筑
+            <input type="checkbox" name="project_type[]" {if condition="in_array('6', $row.project_type)" }checked{/if}
+                value="6" /> 装修装饰
+            <input type="checkbox" name="project_type[]" {if condition="in_array('7', $row.project_type)" }checked{/if}
+                value="7" /> 建筑设备安装
+            <input type="checkbox" name="project_type[]" {if condition="in_array('8', $row.project_type)" }checked{/if}
+                value="8" /> 市政基础建设
+        </div>
+    </div>
+
     <div class="form-group layer-footer">
         <label class="control-label col-xs-12 col-sm-2"></label>
         <div class="col-xs-12 col-sm-8">

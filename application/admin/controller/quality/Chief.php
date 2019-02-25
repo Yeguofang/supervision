@@ -35,24 +35,17 @@ class Chief extends Backend
     public function index()
     {
         $adminId = Session::get('admin')['id'];
-        $result = db('check_msg')->where('quality_id', $adminId)->where('status', 2)->select();
 
-        $time = array();//发起时间
-        $ids = array();//项目名称
-        $task = array();//检查任务
-        $quality_list = array();//协助的监督人员
-        for ($i = 0; $i < count($result); $i++) {
-            array_push($ids, $result[$i]['project_id']);
-            array_push($time, $result[$i]['open_time']);
-            array_push($task, $result[$i]['task']);
-            array_push($quality_list, $result[$i]['c_supervisor']);
-        }
-        $project = db('project')->field('project_name')->where('id', 'in', $ids)->select();
-        $this->assign('project', $project);
-        $this->assign('time', $time);
-        $this->assign('task', $task);
-        $this->assign('count',count($project));//需要检查的项目总数，用作显示。
-        $this->assign('quality_list', $quality_list);
+        $result = db('check_msg')
+        ->alias('m')
+        ->field('m.open_time,m.task,m.c_supervisor,p.project_name `name`')
+        ->join('project p','m.project_id=p.id')
+        ->where('m.quality_id', $adminId)
+        ->where('m.c_status', 2)
+        ->select();
+
+        $this->assign('count',count($result));//需要检查的项目总数，用作显示。
+        $this->assign('result', $result);
 
         //查出自己被指派的项目，指派主责
         if ($this->request->isAjax()) {
