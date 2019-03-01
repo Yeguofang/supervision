@@ -282,6 +282,10 @@ class Backend extends Controller
                 $k = $tableName . $k;
             }
             $v = !is_array($v) ? trim($v) : $v;
+
+            if($k == "i.situation"){
+                $v = substr($v,0,1);
+            }
             $sym = strtoupper(isset($op[$k]) ? $op[$k] : $sym);
             switch ($sym) {
                 case '=':

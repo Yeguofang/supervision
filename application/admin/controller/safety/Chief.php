@@ -35,13 +35,14 @@ class Chief extends Backend
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
             //自己指派的项目security_id
             $map['security_id'] = $adminId;
-            $field = "project.id,project.build_dept,project.project_name,project.address,project.supervisor_code,i.project_kind `i.project_kind`,i.status `i.status`";
+            $field = "l.licence_code `licence_code`,project.id,project.build_dept,project.project_name,project.address,project.supervisor_code,i.project_kind `i.project_kind`,i.status `i.status`";
             $total = $this->model
                 ->alias("project")
                 ->field($field)
                 ->where($where)
                 ->where($map)
                 ->join('quality_info i', 'project.quality_info=i.id')
+                ->join('licence l','project.licence_id=l.id')
                 ->order($sort, $order)
                 ->count();
 
@@ -51,6 +52,7 @@ class Chief extends Backend
                 ->where($where)
                 ->where($map)
                 ->join('quality_info i', 'project.quality_info=i.id')
+                ->join('licence l','project.licence_id=l.id')
                 ->order($sort, $order)
                 ->limit($offset, $limit)
                 ->select();

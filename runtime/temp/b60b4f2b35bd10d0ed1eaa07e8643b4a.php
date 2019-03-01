@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:89:"D:\Work\supervision_backend\public/../application/admin\view\quality\assistant\index.html";i:1551085166;s:70:"D:\Work\supervision_backend\application\admin\view\layout\default.html";i:1549179078;s:67:"D:\Work\supervision_backend\application\admin\view\common\meta.html";i:1549179078;s:69:"D:\Work\supervision_backend\application\admin\view\common\script.html";i:1549179078;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:89:"D:\Work\supervision_backend\public/../application/admin\view\quality\assistant\index.html";i:1551321157;s:70:"D:\Work\supervision_backend\application\admin\view\layout\default.html";i:1551321157;s:67:"D:\Work\supervision_backend\application\admin\view\common\meta.html";i:1551321159;s:69:"D:\Work\supervision_backend\application\admin\view\common\script.html";i:1551321159;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>

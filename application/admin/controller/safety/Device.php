@@ -14,7 +14,7 @@ use think\Db;
 use think\Session;
 
 
-//管理
+//机械管理
 class Device extends Backend
 {
     protected $noNeedRight = ['*'];
@@ -34,7 +34,7 @@ class Device extends Backend
         return $this->view->fetch();
     }
 
-    public function list()
+    public function delist()
     {
 
         if ($this->request->isAjax()) {

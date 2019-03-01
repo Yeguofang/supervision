@@ -32,11 +32,12 @@ class Build extends Backend{
         {
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
             $order = "build_check asc";
-            $field="project.id,project.build_dept,project.build_check,project.project_name,project.address,project.supervisor_progress,project.quality_progress,i.project_kind `i.project_kind`,i.status `i.status`";
+            $field="l.licence_code `licence_code`,project.id,project.build_dept,project.build_check,project.project_name,project.address,project.supervisor_progress,project.quality_progress,i.project_kind `i.project_kind`,i.status `i.status`";
             $total = $this->model
                 ->alias("project")
                 ->field($field)
                 ->where($where)
+                ->join('licence l','project.licence_id=l.id')
                 ->join('quality_info i','project.quality_info=i.id')
                 ->order($sort, $order)
                 ->count();
@@ -45,6 +46,7 @@ class Build extends Backend{
                 ->alias("project",'')
                 ->field($field)
                 ->where($where)
+                ->join('licence l','project.licence_id=l.id')
                 ->join('quality_info i','project.quality_info=i.id')
                 ->order($sort, $order)
                 ->limit($offset, $limit)
@@ -79,6 +81,11 @@ class Build extends Backend{
     public function deal($ids){
         if ($this->request->isAjax())
         {
+			//查询项目，并判断项目是否有提交监督报告
+            $report =  db('project')->where('id',$ids)->field("supervisory_report")->find();
+            if($report['supervisory_report'] == 1){
+                $this->error('监督报告未提交，不能验收');
+            }
             $data['build_check']=1;//同意
             $data['quality_progress'] = 5;//建管同意
             db('project')->where(['id'=>$ids])->update($data);

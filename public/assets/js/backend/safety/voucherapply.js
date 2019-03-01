@@ -5,7 +5,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'safety/voucherapply/list',
+                    index_url: 'safety/voucherapply/voList',
                  },
             });
 
@@ -76,6 +76,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {checkbox: true},
                        
                         {field: 'id', title: __('序号') ,operate: false,},
+                        {field: 'licence_code', title: '监督编号', operate: "LIKE"},
                         {field: 'i.build_dept', title: __('建设单位')},
                         { field: 'i.project_name', title: __('工程名称') },
                         {field: 'situation', title: __('工程进度'),operate: false,formatter:Controller.api.formatter.situation},

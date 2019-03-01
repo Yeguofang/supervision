@@ -32,7 +32,7 @@ class System extends Backend
 
         list($where, $sort, $order, $offset, $limit) = $this->buildparams();
 
-        $field = "project.id,project.build_dept,project.project_name,project.address,project.supervisor_code,supervisor_progress,i.project_kind `i.project_kind`,i.status `i.status`,i.situation `i.situation`,a.nickname `a.nickname`,s.nickname `s.nickname`";
+        $field = "l.licence_code `licence_code`,project.id,project.build_dept,project.project_name,project.address,project.supervisor_code,supervisor_progress,i.project_kind `i.project_kind`,i.status `i.status`,i.situation `i.situation`,a.nickname `a.nickname`,s.nickname `s.nickname`";
         $total = $this->model
             ->alias("project")
             ->field($field)
@@ -40,6 +40,7 @@ class System extends Backend
             ->join('quality_info i', 'project.quality_info=i.id')
             ->join('admin a', 'project.security_id=a.id', 'LEFT')
             ->join('admin s', 'project.supervisor_assistant=s.id', 'LEFT')
+            ->join('licence l','project.licence_id=l.id')
             ->order($sort, $order)
             ->count();
 
@@ -50,6 +51,7 @@ class System extends Backend
             ->join('quality_info i', 'project.quality_info=i.id')
             ->join('admin a', 'project.security_id=a.id', 'LEFT')
             ->join('admin s', 'project.supervisor_assistant=s.id', 'LEFT')
+            ->join('licence l','project.licence_id=l.id')
             ->order($sort, $order)
             ->limit($offset, $limit)
             ->select();
@@ -76,7 +78,7 @@ class System extends Backend
             $build = db('safety_books')->where('status', 0)->where('type', 2)->select(); //2.施工安全抽查记录，
             $suspend = db('safety_books')->where('status', 0)->where('type', 3)->select(); //3.暂停施工通知书，
             $stop = db('safety_books')->where('status', 0)->where('type', 4)->select(); //4.停工整改通知书
-            $device = db('device')->where('status', 0)->select();
+            $device = db('device')->select();
 
             for ($i = 0; $i < count($term); $i++) {
                 //对两个时间差进行差运算
@@ -140,7 +142,7 @@ class System extends Backend
         $build = db('safety_books')->where('status', 0)->where('type', 2)->select(); //2.施工安全抽查记录，
         $suspend = db('safety_books')->where('status', 0)->where('type', 3)->select(); //3.暂停施工通知书，
         $stop = db('safety_books')->where('status', 0)->where('type', 4)->select(); //4.停工整改通知书
-        $device = db('device')->where('status', 0)->select();
+        $device = db('device')->select();
 
         for ($i = 0; $i < count($term); $i++) {
             //对两个时间差进行差运算

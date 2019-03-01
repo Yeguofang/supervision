@@ -29,7 +29,7 @@ class Master extends Backend
         if ($this->request->isAjax()) {
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
 
-            $field = "project.id,project.build_dept,project.project_name,project.quality_code,project.address,quality_progress,project.permit_time,project.register_time,project.project_type,l.construction_company `l.construction_company`,l.supervision_company `l.supervision_company`,i.schedule `i.schedule`,i.project_kind `i.project_kind`,i.status `i.status`,i.situation `i.situation`,a.nickname `a.nickname`, i.check_company `i.check_company`, i.energy `i.energy`";
+            $field = "project.id,project.build_dept,project.project_name,project.quality_code,project.address,quality_progress,project.permit_time,project.register_time,project.project_type,l.construction_company `l.construction_company`,l.supervision_company `l.supervision_company`,l.licence_code `licence_code`,i.schedule `i.schedule`,i.project_kind `i.project_kind`,i.status `i.status`,i.situation `i.situation`,a.nickname `a.nickname`, i.check_company `i.check_company`, i.energy `i.energy`";
             $total = $this->model
                 ->alias("project")
                 ->field($field)
@@ -85,6 +85,7 @@ class Master extends Backend
     public function detail($ids)
     {
         $row = db('project')->where(['id' => $ids])->find();
+        $row['project_type'] =explode(',', $row['project_type']);//工程项目
         $infoId = $row['quality_info'];
         $info = db('quality_info')->where(['id' => $infoId])->find();
         $info['floor_up'] = explode(",", $info['floor'])[0];

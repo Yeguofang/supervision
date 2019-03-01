@@ -42,7 +42,7 @@ class Suspend extends Backend
         return $this->view->fetch();
     }
 
-    public function list()
+    public function suspendlist()
     {
 
         if ($this->request->isAjax()) {
@@ -97,7 +97,7 @@ class Suspend extends Backend
     public function detail($ids)
     {
         $data = db('safety_books')->where('id', $ids)->find();
-        $data['images'] = "http://47.107.235.179/supervision/public".$data['images'];
+        $data['images'] = newUrl($data['images']);
         $this->assign('data', $data);
         return $this->fetch();
     }

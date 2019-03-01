@@ -35,29 +35,32 @@ class Quality extends Backend
         } elseif ($ret == 2) {
             //副站长
 //            $map['supervisor_progress']=1;
-            $map['quality_assistant'] = $adminId;
+            $map['project.quality_assistant'] = $adminId;
         } else {
             //质检员
 //            $map['supervisor_progress']=2;
-            $map['quality_id'] = $adminId;
+            $map['project.quality_id'] = $adminId;
         }
         if ($this->request->isAjax()) {
             // 查出下发了告知书的  如果已经申请了竣工的没有竣工按钮
-            $filed = "id,project_name,build_dept,address,begin_time,finish_time,check_time,finish_time,quality_progress,build_check";
+            $filed = "l.licence_code `licence_code`,project.id,project.project_name,project.build_dept,project.address,project.begin_time,project.finish_time,project.check_time,project.finish_time,project.quality_progress,project.build_check";
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
-            $total = $this->model->alias('project')
+            $total = $this->model
+                ->alias('project')
                 ->field($filed)
                 ->where($where)
-                ->whereNotNull('quality_code')
+                ->whereNotNull('project.quality_code')
                 ->where($map)
                 ->order($sort, $order)
                 ->count();
 
-            $list = $this->model->alias('project')
+            $list = $this->model
+                ->alias('project')
                 ->field($filed)
                 ->where($where)
-                ->whereNotNull('quality_code')
+                ->whereNotNull('project.quality_code')
                 ->where($map)
+                ->join('licence l','project.licence_id=l.id')
                 ->order($sort, $order)
                 ->limit($offset, $limit)
                 ->select();

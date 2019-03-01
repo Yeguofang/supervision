@@ -35,21 +35,23 @@ class Info extends Backend
         if ($this->request->isAjax()) {
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
             
-            $field = "project.id,project.build_dept,project.project_name,project.address,project.register_time,project.permit_time,project.finish_time,project.address,project.project_type,i.check_company `i.check_company`,i.project_kind `i.project_kind`,i.situation `i.situation`,i.status `i.status`,i.energy `i.energy`,l.design_company `l.design_company`,l.survey_company `l.survey_company`,l.construction_company `l.construction_company`,l.supervision_company `l.supervision_company`";
+            $field = "project.id,project.build_dept,project.project_name,project.address,project.register_time,project.permit_time,project.finish_time,project.address,project.project_type,i.check_company `i.check_company`,i.project_kind `i.project_kind`,i.situation `i.situation`,i.status `i.status`,i.energy `i.energy`,l.design_company `l.design_company`,l.survey_company `l.survey_company`,l.construction_company `l.construction_company`,l.supervision_company `l.supervision_company`,l.licence_code `licence_code`";
             
             $total = $this->model
                 ->alias("project")
                 ->field($field)
                 ->where($where)
+                ->join('quality_info i', 'project.quality_info=i.id')
+                ->join('licence l','project.licence_id=l.id')
                 ->order($sort, $order)
                 ->count();
 
             $list = $this->model
                 ->alias("project", '')
-                ->join('quality_info i', 'project.quality_info=i.id')
-                ->join('licence l','project.licence_id=l.id')
                 ->field($field)
                 ->where($where)
+                ->join('quality_info i', 'project.quality_info=i.id')
+                ->join('licence l','project.licence_id=l.id')
                 ->order($sort, $order)
                 ->limit($offset, $limit)
                 ->select();
@@ -68,6 +70,7 @@ class Info extends Backend
     {
         $row = db('project')->where(['id' => $ids])->find();
        
+        $row['project_type'] =explode(',', $row['project_type']);//工程项目
 
         $infoId = $row['quality_info'];
         $info = db('quality_info')->where(['id' => $infoId])->find();
@@ -85,6 +88,11 @@ class Info extends Backend
         $this->assign('info', $info);
         if ($this->request->isAjax()) {
             $row = $this->request->post('row/a');
+
+             //工程项目
+           $row['project_type'] = $this->request->post('project_type/a');
+           $row['project_type'] = implode(",",$row['project_type']);
+
            //转时间
             $row['begin_time'] = StrtoTime($row['begin_time']);
             $row['finish_time'] = StrtoTime($row['finish_time']);

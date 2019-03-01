@@ -35,7 +35,7 @@ class Master extends Backend{
         {
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
 
-            $field="project.id,project.build_dept,project.project_name,project.address,project.supervisor_code,supervisor_progress,i.schedule `i.schedule`,i.project_kind `i.project_kind`,i.status `i.status`,i.situation `i.situation`,a.nickname `a.nickname`,s.nickname `s.nickname`";
+            $field="l.licence_code `licence_code`,project.id,project.build_dept,project.project_name,project.address,project.supervisor_code,supervisor_progress,i.schedule `i.schedule`,i.project_kind `i.project_kind`,i.status `i.status`,i.situation `i.situation`,a.nickname `a.nickname`,s.nickname `s.nickname`";
             $total = $this->model
                 ->alias("project")
                 ->field($field)
@@ -43,6 +43,7 @@ class Master extends Backend{
                 ->join('quality_info i','project.quality_info=i.id')
                 ->join('admin a','project.security_id=a.id','LEFT')
                 ->join('admin s','project.supervisor_assistant=s.id','LEFT')
+                ->join('licence l','project.licence_id=l.id')
                 ->order($sort, $order)
                 ->count();
 
@@ -53,6 +54,7 @@ class Master extends Backend{
                 ->join('quality_info i','project.quality_info=i.id')
                 ->join('admin a','project.security_id=a.id','LEFT')
                 ->join('admin s','project.supervisor_assistant=s.id','LEFT')
+                ->join('licence l','project.licence_id=l.id')
                 ->order($sort, $order)
                 ->limit($offset, $limit)
                 ->select();

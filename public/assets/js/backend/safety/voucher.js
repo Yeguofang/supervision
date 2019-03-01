@@ -113,7 +113,9 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {checkbox: true},
                        
                         {field: 'id', title: __('序号'),operate: false, },
+                        {field: 'licence_code', title: '监督编号', operate: "LIKE"},
                         {field: 'i.project_name', title: __('工程名称') },
+
                         { field: 'i.build_dept', title: __('建设单位') },
                         {field: 'situation', title: __('工程进度'),operate: false,formatter:Controller.api.formatter.situation},
                         {field: 'project_images', title: __('项目图片'),operate: false, formatter: Table.api.formatter.images},

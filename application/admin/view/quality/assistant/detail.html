@@ -96,6 +96,54 @@
         </td>
     </tr>
     <tr>
+        <td>专监员 1:</td>
+        <td>
+            {$row.special_one}
+        </td>
+    </tr>
+    <tr>
+        <td>专监员 2:</td>
+        <td>
+            {$row.special_two}
+        </td>
+    </tr>
+    <tr>
+        <td>监理员 1:</td>
+        <td>
+            {$row.supervisor_one}
+        </td>
+    </tr>
+    <tr>
+        <td>监理员 2:</td>
+        <td>
+            {$row.supervisor_two}
+        </td>
+    </tr>
+    <tr>
+        <td>施工员 1:</td>
+        <td>
+            {$row.builder_one}
+        </td>
+    </tr>
+    <tr>
+        <td>施工员 2:</td>
+        <td>
+            {$row.builder_two}
+        </td>
+    </tr>
+    <tr>
+        <td>质安员 1:</td>
+        <td>
+            {$row.quality_one}
+        </td>
+    </tr>
+    <tr>
+        <td>质安员 2:</td>
+        <td>
+            {$row.quality_two}
+        </td>
+    </tr>
+    <tr>
         <td>工程类别:</td>
         <td>
             {if $info.project_kind == '0' }
@@ -184,6 +232,18 @@
             自停工
             {/if}
         </td>
+    </tr>
+    <tr>
+        <td>工程项目:</td>
+        <td>
+            {if condition="in_array('1', $row.project_type)" }地产，{/if}
+            {if condition="in_array('2', $row.project_type)" }宅，{/if}
+            {if condition="in_array('3', $row.project_type)" }保障性住房，{/if}
+            {if condition="in_array('4', $row.project_type)" }公共建筑，{/if}
+            {if condition="in_array('5', $row.project_type)" }工业建筑，{/if}
+            {if condition="in_array('6', $row.project_type)" }装修装饰，{/if}
+            {if condition="in_array('7', $row.project_type)" }建筑设备安装，{/if}
+            {if condition="in_array('8', $row.project_type)" }市政基础建设，{/if}
     </tr>
 
     </tbody>

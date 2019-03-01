@@ -36,7 +36,7 @@ class Danger extends Backend
         return $this->view->fetch();
     }
 
-    public function list()
+    public function deList()
     {
 
         if ($this->request->isAjax()) {

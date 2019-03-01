@@ -39,13 +39,14 @@ class Voucher extends Backend
 
             $map['project_voucher.quality_id'] = $adminId;
 
-            $field = "project_voucher.id,project_voucher.project_images,project_voucher.project_desc,project_voucher.push_time,project_voucher.situation,project_voucher.kind,project_voucher.schedule,project_voucher.edit_status,project_voucher.del_status,i.project_name `i.project_name`,i.build_dept `i.build_dept`";
+            $field = "l.licence_code `licence_code`,project_voucher.id,project_voucher.project_images,project_voucher.project_desc,project_voucher.push_time,project_voucher.situation,project_voucher.kind,project_voucher.schedule,project_voucher.edit_status,project_voucher.del_status,i.project_name `i.project_name`,i.build_dept `i.build_dept`";
             $total = $this->model
                 ->alias("project_voucher")
                 ->field($field)
                 ->where($where)
                 ->where($map)
                 ->join('project i', 'project_voucher.project_id=i.id')
+                ->join('licence l','i.licence_id=l.id')
                 ->order($sort, $order)
                 ->count();
 
@@ -55,6 +56,7 @@ class Voucher extends Backend
                 ->where($where)
                 ->where($map)
                 ->join('project i', 'project_voucher.project_id=i.id')
+                ->join('licence l','i.licence_id=l.id')
                 ->order($sort, $order)
                 ->limit($offset, $limit)
                 ->select();

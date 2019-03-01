@@ -36,7 +36,7 @@ class Vouchermaster extends Backend
 
             $map['project_voucher.project_id'] = $ids;
              $map['project_voucher.dept_type'] = 1;//质监部门的检查记录
-            $field = "project_voucher.id,project_voucher.project_images,project_voucher.project_desc,project_voucher.push_time,project_voucher.edit_status,project_voucher.del_status,project_voucher.situation,project_voucher.kind,project_voucher.schedule,i.project_name `i.project_name`,i.build_dept `i.build_dept`";
+            $field = "l.licence_code `licence_code`,project_voucher.id,project_voucher.project_images,project_voucher.project_desc,project_voucher.push_time,project_voucher.edit_status,project_voucher.del_status,project_voucher.situation,project_voucher.kind,project_voucher.schedule,i.project_name `i.project_name`,i.build_dept `i.build_dept`";
 
             $total = $this->model
                 ->alias("project_voucher")
@@ -45,6 +45,7 @@ class Vouchermaster extends Backend
                 ->where($map)
                 ->join('project i', 'project_voucher.project_id=i.id')
                 ->join('quality_info f','i.quality_info=f.id')
+                ->join('licence l','i.licence_id=l.id')
                 ->order($sort, $order)
                 ->count();
 
@@ -54,6 +55,7 @@ class Vouchermaster extends Backend
                 ->where($where)
                 ->where($map)
                 ->join('project i', 'project_voucher.project_id=i.id')
+                ->join('licence l','i.licence_id=l.id')
                 ->order($sort, $order)
                 ->limit($offset, $limit)
                 ->select();

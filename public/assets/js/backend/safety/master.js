@@ -128,6 +128,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         //id,worker_code,nickname,mobile,supervisor_card,admin_code,is_law,username,admin_level
                         {checkbox: true},
                         {field: 'id', title: '序号', sortable: true, operate: false},
+                        {field: 'licence_code', title: '监督编号', operate: "LIKE"},
                         {field: 'build_dept', title: '建设单位', operate: "LIKE"},
                         {field: 'project_name', title: '工程名称', operate: "LIKE"},
                         {field: 'address', title: '建设地址', operate:false},

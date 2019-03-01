@@ -16,6 +16,7 @@ use think\Db;
 class Filing extends Backend
 {
     protected $noNeedRight = ['*'];
+    protected $relationSearch = true;
     public function _initialize()
     {
         parent::_initialize();
@@ -26,15 +27,24 @@ class Filing extends Backend
     public function index()
     {
         if ($this->request->isAjax()) {
+
+            $field = "l.licence_code `licence_code`,project.id,project.build_dept,project.project_name,project.address,project.push_time,project.supervise_time,project.begin_time,project.finish_time,project.check_time,project.recode_status,project.record_time";
+
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
-            $total = $this->model->alias('project')
+            $total = $this->model
+                ->alias('project')
+                ->field($field)
                 ->where($where)
+                ->join('licence l','project.licence_id=l.id')
                 ->order($sort, $order)
                 ->count();
 
-            $list = $this->model->alias('project')
+            $list = $this->model
+                 ->alias('project')
+                 ->field($field)
                 ->where($where)
-                ->order($sort, $order)
+                ->join('licence l','project.licence_id=l.id')
+                ->order($sort, $order)  
                 ->limit($offset, $limit)
                 ->select();
 
@@ -108,11 +118,9 @@ class Filing extends Backend
             }
         }
         $project = db('project')->where('id', 'in', $project_id)->select();
-
-        for($i=0;$i<count($project);$i++){
+		  for($i=0;$i<count($project);$i++){
             $project[$i]['check_time'] = DataTiem($project[$i]['check_time']);
         }
-       
         $this->assign('project', $project);
         return $this->fetch();
     }

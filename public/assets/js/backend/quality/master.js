@@ -37,20 +37,20 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
                     url      : 'quality/master/detail',
                 },
-                {
-                    name     : 'quality',
-                    text     : '登记告知书',
-                    classname: 'btn btn-info btn-xs btn-detail  download',
-                    url      : 'quality/master/quality',
-                    extend   : 'target="_blank"',
-                    visible  : function (row) {
-                        //下发了告知书才显示
-                        if(row.quality_code!=null){
-                            return true;
-                        }
-                        return false;
-                    }
-                }
+                // {
+                //     name     : 'quality',
+                //     text     : '登记告知书',
+                //     classname: 'btn btn-info btn-xs btn-detail  download',
+                //     url      : 'quality/master/quality',
+                //     extend   : 'target="_blank"',
+                //     visible  : function (row) {
+                //         //下发了告知书才显示
+                //         if(row.quality_code!=null){
+                //             return true;
+                //         }
+                //         return false;
+                //     }
+                // }
             ];
             var table = $("#table");
 
@@ -156,18 +156,19 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         //id,worker_code,nickname,mobile,supervisor_card,admin_code,is_law,username,admin_level
                         {checkbox: true},
                         {field: 'id', title: '序号', sortable: true, operate: false},
+                        {field: 'licence_code', title: '监督编号', operate: "LIKE"},
                         {field: 'build_dept', title: '建设单位', operate: "LIKE"},
                         {field: 'project_name', title: '工程名称', operate: "LIKE"},
                         {field: 'address', title: '建设地址', operate:false},
                         {field: 'a.nickname', title: '质监员', operate:false},
                         {field: 'i.project_kind', title: '工程类别', formatter:Controller.api.formatter.kind,searchList: {'0':'市政建设','1': '房建'}},
-                        {field: 'i.situation', title: '工程进度', formatter:Controller.api.formatter.situation,},
+                        {field: 'i.situation', title: '工程进度', formatter:Controller.api.formatter.situation,searchList: {'0':'路基处理','1': '路面工程','2':'排水系统','3':'绿化照明','4':'标识标线','5':'完成','6':'竣工验收','00':'基础阶段','11':'主体阶段','22':'装饰阶段','33':'收尾','44':'完工','55':'竣工验收'}},
                         {field: 'i.status', title: '工程状态', formatter:Controller.api.formatter.status,searchList: {'0':'未开工','1': '在建','2':'质量停工','3':'安全停工','4':'局停工','5':'自停工'}},
                         {field: 'quality_progress', title: '质监进度', formatter:Controller.api.formatter.quality_progress,searchList: {'0':'未处理','1': '已申请竣工并已通知副站','2':'已通知站长','3':'同意'}},
                         {field: 'i.energy', title: '节能', formatter:Controller.api.formatter.energy,searchList: {'0':'否','1': '是'}},
                         {field: 'permit_time', title: '施工许可审批时间', operate: 'RANGE', addclass: 'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'register_time', title: '监督注册表审批时间', operate: 'RANGE', addclass: 'datetimerange', formatter: Table.api.formatter.datetime},
-                        {field: 'project_type', title: '工程项目',operate: 'FIND_IN_SET',formatter:Controller.api.formatter.project_type,searchList: {'1':'房地产','2': '住宅','3':'保障性住房','4':'公共建筑','5':'工业建筑','6':'装修装饰','7':'建筑设备安装','8':'市政基础设施'} },
+                        {field: 'project_type', title: '工程项目',operate: 'FIND_IN_SET',formatter:Controller.api.formatter.project_type,searchList: {'1':'地产','2': '宅','3':'保障性住房','4':'公共建筑','5':'工业建筑','6':'装修装饰','7':'建筑设备安装','8':'市政基础设施'} },
                         {field: 'l.construction_company', title: '施工单位', operate: "LIKE"},
                         {field: 'l.supervision_company', title: '监理单位',operate: "LIKE"},
                         {field: 'i.check_company', title: '检测单位',operate: "LIKE"},
@@ -250,7 +251,6 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                             return "<label class='label bg-red'>竣工验收</label>"
                         }
                     } else if (row['i.project_kind'] == '1') {
-                       
                         if(value == '0'){
                             return "<label class='label bg-green'>基础阶段</label>"
                         }else if(value == '1'){
@@ -272,13 +272,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                       return '-';
                     }else{  
                     var project_type = [
-                        '','房地产','住宅','保障性住房','公共建筑','工业建筑','装修装饰','建筑设备安装','市政基础设施',
+                        '','地产','宅','保障性住房','公共建筑','工业建筑','装修装饰','建筑设备安装','市政基础设施',
                     ];
                     let str = '';
                     value.forEach((v,i) => {
                         str += project_type[v]+',';
                     })
-                    return str.substring(str.length-1,1);
+                    return ;
                   }
             }
             }

@@ -89,6 +89,37 @@
                     />
             </div>
         </div>
+        <div class="form-group">
+            <label for="builder_one" class="control-label col-xs-12 col-sm-2">施工员1:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input type="text" class="form-control" id="builder_one" name="row[builder_one]" value="{$row.builder_one}"
+                    />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="builder_two" class="control-label col-xs-12 col-sm-2">施工员2:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input type="text" class="form-control" id="builder_two" name="row[builder_two]" value="{$row.builder_two}"
+                     />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="quality_one" class="control-label col-xs-12 col-sm-2">质安员1:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input type="text" class="form-control" id="quality_one" name="row[quality_one]" value="{$row.quality_one}"
+                     />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="quality_two" class="control-label col-xs-12 col-sm-2">质安员2:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input type="text" class="form-control" id="quality_two" name="row[quality_two]" value="{$row.quality_two}"
+                    />
+            </div>
+        </div>
+
+ 
+
     <div class="form-group">
         <label for="project_kind" class="control-label col-xs-12 col-sm-2">工程类别:</label>
         <div class="col-xs-12 col-sm-8">
@@ -175,6 +206,30 @@
             </select>
         </div>
     </div>
+
+    <div class="form-group">
+        <label for="begin_time" class="control-label col-xs-12 col-sm-2">工程项目:</label>
+        <div class="col-xs-12 col-sm-8" data-rule="required">
+            <input type="checkbox" name="project_type[]" {if condition="in_array('1', $row.project_type)" }checked{/if}
+                value="1" /> 房地产
+            <input type="checkbox" name="project_type[]" {if condition="in_array('2', $row.project_type)" }checked{/if}
+                value="2" /> 住宅
+            <input type="checkbox" name="project_type[]" {if condition="in_array('3', $row.project_type)" }checked{/if}
+                value="3" /> 保障性住房
+            <input type="checkbox" name="project_type[]" {if condition="in_array('4', $row.project_type)" }checked{/if}
+                value="4" /> 公共建筑
+            <br />
+            <input type="checkbox" name="project_type[]" {if condition="in_array('5', $row.project_type)" }checked{/if}
+                value="5" /> 工业建筑
+            <input type="checkbox" name="project_type[]" {if condition="in_array('6', $row.project_type)" }checked{/if}
+                value="6" /> 装修装饰
+            <input type="checkbox" name="project_type[]" {if condition="in_array('7', $row.project_type)" }checked{/if}
+                value="7" /> 建筑设备安装
+            <input type="checkbox" name="project_type[]" {if condition="in_array('8', $row.project_type)" }checked{/if}
+                value="8" /> 市政基础建设
+        </div>
+    </div>
+    
     <div class="form-group layer-footer">
         <label class="control-label col-xs-12 col-sm-2"></label>
         <div class="col-xs-12 col-sm-8">

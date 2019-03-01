@@ -40,7 +40,7 @@ class Rectify extends Backend
         //站长跟质监员可以看到全部项目
         if ($this->request->isAjax()) {
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
-                $field = "project.id,project.build_dept,project.project_name,project.quality_code,project.address,project.rectify_status,quality_progress,a.nickname `a.nickname`,z.nickname `z.nickname`";
+                $field = "l.licence_code `licence_code`,project.id,project.build_dept,project.project_name,project.quality_code,project.address,project.rectify_status,quality_progress,a.nickname `a.nickname`,z.nickname `z.nickname`";
                 $total = $this->model
                     ->alias("project")
                     ->field($field)
@@ -48,16 +48,18 @@ class Rectify extends Backend
                     ->where($map)
                     ->join('admin a', 'project.quality_id=a.id', 'LEFT')
                     ->join('admin z', 'project.quality_assistant=z.id', 'LEFT')
+                    ->join('licence l','project.licence_id=l.id')
                     ->order($sort, $order)
                     ->count();
     
                 $list = $this->model
-                    ->alias("project", '')
+                    ->alias("project")
                     ->field($field)
                     ->where($where)
                     ->where($map)
                     ->join('admin a', 'project.quality_id=a.id', 'LEFT')
                     ->join('admin z', 'project.quality_assistant=z.id', 'LEFT')
+                    ->join('licence l','project.licence_id=l.id')
                     ->order($sort, $order)
                     ->limit($offset, $limit)
                     ->select();

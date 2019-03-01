@@ -5,7 +5,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'safety/device/list',
+                    index_url: 'safety/devicecount/index',
                 }
             });
           

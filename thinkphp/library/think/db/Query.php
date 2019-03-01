@@ -54,7 +54,7 @@ class Query
     // 回调事件
     private static $event = [];
     // 读取主库
-    protected static $readMaster = [];
+    private static $readMaster = [];
 
     /**
      * 构造函数
@@ -92,13 +92,6 @@ class Query
             $name         = Loader::parseName(substr($method, 10));
             $where[$name] = $args[0];
             return $this->where($where)->value($args[1]);
-        } elseif ($this->model && method_exists($this->model, 'scope' . $method)) {
-            // 动态调用命名范围
-            $method = 'scope' . $method;
-            array_unshift($args, $this);
-
-            call_user_func_array([$this->model, $method], $args);
-            return $this;
         } else {
             throw new Exception('method not exist:' . __CLASS__ . '->' . $method);
         }
@@ -546,9 +539,9 @@ class Query
             $options = $this->getOptions();
             $subSql  = $this->options($options)->field('count(' . $field . ')')->bind($this->bind)->buildSql();
 
-            $count = $this->table([$subSql => '_group_count_'])->value('COUNT(*) AS tp_count', 0, true);
+            $count = $this->table([$subSql => '_group_count_'])->value('COUNT(*) AS tp_count', 0);
         } else {
-            $count = $this->aggregate('COUNT', $field, true);
+            $count = $this->aggregate('COUNT', $field);
         }
 
         return is_string($count) ? $count : (int) $count;
@@ -565,15 +558,11 @@ class Query
      */
     public function aggregate($aggregate, $field, $force = false)
     {
-        if (0 === stripos($field, 'DISTINCT ')) {
-            list($distinct, $field) = explode(' ', $field);
-        }
-
-        if (!preg_match('/^[\w\.\+\-\*]+$/', $field)) {
+        if (!preg_match('/^[\w\.\*]+$/', $field)) {
             throw new Exception('not support data:' . $field);
         }
 
-        $result = $this->value($aggregate . '(' . (!empty($distinct) ? 'DISTINCT ' : '') . $field . ') AS tp_' . strtolower($aggregate), 0, $force);
+        $result = $this->value($aggregate . '(' . $field . ') AS tp_' . strtolower($aggregate), 0, $force);
 
         return $result;
     }
@@ -2130,23 +2119,14 @@ class Query
                 $this->field('*');
             }
             foreach ($relations as $key => $relation) {
-                $closure = $name = null;
+                $closure = false;
                 if ($relation instanceof \Closure) {
                     $closure  = $relation;
                     $relation = $key;
-                } elseif (!is_int($key)) {
-                    $name     = $relation;
-                    $relation = $key;
                 }
                 $relation = Loader::parseName($relation, 1, false);
-
-                $count = '(' . $this->model->$relation()->getRelationCountQuery($closure, $name) . ')';
-
-                if (empty($name)) {
-                    $name = Loader::parseName($relation) . '_count';
-                }
-
-                $this->field([$count => $name]);
+                $count    = '(' . $this->model->$relation()->getRelationCountQuery($closure) . ')';
+                $this->field([$count => Loader::parseName($relation) . '_count']);
             }
         }
         return $this;

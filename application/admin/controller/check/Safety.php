@@ -42,9 +42,10 @@ class Safety extends Backend{
         if ($this->request->isAjax())
         {
             //安监
-            $filed="id,project_name,build_dept,address,begin_time,finish_time,check_time,supervisor_progress";
+            $filed="l.licence_code `licence_code`,p.id,p.project_name,p.build_dept,p.address,p.begin_time,p.finish_time,p.check_time,p.supervisor_progress";
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
-            $total =$this->model->alias('project')
+            $total =$this->model
+             ->alias('p')
                 ->field($filed)
                 ->where($where)
                 ->whereNotNull('supervisor_code')
@@ -52,11 +53,13 @@ class Safety extends Backend{
                 ->order($sort, $order)
                 ->count();
 
-            $list =$this->model->alias('project')
+            $list =$this->model
+                ->alias('p')
                 ->field($filed)
                 ->where($where)
                 ->whereNotNull('supervisor_code')
                 ->where($map)
+                ->join('licence l','p.licence_id=l.id')
                 ->order($sort, $order)
                 ->limit($offset, $limit)
                 ->select();

@@ -53,7 +53,7 @@ class Assistant extends Backend
             //自己指派的项目quality_assistant
             $map['quality_assistant'] = $adminId;
           
-            $field = "project.id,project.build_dept,project.project_name,project.quality_code,project.address,quality_progress,i.schedule `i.schedule`,i.project_kind `i.project_kind`,i.status `i.status`,i.situation `i.situation`,a.nickname `a.nickname`";
+            $field = "l.licence_code `licence_code`,project.id,project.build_dept,project.project_name,project.quality_code,project.address,quality_progress,i.schedule `i.schedule`,i.project_kind `i.project_kind`,i.status `i.status`,i.situation `i.situation`,a.nickname `a.nickname`";
             $total = $this->model
                 ->alias("project")
                 ->field($field)
@@ -61,6 +61,7 @@ class Assistant extends Backend
                 ->where($map)
                 ->join('quality_info i', 'project.quality_info=i.id','LEFT')
                 ->join('admin a', 'project.quality_id=a.id', 'LEFT')
+                ->join('licence l','project.licence_id=l.id')
                 ->order($sort, $order)
                 ->limit($offset, $limit)
                 ->count();
@@ -72,6 +73,7 @@ class Assistant extends Backend
                 ->where($map)
                 ->join('quality_info i', 'project.quality_info=i.id','LEFT')
                 ->join('admin a', 'project.quality_id=a.id', 'LEFT')
+                ->join('licence l','project.licence_id=l.id')
                 ->order($sort, $order)
                 ->limit($offset, $limit)
                 ->select();
@@ -108,6 +110,7 @@ class Assistant extends Backend
     public function detail($ids)
     {
         $row = db('project')->where(['id' => $ids])->find();
+        $row['project_type'] =explode(',', $row['project_type']);//工程项目
         $infoId = $row['quality_info'];
         $info = db('quality_info')->where(['id' => $infoId])->find();
         $info['floor_up'] = explode(",", $info['floor'])[0];

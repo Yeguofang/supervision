@@ -1,4 +1,4 @@
-define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefined, Backend, Table, Form) {
+﻿define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefined, Backend, Table, Form) {
 
     var Controller = {
         index: function () {
@@ -29,8 +29,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         Layer.alert(ret.msg );
                     },
                     visible  : function (row) {
-                        //返回true时按钮显示,返回false隐藏   质监跟安监都申请了竣工
-                        if (row.quality_progress == 3 && row.supervisor_progress == 3) {
+                        //返回true时按钮显示,返回false隐藏  质监跟安监都申请了竣工
+                        if (row.quality_progress == 3  && row.supervisor_progress == 3) {
                             if (row.build_check == 1) {
                                 return false;
                             }
@@ -133,6 +133,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         //id,worker_code,nickname,mobile,supervisor_card,admin_code,is_law,username,admin_level
                         {checkbox: true},
                         {field: 'id', title: '序号', sortable: true, operate: false},
+                        {field: 'licence_code', title: '监督编号', operate: "LIKE"},
                         {field: 'build_dept', title: '建设单位', operate: "LIKE"},
                         {field: 'project_name', title: '工程名称', operate: "LIKE"},
                         {field: 'address', title: '建设地址', operate:false},

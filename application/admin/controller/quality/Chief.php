@@ -52,7 +52,7 @@ class Chief extends Backend
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
             //自己指派的项目quality_id
             $map['quality_id'] = $adminId;
-            $field = "project.id,project.build_dept,project.project_name,project.quality_code,project.address,i.project_kind `i.project_kind`,i.status `i.status`,a.nickname `a.nickname`";
+            $field = "l.licence_code `licence_code`,project.id,project.build_dept,project.project_name,project.quality_code,project.address,i.project_kind `i.project_kind`,i.status `i.status`,a.nickname `a.nickname`";
             $total = $this->model
                 ->alias("project")
                 ->field($field)
@@ -60,6 +60,7 @@ class Chief extends Backend
                 ->where($map)
                 ->join('quality_info i', 'project.quality_info=i.id')
                 ->join('admin a','project.quality_assistant=a.id')
+                ->join('licence l','project.licence_id=l.id')
                 ->order($sort, $order)
                 ->count();
 
@@ -70,6 +71,7 @@ class Chief extends Backend
                 ->where($map)
                 ->join('quality_info i', 'project.quality_info=i.id')
                 ->join('admin a','project.quality_assistant=a.id')
+                ->join('licence l','project.licence_id=l.id')
                 ->order($sort, $order)
                 ->limit($offset, $limit)
                 ->select();
@@ -193,6 +195,9 @@ class Chief extends Backend
     public function detail($ids)
     {
         $row = db('project')->where(['id' => $ids])->find();
+
+        $row['project_type'] =explode(',', $row['project_type']);//工程项目
+        
         $infoId = $row['quality_info'];
         $info = db('quality_info')->where(['id' => $infoId])->find();
         $info['floor_up'] = explode(",", $info['floor'])[0];

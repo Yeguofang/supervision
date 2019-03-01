@@ -133,6 +133,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         //id,worker_code,nickname,mobile,supervisor_card,admin_code,is_law,username,admin_level
                         {checkbox: true},
                         {field: 'id', title: '序号', sortable: true, operate: false},
+                        {field: 'licence_code', title: '监督编号', operate: "LIKE"},
                         {field: 'build_dept', title: '建设单位', operate: "LIKE"},
                         {field: 'project_name', title: '工程名称', operate: "LIKE"},
                         {field: 'address', title: '建设地址', operate: "LIKE"},
@@ -142,7 +143,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'permit_time', title: '施工许可审批时间', operate: 'RANGE', addclass: 'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'register_time', title: '监督注册表审批时间', operate: 'RANGE', addclass: 'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'finish_time', title: '竣工日期',operate: 'RANGE', addclass: 'datetimerange', formatter: Table.api.formatter.datetime},
-                        {field: 'project_type', title: '工程项目',operate: 'FIND_IN_SET',formatter:Controller.api.formatter.project_type,searchList: {'1':'房地产','2': '住宅','3':'保障性住房','4':'公共建筑','5':'工业建筑','6':'装修装饰','7':'建筑设备安装','8':'市政基础设施'} },
+                        {field: 'project_type', title: '工程项目',operate: 'FIND_IN_SET',formatter:Controller.api.formatter.project_type,searchList: {'1':'地产','2': '宅','3':'保障性住房','4':'公共建筑','5':'工业建筑','6':'装修装饰','7':'建筑设备安装','8':'市政基础设施'} },
                         {field: 'l.design_company', title: '设计单位', operate: "LIKE"},
                         {field: 'l.survey_company', title: '勘察单位', operate: "LIKE"},
                         {field: 'l.construction_company', title: '施工单位', operate: "LIKE"},
@@ -205,13 +206,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         return '-';
                       }else{  
                       var project_type = [
-                          '','房地产','住宅','保障性住房','公共建筑','工业建筑','装修装饰','建筑设备安装','市政基础设施',
+                        '','地产','宅','保障性住房','公共建筑','工业建筑','装修装饰','建筑设备安装','市政基础设施',
                       ];
                       let str = '';
                       value.forEach((v,i) => {
                           str += project_type[v]+',';
                       })
-                      return str.substring(str.length-1,1);
+                      return str;
                     }
                 }
             }

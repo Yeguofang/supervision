@@ -7,7 +7,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 extend: {
                     index_url: 'quality/chief/index',
                     // add_url: 'quality/chief/add',
-                    // edit_url: 'quality/chief/edit',
+                    edit_url : 'quality/info/edit',
                     // del_url: 'quality/chief/del',
                     // multi_url: 'quality/chief/multi',
                 }
@@ -27,7 +27,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 {
                     name     : 'deal',
                     text     : '下发告知书',
-                    icon     : 'fa fa-list',
+                    // icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
                     url      : 'quality/chief/deal',
                     visible  : function (row) {
@@ -41,7 +41,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 ,{
                     name     : 'select',
                     text     : '修改责任人',
-                    icon     : 'fa fa-list',
+                    // icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
                     url      : 'quality/chief/select',
                     visible  : function (row) {
@@ -55,25 +55,26 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 {
                     name     : 'detail',
                     text     : '详细信息',
-                    icon     : 'fa fa-list',
+                    // icon     : 'fa fa-list',
                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
                     url      : 'quality/chief/detail',
                 },
-                {
-                    name     : 'quality',
-                    text     : '登记告知书',
-                    icon     : 'fa fa-list',
-                    classname: 'btn btn-info btn-xs btn-detail  download',
-                    url      : 'quality/chief/quality',
-                    extend   : 'target="_blank"',
-                    visible  : function (row) {
-                        //下发了告知书才显示
-                        if(row.quality_code!=null){
-                            return true;
-                        }
-                        return false;
-                    }
-                }
+
+                // {//质监说去掉，（这里先留着，到时候要的时候时间去用）
+                //     name     : 'quality',
+                //     text     : '登记告知书',
+                //     // icon     : 'fa fa-list',
+                //     classname: 'btn btn-info btn-xs btn-detail  download',
+                //     url      : 'quality/chief/quality',
+                //     extend   : 'target="_blank"',
+                //     // visible  : function (row) {
+                //     //     //下发了告知书才显示
+                //     //     if(row.quality_code!=null){
+                //     //         return true;
+                //     //     }
+                //     //     return false;
+                //     // }
+                // }
 
             ];
            
@@ -184,6 +185,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         //id,worker_code,nickname,mobile,supervisor_card,admin_code,is_law,username,admin_level
                         {checkbox: true},
                         {field: 'id', title: '序号', sortable: true, operate: false},
+                        {field: 'licence_code', title: '监督编号', operate: "LIKE"},
                         {field: 'build_dept', title: '建设单位', operate: "LIKE"},
                         {field: 'project_name', title: '工程名称', operate: "LIKE"},
                         { field: 'address', title: '建设地址', operate: false },
